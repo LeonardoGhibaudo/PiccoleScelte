@@ -1,0 +1,105 @@
+.tutorial-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorial-modal {
+  background: var(--modal-bg);
+  border: 1px solid var(--panel-border);
+  box-shadow: var(--panel-shadow);
+  border-radius: 24px;
+  padding: 3rem;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle glow behind the modal content */
+.tutorial-modal::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, rgba(199, 210, 254, 0.3) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.tutorial-icon {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.tutorial-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  color: var(--color-text-dark);
+  margin-bottom: 1rem;
+  text-shadow: 0 0 20px rgba(199, 210, 254, 0.5);
+}
+
+.tutorial-text {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  line-height: 1.6;
+  margin-bottom: 2.5rem;
+}
+
+.tutorial-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.tutorial-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.tutorial-dot.active {
+  background: var(--color-primary);
+  width: 24px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px var(--color-primary);
+}
+
+.tutorial-actions {
+  display: flex;
+  justify-content: center;
+}
+
+.tutorial-btn {
+  width: 100%;
+  max-width: 250px;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  border: none;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.start-btn {
+  background: linear-gradient(135deg, #10b981, #059669); /* Emerald green for start */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
+  50% { transform: scale(1.05); box-shadow: 0 4px 25px rgba(16, 185, 129, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4); }
+}
