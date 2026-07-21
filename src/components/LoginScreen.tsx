@@ -1,26 +1,93 @@
 import React, { useState } from 'react';
 import AudioManager from '../utils/AudioManager';
 import './LoginScreen.css';
+import type { AuthRole, AvatarConfig, Patient } from '../types';
+import { AvatarBuilder } from './AvatarBuilder';
 
 interface LoginScreenProps {
-  onSuccess: () => void;
+  onSuccess: (role: AuthRole, token: string) => void;
   onBack: () => void;
 }
 
 export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) => {
-  const [pin, setPin] = useState('');
-  const [error, setError] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const role = 'user'; // Hardcoded, only users can register themselves
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [avatar, setAvatar] = useState<AvatarConfig | undefined>(undefined);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (pin === '0000') {
+    setError('');
+    setLoading(true);
+
+    try {
+      const endpoint = isRegistering ? '/api/auth/register' : '/api/auth/login';
+      const payload = isRegistering ? { email, password, role } : { email, password };
+      
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      
+      const data = await res.json();
+      
+      if (!res.ok) throw new Error(data.error || 'Errore di connessione');
+
       AudioManager.playClick();
-      onSuccess();
-    } else {
+      
+      if (isRegistering) {
+        if (role === 'user' && !firstName) {
+          throw new Error('Il nome del personaggio è obbligatorio per i giocatori.');
+        }
+
+        const loginRes = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({email,password})
+        })
+
+        const loginData = await loginRes.json();
+        localStorage.setItem('token', loginData.token);
+        localStorage.setItem('userEmail', loginData.email);
+        localStorage.setItem('authRole', loginData.role);
+        
+        if (role === 'user') {
+          // Create the character linked to this email!
+          const newPatient: Patient = {
+            id: email,
+            firstName: firstName,
+            lastName: lastName,
+            fiscalCode: 'NON_INSERITO',
+            diagnosisDetails: 'Profilo creato in registrazione',
+            avatar: avatar,
+            consentGiven: true,
+            createdAt: new Date().toISOString().split('T')[0],
+          };
+          await fetch('/api/patients', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(newPatient)
+          });
+        }
+
+        onSuccess(loginData.role, loginData.token)
+      } else {
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('userEmail', email)
+        localStorage.setItem('authRole', data.role)
+        onSuccess(data.role, data.token);
+      }
+    } catch (err: any) {
       AudioManager.playError();
-      setError(true);
-      setPin('');
-      setTimeout(() => setError(false), 2000);
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -32,26 +99,60 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
         </button>
         
         <div style={{ textAlign: 'center', marginBottom: '2rem', marginTop: '2rem' }}>
-          <h1 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-dark)', marginBottom: '0.5rem' }}>Area Terapeutica</h1>
-          <p className="text-muted">Inserisci il PIN per accedere</p>
+          <h1 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-dark)', marginBottom: '0.5rem' }}>
+            {isRegistering ? 'Crea Account' : 'Accedi'}
+          </h1>
+          <p className="text-muted">Inserisci le tue credenziali</p>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
-          <input
-            type="password"
-            className={`login-input ${error ? 'error shake' : ''}`}
-            value={pin}
-            onChange={(e) => setPin(e.target.value)}
-            placeholder="****"
-            maxLength={4}
-            autoFocus
-          />
-          {error && <span style={{ color: 'var(--color-impulsive)' }}>PIN errato. Riprova.</span>}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Email</label>
+            <input type="email" className="login-input" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="mario.rossi@email.com" required style={{width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid var(--color-border)'}} />
+          </div>
+
+          <div>
+            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Password</label>
+            <input type="password" className="login-input" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" required style={{width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid var(--color-border)'}} />
+          </div>
+
+          {isRegistering && (
+            <div style={{ marginTop: '1rem', padding: '1rem', border: '2px solid var(--color-border)', borderRadius: '12px', background: 'var(--color-surface)' }}>
+              <h3 style={{ marginBottom: '1rem', fontFamily: 'var(--font-display)' }}>Crea il tuo Personaggio</h3>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Nome *</label>
+                <input type="text" className="login-input" value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="Es. Marco" required style={{width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid var(--color-border)'}} />
+              </div>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Cognome (Opzionale)</label>
+                <input type="text" className="login-input" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Es. Rossi" style={{width: '100%', padding: '0.75rem', borderRadius: '8px', border: '2px solid var(--color-border)'}} />
+              </div>
+              
+              <div style={{ marginBottom: '1rem' }}>
+                <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Scegli il tuo Avatar</label>
+                <AvatarBuilder onChange={setAvatar} />
+              </div>
+            </div>
+          )}
+
+          {error && (
+            <div style={{ color: error.includes('completata') ? 'var(--color-assertive)' : 'var(--color-impulsive)', textAlign: 'center', fontWeight: 'bold' }}>
+              {error}
+            </div>
+          )}
           
-          <button type="submit" className="btn btn-game" style={{ width: '100%', maxWidth: '200px' }}>
-            Accedi
+          <button type="submit" className="btn btn-game" disabled={loading} style={{ width: '100%' }}>
+            {loading ? 'Attendere...' : (isRegistering ? 'Registrati' : 'Accedi')}
           </button>
         </form>
+
+        <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
+          <button type="button" onClick={() => { setError(''); setIsRegistering(!isRegistering); }} style={{ background: 'none', border: 'none', color: 'var(--color-text-light)', cursor: 'pointer', textDecoration: 'underline' }}>
+            {isRegistering ? 'Hai già un account? Accedi' : 'Non hai un account? Registrati'}
+          </button>
+        </div>
       </div>
     </div>
   );

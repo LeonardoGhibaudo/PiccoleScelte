@@ -30,15 +30,23 @@ const FIREFLY_SEED = [
 ];
 
 interface MainMenuProps {
+  authRole: string | null;
+  onStartGuest: () => void;
+  onOpenLogin: () => void;
+  onOpenSettings: () => void;
   onStartGame: () => void;
   onOpenDashboard: () => void;
-  onOpenSettings: () => void;
+  onLogout: () => void; 
 }
 
 export const MainMenu: React.FC<MainMenuProps> = ({
+  authRole,
+  onStartGuest,
+  onOpenLogin,
+  onOpenSettings,
   onStartGame,
   onOpenDashboard,
-  onOpenSettings,
+  onLogout
 }) => {
   const [showMenu, setShowMenu] = useState(false);
 
@@ -76,8 +84,6 @@ export const MainMenu: React.FC<MainMenuProps> = ({
         ))}
       </div>
 
-      {/* Audio Controls removed from here, moved to Settings */}
-
       {/* ===== Logo / Titolo del gioco ===== */}
       <div className={`menu-title-area ${showMenu ? 'moved-up' : ''}`}>
         <h1 className="game-title">
@@ -96,31 +102,42 @@ export const MainMenu: React.FC<MainMenuProps> = ({
 
       {/* ===== Menu Opzioni (dopo il click) ===== */}
       {showMenu && (
-        <nav className="menu-options">
-          <button
-            className="menu-option option-1"
-            onClick={onStartGame}
-          >
-            <span className="option-icon">🎮</span>
-            <span className="option-text">Nuova Avventura</span>
-          </button>
+                <nav className="menu-options">
+          {/* Se sei Terapista vedi la Dashboard */}
+          {authRole === 'therapist' && (
+            <button className="menu-option option-1" onClick={onOpenDashboard}>
+              <span className="option-icon">📊</span><span className="option-text">Pannello Terapista</span>
+            </button>
+          )}
 
-          <button
-            className="menu-option option-2"
-            onClick={onOpenDashboard}
-          >
-            <span className="option-icon">🩺</span>
-            <span className="option-text">Area Terapeuta</span>
-          </button>
+          {/* Sia User, Terapista, e Guest possono Giocare */}
+          {(authRole === 'user' || authRole === 'therapist' || authRole === 'guest') && (
+            <button className="menu-option option-2" onClick={onStartGame}>
+              <span className="option-icon">🎮</span><span className="option-text">Gioca</span>
+            </button>
+          )}
 
+          {/* Se NON sei loggato, vedi Ospite e Login */}
+          {!authRole && (
+            <>
+              <button className="menu-option option-1" onClick={onStartGuest}>
+                <span className="option-icon">🎒</span><span className="option-text">Ospite (Solo Cap. 1)</span>
+              </button>
+              <button className="menu-option option-2" onClick={onOpenLogin}>
+                <span className="option-icon">🔒</span><span className="option-text">Accedi / Registrati</span>
+              </button>
+            </>
+          )}
 
-          <button
-            className="menu-option option-4"
-            onClick={onOpenSettings}
-            style={{ animationDelay: '0.55s' }}
-          >
-            <span className="option-icon">⚙️</span>
-            <span className="option-text">Impostazioni</span>
+          {/* Se SEI loggato (in qualsiasi ruolo), vedi Logout */}
+          {authRole && (
+            <button className="menu-option option-3" onClick={onLogout}>
+              <span className="option-icon">🚪</span><span className="option-text">Disconnetti</span>
+            </button>
+          )}
+
+          <button className="menu-option option-4" onClick={onOpenSettings}>
+            <span className="option-icon">⚙️</span><span className="option-text">Impostazioni</span>
           </button>
         </nav>
       )}

@@ -1,17 +1,19 @@
 import React from 'react';
 import type { SessionResult, Scenario, Patient } from '../../types';
+import AudioManager from '../../utils/AudioManager';
 import './FlowchartEnd.css';
 
 interface FlowchartEndProps {
   patient: Patient;
   session: SessionResult;
   scenarios: Record<string, Scenario>;
+  authRole: 'guest' | 'user' | 'therapist' | null;
   onProceedToTest: () => void;
   onPlayNext: (nextScenarioId: string) => void;
   onMainMenu: () => void;
 }
 
-export const FlowchartEnd: React.FC<FlowchartEndProps> = ({ patient, session, scenarios, onProceedToTest, onPlayNext, onMainMenu }) => {
+export const FlowchartEnd: React.FC<FlowchartEndProps> = ({ patient, session, scenarios, authRole, onProceedToTest, onPlayNext, onMainMenu }) => {
   const [showPaywall, setShowPaywall] = React.useState(false);
   const { metrics } = session;
 
@@ -173,16 +175,16 @@ export const FlowchartEnd: React.FC<FlowchartEndProps> = ({ patient, session, sc
               <button 
                 className="btn btn-primary" 
                 onClick={() => {
-                  if (!patient.isPremium) {
+                  if (!patient.isPremium && authRole !== 'therapist') {
                     setShowPaywall(true);
                     AudioManager.playError();
                   } else {
                     onProceedToTest();
                   }
                 }} 
-                style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: patient.isPremium ? 'var(--color-sky-dark)' : 'linear-gradient(135deg, #F59E0B, #EA580C)' }}
+                style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: (patient.isPremium || authRole === 'therapist') ? 'var(--color-sky-dark)' : 'linear-gradient(135deg, #F59E0B, #EA580C)' }}
               >
-                {patient.isPremium ? 'Continua (Premium) ✨' : 'Sblocca il Gioco Completo 🔒'}
+                {(patient.isPremium || authRole === 'therapist') ? 'Continua al prossimo capitolo' : 'Sblocca il Gioco Completo 🔒'}
               </button>
               <button className="btn btn-secondary" onClick={onMainMenu}>
                 Torna al Menu

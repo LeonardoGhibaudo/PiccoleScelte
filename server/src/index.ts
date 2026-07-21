@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import patientRoutes from './routes/patientRoutes';
 import scenarioRoutes from './routes/scenarioRoutes';
 import sessionRoutes from './routes/sessionRoutes';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/patients', patientRoutes);
 app.use('/api/scenarios', scenarioRoutes);
 app.use('/api/sessions', sessionRoutes);
+app.use('/api/auth', authRoutes);
 
 // --- MongoDB Connection with retry ---
 const connectWithRetry = () => {

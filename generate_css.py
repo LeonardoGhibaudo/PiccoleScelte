@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+css = """@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;900&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
 
 :root {
   /* Playful Neo-Brutalist Light Theme */
@@ -257,67 +257,8 @@ input::placeholder, textarea::placeholder { color: var(--color-text-light); }
 @keyframes pulseSoft { 0% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.6; transform: scale(1); } }
 .pulse-soft { animation: pulseSoft 2s infinite ease-in-out; }
 
+"""
+with open('/Users/leonardo/adhd-laura/PiccoleScelte/src/index.css', 'w') as f:
+    f.write(css)
 
-/* ==========================================
- * RESPONSIVE DESIGN (Media Queries)
- * ========================================== */
-
-@media (max-width: 768px) {
-  /* Contenitori e Margini */
-  .container {
-    padding: 1rem;
-  }
-  .card {
-    padding: 1.25rem;
-    border-width: 2px;
-    box-shadow: 4px 4px 0px 0px var(--panel-border);
-  }
-  .card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0px 0px var(--panel-border);
-  }
-  
-  /* Font Sizes */
-  h1 { font-size: 2rem !important; }
-  h2 { font-size: 1.75rem !important; }
-  h3 { font-size: 1.5rem !important; }
-  p, label, input, select, textarea { font-size: 1rem !important; }
-  
-  /* Bottoni */
-  .btn {
-    width: 100%;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    border-width: 2px;
-    box-shadow: 3px 3px 0px 0px var(--color-text-dark);
-  }
-  .btn:hover {
-    transform: translate(-1px, -1px);
-    box-shadow: 4px 4px 0px 0px var(--color-text-dark);
-  }
-  .btn:active {
-    transform: translate(2px, 2px) !important;
-    box-shadow: 0px 0px 0px 0px var(--color-text-dark) !important;
-  }
-  
-  /* Form Elementi */
-  input, select, textarea {
-    padding: 0.8rem;
-    border-width: 2px;
-    box-shadow: 2px 2px 0px 0px var(--color-border);
-  }
-  
-  /* Regolazioni layout flessibili per evitare overflow */
-  .d-flex {
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .justify-content-between {
-    justify-content: center;
-  }
-  
-  /* Scenario Select & Griglie */
-  .scenario-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
+print("Updated index.css")

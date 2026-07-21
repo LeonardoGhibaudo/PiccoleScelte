@@ -6,11 +6,12 @@ import './TutorialModal.css';
 interface ScenarioSelectProps {
   scenarios: Record<string, Scenario>;
   patient: Patient;
+  authRole: 'guest' | 'user' | 'therapist' | null;
   onSelect: (scenarioId: string) => void;
   onBack: () => void;
 }
 
-export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patient, onSelect, onBack }) => {
+export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patient, authRole, onSelect, onBack }) => {
   // Find all starting nodes
   const startingScenarios = Object.values(scenarios).filter(s => s.isStartingNode);
   
@@ -59,7 +60,11 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
                   Avanti
                 </button>
               ) : (
-                <button className="btn btn-primary tutorial-btn start-btn" onClick={() => { AudioManager.playClick(); setShowTutorial(false); }}>
+                <button className="btn btn-primary tutorial-btn start-btn" onClick={() => { 
+                  AudioManager.playClick(); 
+                  setShowTutorial(false); 
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}>
                   Inizia l'Avventura!
                 </button>
               )}
@@ -77,7 +82,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
       </button>
 
       <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '3rem', fontFamily: 'var(--font-display)', color: 'var(--color-text-dark)', marginBottom: '1rem', textShadow: '0 0 30px var(--color-border)' }}>
+        <h1 style={{ fontSize: '3rem', fontFamily: 'var(--font-display)', color: 'var(--color-sky-dark)', marginBottom: '1rem', textShadow: '4px 4px 0px var(--color-text-dark)' }}>
           Scegli un Capitolo
         </h1>
         <p style={{ fontSize: '1.2rem', color: 'var(--color-text)' }}>
@@ -88,8 +93,13 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
         {startingScenarios.map((scenario, index) => {
           const unlockedScenarios = patient.unlockedScenarios && patient.unlockedScenarios.length > 0 ? patient.unlockedScenarios : [];
-          // BUG FIX: Il capitolo 1 (scen-school-1) è sempre sbloccato di default
-          const isUnlocked = unlockedScenarios.includes(scenario.id) || scenario.id === 'scen-school-1';
+          
+          // Se è ospite (guest) ha accesso SOLO al capitolo 1, altrimenti si usa la logica standard
+          const isUnlocked = authRole === 'guest' 
+            ? scenario.id === 'scen-school-pressione-1' 
+            : authRole === 'therapist'
+              ? true
+            : (unlockedScenarios.includes(scenario.id) || scenario.id === 'scen-school-pressione-1');
           
           return (
             <div 
@@ -123,6 +133,9 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
                   position: 'relative'
                 }}
               >
+                <div style={{ position: 'absolute', top: 0, left: 0, background: 'var(--color-sky-dark)', padding: '0.5rem 1rem', borderBottomRightRadius: '12px', color: 'white', fontWeight: 'bold', fontFamily: 'var(--font-display)', fontSize: '1.2rem', zIndex: 2, borderRight: '3px solid var(--color-text-dark)', borderBottom: '3px solid var(--color-text-dark)' }}>
+                  Capitolo {index + 1}
+                </div>
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.8))', padding: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <h3 style={{ margin: 0, color: 'white', fontFamily: 'var(--font-display)', fontSize: '1.4rem' }}>{scenario.title}</h3>
                   {!isUnlocked && <span style={{ fontSize: '1.5rem' }}>🔒</span>}

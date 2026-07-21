@@ -71,6 +71,11 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
               onChange={e => setReflectionText(e.target.value)}
               style={{ background: 'rgba(255, 255, 255, 0.05)', color: 'white', border: '1px solid rgba(255, 255, 255, 0.15)' }}
             />
+            {reflectionText.trim().length > 0 && reflectionText.trim().length < 30 && (
+              <div style={{ color: 'var(--color-impulsive)', marginTop: '0.5rem', fontSize: '0.9rem', fontWeight: 'bold' }}>
+                {reflectionText.trim().length}/30 caratteri minimi
+              </div>
+            )}
           </div>
 
           <div className="mb-4 text-center">
@@ -99,7 +104,7 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
             <button 
               type="submit" 
               className="btn btn-primary" 
-              disabled={loading || (!reflectionText.trim() && !fileUploaded)}
+              disabled={loading || (!fileUploaded && reflectionText.trim().length < 30)}
               style={{ fontSize: '1.2rem', padding: '0.8rem 2rem' }}
             >
               {loading ? 'Sbloccando...' : 'Invia e Sblocca 🔓'}

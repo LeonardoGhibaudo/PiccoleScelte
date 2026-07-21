@@ -7,6 +7,8 @@
  */
 
 /** Configurazione per l'Avatar generativo SVG del paziente */
+export type AuthRole = 'guest' | 'user' | 'therapist' | null;
+
 export interface AvatarConfig {
   skinTone: string;
   hairStyle: string;
@@ -15,6 +17,8 @@ export interface AvatarConfig {
   pantsColor?: string;
   shoesColor?: string;
 }
+
+
 
 /** Paziente con dati sensibili (accesso riservato allo psicologo) */
 export interface Patient {
