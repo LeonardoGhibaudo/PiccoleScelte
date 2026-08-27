@@ -42,6 +42,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Apprezza lo sforzo.",
         "betterAlternative": "",
         "nextScenarioId": "scen-school-pressione-2"
+      },
+      {
+        "text": "Sbatti i pugni sul banco gridando 'Basta!'",
+        "type": "impulsive",
+        "consequence": "Prendi una nota e la classe ride.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-school-pressione-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-school-pressione-2"
+      },
+      {
+        "text": "Fingi di prendere appunti senza ascoltare.",
+        "type": "passive",
+        "consequence": "La prof se ne accorge e si arrabbia di più.",
+        "betterAlternative": "Chiedi scusa e prova a concentrarti.",
+        "id": "ext-scen-school-pressione-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-school-pressione-2"
+      },
+      {
+        "text": "Respiri a fondo e chiedi di poter rileggere la domanda.",
+        "type": "assertive",
+        "consequence": "La prof apprezza che ci stai provando.",
+        "betterAlternative": "",
+        "id": "ext-scen-school-pressione-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-school-pressione-2"
       }
     ],
     "isStartingNode": true
@@ -86,6 +114,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "emoji": "",
         "consequence": "Ti calmi e poi riprendi.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Scrivi insulti sul foglio.",
+        "type": "impulsive",
+        "consequence": "Finisci dal preside.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-school-pressione-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Appoggi la testa sul banco e dormi.",
+        "type": "passive",
+        "consequence": "Zero nell'esercizio.",
+        "betterAlternative": "Chiedi di uscire a sciacquarti il viso.",
+        "id": "ext-scen-school-pressione-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Dividi l'esercizio in parti più piccole per farcela.",
+        "type": "assertive",
+        "consequence": "Riesci a farne almeno metà bene.",
+        "betterAlternative": "",
+        "id": "ext-scen-school-pressione-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -132,6 +188,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Rispetta il tuo tempo.",
         "betterAlternative": "",
         "nextScenarioId": "scen-school-distrazioni-2"
+      },
+      {
+        "text": "Gli tiri il quaderno in faccia.",
+        "type": "impulsive",
+        "consequence": "Fai male al compagno e vieni sospeso.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-school-distrazioni-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-school-distrazioni-2"
+      },
+      {
+        "text": "Gli passi gli appunti subito smettendo di lavorare.",
+        "type": "passive",
+        "consequence": "Prendi un brutto voto tu.",
+        "betterAlternative": "Digli di aspettare 5 minuti.",
+        "id": "ext-scen-school-distrazioni-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-school-distrazioni-2"
+      },
+      {
+        "text": "'Te li do appena finisco questa frase, dammi un attimo.'",
+        "type": "assertive",
+        "consequence": "Lui aspetta e tu finisci.",
+        "betterAlternative": "",
+        "id": "ext-scen-school-distrazioni-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-school-distrazioni-2"
       }
     ],
     "isStartingNode": true
@@ -143,7 +227,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Compagno",
-        "text": "No, ma guarda che si fa cos\u00ec, non capisci niente!"
+        "text": "No, ma guarda che si fa così, non capisci niente!"
       }
     ],
     "background": "/assets/backgrounds/bg_hallway.jpg",
@@ -176,6 +260,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "emoji": "",
         "consequence": "Punto per te.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Lo insulti e abbandoni il progetto.",
+        "type": "impulsive",
+        "consequence": "Il gruppo prende un'insufficienza.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-school-distrazioni-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Gli lasci fare tutto annuendo in silenzio.",
+        "type": "passive",
+        "consequence": "Non impari nulla e ti senti frustrato.",
+        "betterAlternative": "Pretendi il tuo spazio.",
+        "id": "ext-scen-school-distrazioni-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Fammi finire di parlare, poi ascolto la tua idea.'",
+        "type": "assertive",
+        "consequence": "Riuscite a trovare un compromesso.",
+        "betterAlternative": "",
+        "id": "ext-scen-school-distrazioni-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -222,6 +334,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Gestisci bene l'ansia.",
         "betterAlternative": "",
         "nextScenarioId": "scen-friends-messaggio-2"
+      },
+      {
+        "text": "Lo blocchi su tutti i social per ripicca.",
+        "type": "impulsive",
+        "consequence": "Rovini un'amicizia per niente.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-messaggio-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-messaggio-2"
+      },
+      {
+        "text": "Inizi a scusarti compulsivamente per non aver fatto nulla.",
+        "type": "passive",
+        "consequence": "Lui pensa che tu sia strano.",
+        "betterAlternative": "Aspetta semplicemente che risponda.",
+        "id": "ext-scen-friends-messaggio-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-messaggio-2"
+      },
+      {
+        "text": "Metti giù il telefono e fai altro, risponderà quando può.",
+        "type": "assertive",
+        "consequence": "Più tardi ti risponde scusandosi per il ritardo.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-messaggio-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-messaggio-2"
       }
     ],
     "isStartingNode": true
@@ -229,11 +369,11 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
   "scen-friends-messaggio-2": {
     "id": "scen-friends-messaggio-2",
     "title": "Gelosia Tossica",
-    "description": "Poi vedi una sua foto in cui \u00e8 fuori con altri amici importanti.",
+    "description": "Poi vedi una sua foto in cui è fuori con altri amici importanti.",
     "dialogue": [
       {
         "speaker": "Pensiero",
-        "text": "Ecco perch\u00e9 non rispondeva! Si diverte senza di me!"
+        "text": "Ecco perché non rispondeva! Si diverte senza di me!"
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
@@ -256,7 +396,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "type": "passive",
         "emoji": "",
         "consequence": "Perdi un amico.",
-        "betterAlternative": "Accetta che pu\u00f2 avere altri amici.",
+        "betterAlternative": "Accetta che può avere altri amici.",
         "nextScenarioId": null
       },
       {
@@ -264,8 +404,36 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "Accetti che ha diritto di uscire con chi vuole e ti rassereni.",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Maturit\u00e0 emotiva dimostrata.",
+        "consequence": "Maturità emotiva dimostrata.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Gli scrivi un messaggio pieno di insulti.",
+        "type": "impulsive",
+        "consequence": "Ti blocca per sempre.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-messaggio-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Piangi da solo in camera e decidi di non uscirci più.",
+        "type": "passive",
+        "consequence": "Perdi un amico senza parlargliene.",
+        "betterAlternative": "Affronta la situazione con maturità.",
+        "id": "ext-scen-friends-messaggio-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Gli scrivi: 'Mi è dispiaciuto non essere stato invitato.'",
+        "type": "assertive",
+        "consequence": "Ti spiega che era una cena di famiglia coi cugini.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-messaggio-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -312,6 +480,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Gli altri smettono di ridere.",
         "betterAlternative": "",
         "nextScenarioId": "scen-friends-scherzo-2"
+      },
+      {
+        "text": "Gli dai uno spintone fortissimo.",
+        "type": "impulsive",
+        "consequence": "Scoppia una rissa e passi dalla parte del torto.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-scherzo-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-scherzo-2"
+      },
+      {
+        "text": "Fingi di ridere anche se dentro stai male.",
+        "type": "passive",
+        "consequence": "Continueranno a prenderti in giro.",
+        "betterAlternative": "Fagli capire che non fa ridere.",
+        "id": "ext-scen-friends-scherzo-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-scherzo-2"
+      },
+      {
+        "text": "'Non fai ridere nessuno con queste battute.'",
+        "type": "assertive",
+        "consequence": "Gli altri smettono di ridere e lui si scusa.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-scherzo-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-scherzo-2"
       }
     ],
     "isStartingNode": true
@@ -354,8 +550,36 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "'Buona pizza, io mi organizzo diversamente, ciao.'",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Mantieni la dignit\u00e0 e volta pagina.",
+        "consequence": "Mantieni la dignità e volta pagina.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Gli urli dietro 'Tanto mi fate schifo!'",
+        "type": "impulsive",
+        "consequence": "Ti isoli completamente dal resto della classe.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-scherzo-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Torni a casa da solo a testa bassa.",
+        "type": "passive",
+        "consequence": "Ti senti ancora più solo.",
+        "betterAlternative": "Cerca altri amici.",
+        "id": "ext-scen-friends-scherzo-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Scrivi a un altro compagno simpatico per fare qualcosa.",
+        "type": "assertive",
+        "consequence": "Passi un bel pomeriggio con una persona nuova.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-scherzo-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -368,7 +592,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Amica",
-        "text": "Ops, mi \u00e8 scappato il tuo segreto davanti a tutti, scusa..."
+        "text": "Ops, mi è scappato il tuo segreto davanti a tutti, scusa..."
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
@@ -390,7 +614,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "Scappi via piangendo.",
         "type": "passive",
         "emoji": "",
-        "consequence": "Mostri vulnerabilit\u00e0 a chi ti ha ferito.",
+        "consequence": "Mostri vulnerabilità a chi ti ha ferito.",
         "betterAlternative": "Esprimi il tuo disappunto.",
         "nextScenarioId": "scen-friends-segreti-2"
       },
@@ -399,8 +623,36 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "'Mi avevi promesso di non dirlo. Sono molto deluso.'",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Le fai capire la gravit\u00e0.",
+        "consequence": "Le fai capire la gravità.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-friends-segreti-2"
+      },
+      {
+        "text": "Rivelare a tutti il suo segreto più intimo per vendetta.",
+        "type": "impulsive",
+        "consequence": "Diventi crudele quanto lei e tutti vi evitano.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-segreti-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-segreti-2"
+      },
+      {
+        "text": "Non dire nulla e scappare via.",
+        "type": "passive",
+        "consequence": "Lei pensa che tu non te la sia presa troppo.",
+        "betterAlternative": "Chiarisci la tua delusione.",
+        "id": "ext-scen-friends-segreti-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-friends-segreti-2"
+      },
+      {
+        "text": "'Mi hai ferito molto, ti avevo chiesto di non dirlo.'",
+        "type": "assertive",
+        "consequence": "Si rende conto dell'errore e si scusa sinceramente.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-segreti-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-friends-segreti-2"
       }
     ],
@@ -413,7 +665,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Amica",
-        "text": "Dai, non fare il permaloso, non \u00e8 mica grave!"
+        "text": "Dai, non fare il permaloso, non è mica grave!"
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
@@ -447,6 +699,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Metti un confine chiaro.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "Le tiri una bibita addosso.",
+        "type": "impulsive",
+        "consequence": "Azione inaccettabile che rovina tutto.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-friends-segreti-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Fingi di perdonarla subito per non litigare.",
+        "type": "passive",
+        "consequence": "Continuererà a non rispettarti.",
+        "betterAlternative": "Metti dei confini chiari.",
+        "id": "ext-scen-friends-segreti-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Per me era importante. Mi serve tempo per fidarmi di nuovo.'",
+        "type": "assertive",
+        "consequence": "Dimostri maturità e imponi rispetto.",
+        "betterAlternative": "",
+        "id": "ext-scen-friends-segreti-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -457,13 +737,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "Una discussione accesa in cui un genitore, stressato, ti urla contro.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
+        "speaker": "Papà",
         "text": "Non fai mai niente in questa casa! Sono stufo!"
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c6-1",
@@ -492,6 +772,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Disinneschi la sua rabbia.",
         "betterAlternative": "",
         "nextScenarioId": "scen-family-scontri-2"
+      },
+      {
+        "text": "Urli e sbatti fortissimo la porta di camera tua.",
+        "type": "impulsive",
+        "consequence": "Peggiori solo la situazione e rompi la porta.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-scontri-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-family-scontri-2"
+      },
+      {
+        "text": "Subisci in silenzio stringendo i pugni.",
+        "type": "passive",
+        "consequence": "La tensione rimane accumulata dentro di te.",
+        "betterAlternative": "Chiedi di abbassare i toni.",
+        "id": "ext-scen-family-scontri-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-family-scontri-2"
+      },
+      {
+        "text": "'Papà, per favore non urlare, ne possiamo parlare con calma.'",
+        "type": "assertive",
+        "consequence": "Si rende conto di aver esagerato con la voce.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-scontri-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-family-scontri-2"
       }
     ],
     "isStartingNode": true
@@ -502,13 +810,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "Il genitore si ferma un attimo e sospira.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
-        "text": "S\u00ec, ma tu devi dare una mano... scusa se ho urlato."
+        "speaker": "Papà",
+        "text": "Sì, ma tu devi dare una mano... scusa se ho urlato."
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c6-4",
@@ -537,6 +845,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Risolvete il conflitto pacificamente.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "Gli rispondi: 'Ora è tardi, vaffanculo!'",
+        "type": "impulsive",
+        "consequence": "Punizione durissima.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-scontri-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Lo ignori e guardi il muro.",
+        "type": "passive",
+        "consequence": "La comunicazione si interrompe.",
+        "betterAlternative": "Accetta le scuse e spiega il tuo punto.",
+        "id": "ext-scen-family-scontri-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Scuse accettate. Domani pulisco io il salotto, promesso.'",
+        "type": "assertive",
+        "consequence": "Trovate un accordo pacifico.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-scontri-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -548,7 +884,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Mamma",
-        "text": "Da oggi non puoi pi\u00f9 usare il computer dopo le 20. Punto."
+        "text": "Da oggi non puoi più usare il computer dopo le 20. Punto."
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
@@ -576,11 +912,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c7-3",
-        "text": "'Possiamo parlarne? Dopo le 20 \u00e8 quando ci sono i miei amici online.'",
+        "text": "'Possiamo parlarne? Dopo le 20 è quando ci sono i miei amici online.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Apre una spiraglio di dialogo.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-family-regole-2"
+      },
+      {
+        "text": "Lanci il computer contro il muro.",
+        "type": "impulsive",
+        "consequence": "Hai distrutto un oggetto costoso.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-regole-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-family-regole-2"
+      },
+      {
+        "text": "Vai in camera a piangere sotto le coperte.",
+        "type": "passive",
+        "consequence": "Non risolvi la situazione e ti senti impotente.",
+        "betterAlternative": "Prova a negoziare la regola.",
+        "id": "ext-scen-family-regole-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-family-regole-2"
+      },
+      {
+        "text": "'Possiamo fare le 21 se faccio prima tutti i compiti?'",
+        "type": "assertive",
+        "consequence": "La mamma ci pensa e accetta il compromesso.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-regole-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-family-regole-2"
       }
     ],
@@ -589,7 +953,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
   "scen-family-regole-2": {
     "id": "scen-family-regole-2",
     "title": "Punizione Ingiusta",
-    "description": "A causa di un malinteso, ti d\u00e0 comunque la punizione.",
+    "description": "A causa di un malinteso, ti dà comunque la punizione.",
     "dialogue": [
       {
         "speaker": "Mamma",
@@ -621,11 +985,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c7-6",
-        "text": "'La trovo ingiusta, ma rispetter\u00f2 la regola per stasera.'",
+        "text": "'La trovo ingiusta, ma rispetterò la regola per stasera.'",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Mostri grande maturit\u00e0.",
+        "consequence": "Mostri grande maturità.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Inizi a spaccare le cose sulla scrivania.",
+        "type": "impulsive",
+        "consequence": "Comportamento violento.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-regole-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Accetti l'ingiustizia e non le parli per una settimana.",
+        "type": "passive",
+        "consequence": "Il clima in casa diventa tossico.",
+        "betterAlternative": "Spiega il malinteso con calma.",
+        "id": "ext-scen-family-regole-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'C'è stato un equivoco, lascia che ti spieghi come sono andate le cose.'",
+        "type": "assertive",
+        "consequence": "Capisce l'errore e ti toglie la punizione.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-regole-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -637,13 +1029,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "Vieni confrontato ingiustamente con i tuoi fratelli.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
-        "text": "Tua sorella prende tutti 10 e tu fai fatica. Perch\u00e9 non sei come lei?"
+        "speaker": "Papà",
+        "text": "Tua sorella prende tutti 10 e tu fai fatica. Perché non sei come lei?"
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c8-1",
@@ -661,16 +1053,44 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "type": "passive",
         "emoji": "",
         "consequence": "Rovina l'autostima in modo permanente.",
-        "betterAlternative": "Difendi la tua unicit\u00e0.",
+        "betterAlternative": "Difendi la tua unicità.",
         "nextScenarioId": "scen-family-aspettative-2"
       },
       {
         "id": "c8-3",
-        "text": "'Io ho le mie sfide. Non \u00e8 giusto paragonarmi a lei.'",
+        "text": "'Io ho le mie sfide. Non è giusto paragonarmi a lei.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Metti il genitore di fronte al suo errore.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-family-aspettative-2"
+      },
+      {
+        "text": "Urli che odi tua sorella.",
+        "type": "impulsive",
+        "consequence": "Fai soffrire tua sorella per niente.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-aspettative-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-family-aspettative-2"
+      },
+      {
+        "text": "Ti convinci di essere un fallito.",
+        "type": "passive",
+        "consequence": "La tua autostima va a zero.",
+        "betterAlternative": "Ricordagli i tuoi punti di forza.",
+        "id": "ext-scen-family-aspettative-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-family-aspettative-2"
+      },
+      {
+        "text": "'Io non sono lei. Faccio fatica, ma sto cercando di migliorare a modo mio.'",
+        "type": "assertive",
+        "consequence": "Il papà riflette su quanto ti abbia ferito.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-aspettative-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-family-aspettative-2"
       }
     ],
@@ -683,7 +1103,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Zio",
-        "text": "Eh s\u00ec, lui \u00e8 sempre stato quello problematico della famiglia."
+        "text": "Eh sì, lui è sempre stato quello problematico della famiglia."
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
@@ -717,6 +1137,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Tutti ammutoliscono. Ottimo lavoro.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "Lo mandi al diavolo davanti a tutta la famiglia.",
+        "type": "impulsive",
+        "consequence": "Crei uno scandalo al pranzo di famiglia.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-aspettative-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Esci dalla stanza e ti nascondi in bagno per ore.",
+        "type": "passive",
+        "consequence": "Eviti il problema ma soffri tantissimo.",
+        "betterAlternative": "Rispondi con educazione e ironia.",
+        "id": "ext-scen-family-aspettative-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Ognuno ha le sue sfide, zio. L'importante è lavorarci su.'",
+        "type": "assertive",
+        "consequence": "Lo zio ammutolisce e i genitori ti guardano con orgoglio.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-aspettative-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -728,7 +1176,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Mamma",
-        "text": "Chi \u00e8 questo con cui messaggi? Dammi il telefono, voglio leggere!"
+        "text": "Chi è questo con cui messaggi? Dammi il telefono, voglio leggere!"
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
@@ -756,11 +1204,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c9-3",
-        "text": "'Mamma, il telefono \u00e8 personale. Ho diritto alla mia privacy.'",
+        "text": "'Mamma, il telefono è personale. Ho diritto alla mia privacy.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Le fai capire il limite.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-family-spazio-2"
+      },
+      {
+        "text": "Glielo strappi di mano facendole male.",
+        "type": "impulsive",
+        "consequence": "Uso di violenza fisica.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-spazio-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-family-spazio-2"
+      },
+      {
+        "text": "Glielo lasci leggere tutto per paura.",
+        "type": "passive",
+        "consequence": "La tua privacy viene totalmente violata.",
+        "betterAlternative": "Imponi il rispetto della tua privacy.",
+        "id": "ext-scen-family-spazio-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-family-spazio-2"
+      },
+      {
+        "text": "'È privato. Mettilo giù o ne parliamo dopo, non c'è nulla di male.'",
+        "type": "assertive",
+        "consequence": "Capisce di aver esagerato ed evita di ficcanasare.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-spazio-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-family-spazio-2"
       }
     ],
@@ -773,7 +1249,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Mamma",
-        "text": "Taci! Finch\u00e9 vivi sotto questo tetto decido io!"
+        "text": "Taci! Finché vivi sotto questo tetto decido io!"
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
@@ -801,11 +1277,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c9-6",
-        "text": "'Ne parliamo quando saremo pi\u00f9 calmi entrambi.' ed esci dalla stanza.",
+        "text": "'Ne parliamo quando saremo più calmi entrambi.' ed esci dalla stanza.",
         "type": "assertive",
         "emoji": "",
         "consequence": "Allontani l'escalation tossica.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Sbatti il tavolo fortissimo.",
+        "type": "impulsive",
+        "consequence": "Reazione sproporzionata.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-spazio-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Mormori 'Hai ragione tu' e spegni il cervello.",
+        "type": "passive",
+        "consequence": "Il problema rimarrà per sempre.",
+        "betterAlternative": "Fermati e riprendi quando è calma.",
+        "id": "ext-scen-family-spazio-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Ne riparliamo quando sei più calma e pronta ad ascoltare.'",
+        "type": "assertive",
+        "consequence": "Esci dalla stanza, evitando uno scontro inutile.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-spazio-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -817,13 +1321,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "Stai malissimo per un brutto voto, ma un genitore minimizza tutto.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
-        "text": "Ma non \u00e8 niente, cosa vuoi che sia un 4! Sei sempre il solito drammatico."
+        "speaker": "Papà",
+        "text": "Ma non è niente, cosa vuoi che sia un 4! Sei sempre il solito drammatico."
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c10-1",
@@ -840,17 +1344,45 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "Ti convinci di essere sbagliato a provare quelle emozioni.",
         "type": "passive",
         "emoji": "",
-        "consequence": "Impari a nascondere ci\u00f2 che provi.",
+        "consequence": "Impari a nascondere ciò che provi.",
         "betterAlternative": "Valida le tue emozioni.",
         "nextScenarioId": "scen-family-emozioni-2"
       },
       {
         "id": "c10-3",
-        "text": "'Per me \u00e8 importante, e mi fa male sentirmelo dire.'",
+        "text": "'Per me è importante, e mi fa male sentirmelo dire.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Lo spingi a riflettere.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-family-emozioni-2"
+      },
+      {
+        "text": "Gli tiri il quaderno addosso.",
+        "type": "impulsive",
+        "consequence": "Azione inaccettabile.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-emozioni-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-family-emozioni-2"
+      },
+      {
+        "text": "Pensi che forse ha ragione e tu esageri sempre.",
+        "type": "passive",
+        "consequence": "Invalidi le tue stesse emozioni.",
+        "betterAlternative": "Spiegagli perché per te è importante.",
+        "id": "ext-scen-family-emozioni-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-family-emozioni-2"
+      },
+      {
+        "text": "'A me importa. Ci tenevo e sono dispiaciuto, volevo solo un po' di conforto.'",
+        "type": "assertive",
+        "consequence": "Si scusa per non essere stato empatico.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-emozioni-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-family-emozioni-2"
       }
     ],
@@ -862,13 +1394,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "Aggiunge il carico da novanta con un etichetta pesante.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
+        "speaker": "Papà",
         "text": "Sei proprio pesante certe volte... sempre il solito tu."
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c10-4",
@@ -897,6 +1429,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Reazione perfetta e matura.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "Urli 'Sei il peggior padre del mondo!'",
+        "type": "impulsive",
+        "consequence": "Fai un'affermazione gravissima e inutile.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-family-emozioni-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Vai via senza dire nulla.",
+        "type": "passive",
+        "consequence": "Non cambia la situazione.",
+        "betterAlternative": "Fagli notare che l'etichetta fa male.",
+        "id": "ext-scen-family-emozioni-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Questo tuo commento non mi aiuta. Mi serve supporto, non critiche.'",
+        "type": "assertive",
+        "consequence": "Riconosce di aver sbagliato approccio.",
+        "betterAlternative": "",
+        "id": "ext-scen-family-emozioni-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -904,11 +1464,11 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
   "scen-anger-attesa-1": {
     "id": "scen-anger-attesa-1",
     "title": "L'Attesa Infinita",
-    "description": "Devi aspettare il tuo turno alle poste, la fila \u00e8 lunghissima e perdi la pazienza.",
+    "description": "Devi aspettare il tuo turno alle poste, la fila è lunghissima e perdi la pazienza.",
     "dialogue": [
       {
         "speaker": "Pensiero",
-        "text": "Non ce la faccio pi\u00f9, sto esplodendo! Devo muovermi!"
+        "text": "Non ce la faccio più, sto esplodendo! Devo muovermi!"
       }
     ],
     "background": "/assets/backgrounds/bg_street.jpg",
@@ -927,7 +1487,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c11-2",
-        "text": "Rimani l\u00ec fremendo e digrignando i denti fino a star male.",
+        "text": "Rimani lì fremendo e digrignando i denti fino a star male.",
         "type": "passive",
         "emoji": "",
         "consequence": "Picco di cortisolo e stress.",
@@ -939,8 +1499,36 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "Metti le cuffie con musica rilassante per passare il tempo.",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Gestisci egregiamente l'impulsivit\u00e0.",
+        "consequence": "Gestisci egregiamente l'impulsività.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-anger-attesa-2"
+      },
+      {
+        "text": "Scavalchi tutti urlando che devi passare prima tu.",
+        "type": "impulsive",
+        "consequence": "Vieni cacciato via dalla sicurezza.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-attesa-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-attesa-2"
+      },
+      {
+        "text": "Continui a sbuffare sonoramente dando fastidio a tutti.",
+        "type": "passive",
+        "consequence": "Tutti ti guardano male, aumenti lo stress.",
+        "betterAlternative": "Trova una distrazione.",
+        "id": "ext-scen-anger-attesa-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-attesa-2"
+      },
+      {
+        "text": "Metti le cuffie e ascolti la tua canzone preferita mentre aspetti.",
+        "type": "assertive",
+        "consequence": "Il tempo passa più velocemente e ti calmi.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-attesa-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-anger-attesa-2"
       }
     ],
@@ -987,6 +1575,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Ottimo controllo.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "'Ma che ne so io, ti sembro il padrone?!'",
+        "type": "impulsive",
+        "consequence": "Insulti una signora senza motivo.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-attesa-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Ti giri dall'altra parte facendo finta di non aver sentito.",
+        "type": "passive",
+        "consequence": "La signora ci resta male.",
+        "betterAlternative": "Rispondi brevemente ed educatamente.",
+        "id": "ext-scen-anger-attesa-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Non lo so signora, mi dispiace.'",
+        "type": "assertive",
+        "consequence": "La signora ringrazia e tu mantieni la calma.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-attesa-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -998,7 +1614,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "dialogue": [
       {
         "speaker": "Pensiero",
-        "text": "Ho sbagliato il tiro finale... \u00e8 tutta colpa mia!"
+        "text": "Ho sbagliato il tiro finale... è tutta colpa mia!"
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
@@ -1031,6 +1647,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "emoji": "",
         "consequence": "Vero spirito sportivo.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-anger-partita-2"
+      },
+      {
+        "text": "Spacchi il controller/racchetta a terra.",
+        "type": "impulsive",
+        "consequence": "Hai distrutto una cosa tua.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-partita-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-partita-2"
+      },
+      {
+        "text": "Decidi che non giocherai mai più a questo gioco.",
+        "type": "passive",
+        "consequence": "Ti privi di una tua passione per un errore.",
+        "betterAlternative": "Accetta la sconfitta sportivamente.",
+        "id": "ext-scen-anger-partita-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-partita-2"
+      },
+      {
+        "text": "'Pazienza, mi allenerò di più per la prossima volta.'",
+        "type": "assertive",
+        "consequence": "Accetti l'errore e maturi sportivamente.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-partita-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-anger-partita-2"
       }
     ],
@@ -1077,6 +1721,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Lo disarmi completamente.",
         "betterAlternative": "",
         "nextScenarioId": null
+      },
+      {
+        "text": "Gli tiri un pugno in faccia.",
+        "type": "impulsive",
+        "consequence": "Fai male a qualcuno. Gesto intollerabile.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-partita-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Inizi a piangere di rabbia davanti a tutti.",
+        "type": "passive",
+        "consequence": "Gli dai la soddisfazione di averti ferito.",
+        "betterAlternative": "Ignoralo con classe.",
+        "id": "ext-scen-anger-partita-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Bravo per la vittoria.' e te ne vai senza dargli retta.",
+        "type": "assertive",
+        "consequence": "Lo lasci senza parole e vinci moralmente.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-partita-2-2",
+        "emoji": "",
+        "nextScenarioId": null
       }
     ],
     "isStartingNode": false
@@ -1122,6 +1794,34 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "consequence": "Salvi la situazione allontanandoti.",
         "betterAlternative": "",
         "nextScenarioId": "scen-anger-limite-2"
+      },
+      {
+        "text": "Lo spingi via con tutta la forza.",
+        "type": "impulsive",
+        "consequence": "Alzi le mani. Ti metti nei guai seri.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-limite-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-limite-2"
+      },
+      {
+        "text": "Continui a farti insultare senza dire nulla.",
+        "type": "passive",
+        "consequence": "Ti fa sentire inutile e distrutto.",
+        "betterAlternative": "Allontanati dalla situazione tossica.",
+        "id": "ext-scen-anger-limite-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-limite-2"
+      },
+      {
+        "text": "'Non ho intenzione di farmi parlare così. Ciao.' e te ne vai.",
+        "type": "assertive",
+        "consequence": "Dimostri un grande controllo emotivo.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-limite-1-2",
+        "emoji": "",
+        "nextScenarioId": "scen-anger-limite-2"
       }
     ],
     "isStartingNode": true
@@ -1129,11 +1829,11 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
   "scen-anger-limite-2": {
     "id": "scen-anger-limite-2",
     "title": "La Rottura",
-    "description": "Una volta solo, la rabbia \u00e8 ancora alta. C'\u00e8 un oggetto di vetro vicino a te.",
+    "description": "Una volta solo, la rabbia è ancora alta. C'è un oggetto di vetro vicino a te.",
     "dialogue": [
       {
         "speaker": "Pensiero",
-        "text": "Se rompo qualcosa magari questa rabbia uscir\u00e0..."
+        "text": "Se rompo qualcosa magari questa rabbia uscirà..."
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
@@ -1164,8 +1864,36 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "text": "Stringi fortissimo un cuscino e lo tiri sul letto.",
         "type": "assertive",
         "emoji": "",
-        "consequence": "Sfoghi la fisicit\u00e0 senza danni.",
+        "consequence": "Sfoghi la fisicità senza danni.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Prendi l'oggetto di vetro e lo scagli contro il muro.",
+        "type": "impulsive",
+        "consequence": "Devasti la stanza e rischi di farti male.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-anger-limite-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Tieni tutto dentro fino a stare male fisicamente.",
+        "type": "passive",
+        "consequence": "Ti viene un attacco di mal di pancia per lo stress.",
+        "betterAlternative": "Trova uno sfogo sano.",
+        "id": "ext-scen-anger-limite-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Fai 20 flessioni per scaricare l'energia accumulata.",
+        "type": "assertive",
+        "consequence": "La rabbia scende e il corpo si rilassa.",
+        "betterAlternative": "",
+        "id": "ext-scen-anger-limite-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -1206,11 +1934,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c14-3",
-        "text": "Ridi tu stesso: 'Okay, questa \u00e8 uscita proprio male!'",
+        "text": "Ridi tu stesso: 'Okay, questa è uscita proprio male!'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Disinneschi l'imbarazzo con l'autoironia.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-social-parola-2"
+      },
+      {
+        "text": "Tiri un libro in faccia al compagno che ride di più.",
+        "type": "impulsive",
+        "consequence": "Reazione violenta del tutto fuori luogo.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-social-parola-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-social-parola-2"
+      },
+      {
+        "text": "Diventi rosso e corri a nasconderti in bagno piangendo.",
+        "type": "passive",
+        "consequence": "La figuraccia pesa ancora di più.",
+        "betterAlternative": "Ridici su.",
+        "id": "ext-scen-social-parola-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-social-parola-2"
+      },
+      {
+        "text": "'Scusate, volevo dire tutt'altro! Ops!' ridi anche tu.",
+        "type": "assertive",
+        "consequence": "La prendono come una gaffe simpatica e finisce lì.",
+        "betterAlternative": "",
+        "id": "ext-scen-social-parola-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-social-parola-2"
       }
     ],
@@ -1251,11 +2007,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c14-6",
-        "text": "'Questo commento \u00e8 inopportuno e maleducato.'",
+        "text": "'Questo commento è inopportuno e maleducato.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Fai valere il tuo rispetto.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Inizi a bestemmiare o insultare pesantemente.",
+        "type": "impulsive",
+        "consequence": "Vieni punito e isolato.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-social-parola-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Gli dai ragione, facendoti umiliare ulteriormente.",
+        "type": "passive",
+        "consequence": "Ti senti una nullità.",
+        "betterAlternative": "Smonta la battuta.",
+        "id": "ext-scen-social-parola-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Si, dai, fai la battuta, l'abbiamo capita tutti. Andiamo avanti.'",
+        "type": "assertive",
+        "consequence": "Lo zittisci con molta eleganza e la classe passa oltre.",
+        "betterAlternative": "",
+        "id": "ext-scen-social-parola-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],
@@ -1291,16 +2075,44 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
         "type": "passive",
         "emoji": "",
         "consequence": "Nessuna negoziazione, solo tristezza.",
-        "betterAlternative": "Chiedi il perch\u00e9 con calma.",
+        "betterAlternative": "Chiedi il perché con calma.",
         "nextScenarioId": "scen-frust-no-2"
       },
       {
         "id": "c15-3",
-        "text": "'Ci tengo davvero tanto. C'\u00e8 un modo per guadagnarmelo?'",
+        "text": "'Ci tengo davvero tanto. C'è un modo per guadagnarmelo?'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Apri una porta alla negoziazione adulta.",
         "betterAlternative": "",
+        "nextScenarioId": "scen-frust-no-2"
+      },
+      {
+        "text": "Urli e rubi i soldi dal portafoglio di tua madre.",
+        "type": "impulsive",
+        "consequence": "Furto e perdita totale della fiducia.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-frust-no-1-0",
+        "emoji": "",
+        "nextScenarioId": "scen-frust-no-2"
+      },
+      {
+        "text": "Smetti di parlarle per un mese e vai male a scuola per dispetto.",
+        "type": "passive",
+        "consequence": "Danneggi solo te stesso.",
+        "betterAlternative": "Cerca di comprendere e trovare una soluzione alternativa.",
+        "id": "ext-scen-frust-no-1-1",
+        "emoji": "",
+        "nextScenarioId": "scen-frust-no-2"
+      },
+      {
+        "text": "'Capisco. Posso fare dei lavoretti in casa per guadagnarmi i soldi da solo?'",
+        "type": "assertive",
+        "consequence": "La madre apprezza tantissimo e accetta.",
+        "betterAlternative": "",
+        "id": "ext-scen-frust-no-1-2",
+        "emoji": "",
         "nextScenarioId": "scen-frust-no-2"
       }
     ],
@@ -1312,13 +2124,13 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     "description": "La sera stessa sei stanco morto ma ti chiedono ancora attenzione o lavori da fare.",
     "dialogue": [
       {
-        "speaker": "Pap\u00e0",
+        "speaker": "Papà",
         "text": "Vai a buttare la spazzatura e sistema il garage, muoviti."
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
     "character": "/assets/characters/char_parent.jpg",
-    "characterName": "Pap\u00e0",
+    "characterName": "Papà",
     "choices": [
       {
         "id": "c15-4",
@@ -1341,11 +2153,39 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       },
       {
         "id": "c15-6",
-        "text": "'Pap\u00e0, sono esausto oggi. Prometto che butto la spazzatura, ma il garage lo faccio domani.'",
+        "text": "'Papà, sono esausto oggi. Prometto che butto la spazzatura, ma il garage lo faccio domani.'",
         "type": "assertive",
         "emoji": "",
         "consequence": "Stile maturo di negoziazione.",
         "betterAlternative": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Spingi tuo padre e butti la spazzatura in salotto.",
+        "type": "impulsive",
+        "consequence": "Disastro in casa.",
+        "betterAlternative": "",
+        "isCriticalFailure": true,
+        "id": "ext-scen-frust-no-2-0",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "Lo fai malissimo sbuffando in continuazione.",
+        "type": "passive",
+        "consequence": "Lavori controvoglia e tuo padre si arrabbia lo stesso.",
+        "betterAlternative": "Chiedi di rimandare a domani.",
+        "id": "ext-scen-frust-no-2-1",
+        "emoji": "",
+        "nextScenarioId": null
+      },
+      {
+        "text": "'Papà, sono esausto oggi. Posso svegliarmi 10 minuti prima e farlo domani mattina?'",
+        "type": "assertive",
+        "consequence": "Papà accetta perché capisce la stanchezza.",
+        "betterAlternative": "",
+        "id": "ext-scen-frust-no-2-2",
+        "emoji": "",
         "nextScenarioId": null
       }
     ],

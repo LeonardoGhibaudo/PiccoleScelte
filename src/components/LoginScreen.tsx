@@ -59,15 +59,13 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
         
         if (role === 'user') {
           // Create the character linked to this email!
-          const newPatient: Patient = {
+          const newPatient = {
             id: email,
-            firstName: firstName,
-            lastName: lastName,
-            fiscalCode: 'NON_INSERITO',
-            diagnosisDetails: 'Profilo creato in registrazione',
-            avatar: avatar,
+            firstName,
+            lastName,
+            avatar,
             consentGiven: true,
-            createdAt: new Date().toISOString().split('T')[0],
+            createdAt: new Date().toISOString().split('T')[0]
           };
           await fetch('/api/patients', {
             method: 'POST',

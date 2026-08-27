@@ -8,6 +8,7 @@ const PatientSchema = new mongoose.Schema({
   fiscalCode: { type: String, default: '' },
   diagnosisDetails: { type: String, default: '' },
   consentGiven: { type: Boolean, default: false },
+  therapistEmail: { type: String, default: '' },
   createdAt: { type: String, default: () => new Date().toISOString() },
   unlockedScenarios: { type: [String], default: ['scen-start'] },
   avatar: {

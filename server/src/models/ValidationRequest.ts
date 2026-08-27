@@ -1,0 +1,14 @@
+import mongoose from 'mongoose';
+
+const validationSchema = new mongoose.Schema({
+  patientId: { type: String, required: true },
+  patientName: { type: String, required: true },
+  therapistEmail: { type: String, required: true },
+  scenarioId: { type: String, required: true },
+  scenarioTitle: { type: String, required: true },
+  reflectionText: { type: String, required: true },
+  status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
+  createdAt: { type: Date, default: Date.now }
+});
+
+export const ValidationRequest = mongoose.model('ValidationRequest', validationSchema);

@@ -53,7 +53,7 @@ export default function App() {
     const fetchData = async () => {
       try {
         // Try seeding scenarios
-        const seedRes = await fetch('/api/seed-scenarios', {
+        const seedRes = await fetch('/api/scenarios/bulk', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(INITIAL_SCENARIOS)
@@ -64,7 +64,16 @@ export default function App() {
         const resP = await fetch('/api/patients');
         if (!resP.ok) throw new Error(`Patients failed: ${resP.status}`);
         const dataP = await resP.json();
-        setPatients(Array.isArray(dataP) ? dataP : []);
+        const loadedPatients = Array.isArray(dataP) ? dataP : [];
+        setPatients(loadedPatients);
+
+        // Se l'utente ha ricaricato la pagina ed è loggato come 'user', rimettiamo activePatient
+        const storedRole = localStorage.getItem('authRole');
+        const storedEmail = localStorage.getItem('userEmail');
+        if (storedRole === 'user' && storedEmail) {
+          const myPat = loadedPatients.find((p: any) => p.id === storedEmail);
+          if (myPat) setActivePatient(myPat);
+        }
 
         const resScen = await fetch('/api/scenarios');
         if (!resScen.ok) throw new Error(`Scenarios failed: ${resScen.status}`);
@@ -209,7 +218,13 @@ export default function App() {
          <MainMenu
             authRole={authRole}
             onStartGuest={() => { setAuthRole('guest'); changeView('select-patient'); }}
-            onStartGame={() => changeView('select-patient')}
+            onStartGame={() => {
+              if (authRole === 'user' && activePatient) {
+                changeView('select-scenario');
+              } else {
+                changeView('select-patient');
+              }
+            }}
             onOpenDashboard={() => changeView('dashboard')}
             onOpenLogin={() => changeView('login')}
             onOpenSettings={() => changeView('settings')}
@@ -231,14 +246,14 @@ export default function App() {
                 const email = localStorage.getItem('userEmail');
                 let mioPersonaggio = patients.find(p => p.id === email);
                 
-                // If not found in state, try to fetch from DB (in case they just registered)
-                if (!mioPersonaggio && email) {
+                // Always try to fetch fresh from DB so we get latest unlockedScenarios
+                if (email) {
                   try {
                     const res = await fetch('/api/patients');
                     if (res.ok) {
                       const allPatients = await res.json();
                       setPatients(allPatients);
-                      mioPersonaggio = allPatients.find((p: any) => p.id === email);
+                      mioPersonaggio = allPatients.find((p: any) => p.id === email) || mioPersonaggio;
                     }
                   } catch (e) {
                     console.error(e);
@@ -247,6 +262,24 @@ export default function App() {
 
                 if (mioPersonaggio) {
                   setActivePatient(mioPersonaggio);
+                  
+                  // Check if patient has any rejected validation requests
+                  if (mioPersonaggio.therapistEmail) {
+                    try {
+                      const valRes = await fetch(`/api/validations/patient/${mioPersonaggio.id}`);
+                      if (valRes.ok) {
+                        const rejections = await valRes.json();
+                        if (rejections.length > 0) {
+                          alert(`La tua psicologa ti ha chiesto di rigiocare e riflettere meglio sul capitolo: "${rejections[0].scenarioTitle}"`);
+                          // Acknowledge it so it doesn't show again
+                          await fetch(`/api/validations/${rejections[0]._id}`, { method: 'DELETE' });
+                        }
+                      }
+                    } catch (e) {
+                      console.error('Failed to check validations', e);
+                    }
+                  }
+                  
                   changeView('select-scenario');
                 } else {
                   changeView('select-patient');

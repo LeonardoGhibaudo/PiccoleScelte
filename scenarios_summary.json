@@ -1,0 +1,182 @@
+[
+  {
+    "id": "scen-school-pressione-1",
+    "title": "Pressione alla Lavagna",
+    "description": "Un insegnante ti critica davanti a tutti e la tua concentrazione crolla.",
+    "dialogue": "Professoressa: Non riesci mai a concentrarti! Guardami quando ti parlo!"
+  },
+  {
+    "id": "scen-school-pressione-2",
+    "title": "Concentrazione a Zero",
+    "description": "Non riesci proprio a concentrarti sull'esercizio assegnato.",
+    "dialogue": "Pensiero: Le parole sul foglio si muovono, non riesco a capire nulla..."
+  },
+  {
+    "id": "scen-school-distrazioni-1",
+    "title": "Distrazioni Pericolose",
+    "description": "Ti senti sopraffatto dalle troppe cose da fare e continui a essere interrotto.",
+    "dialogue": "Compagno: Ehi, passami gli appunti! Dai muoviti!"
+  },
+  {
+    "id": "scen-school-distrazioni-2",
+    "title": "Interruzioni Continue",
+    "description": "Mentre cerchi di spiegare il progetto, un altro compagno ti interrompe continuamente.",
+    "dialogue": "Compagno: No, ma guarda che si fa così, non capisci niente!"
+  },
+  {
+    "id": "scen-friends-messaggio-1",
+    "title": "Un Messaggio nel Vuoto",
+    "description": "Scrivi a qualcuno che non risponde, innescando paure legate al rifiuto.",
+    "dialogue": "Pensiero: Ha visualizzato da un'ora... mi odia, lo so."
+  },
+  {
+    "id": "scen-friends-messaggio-2",
+    "title": "Gelosia Tossica",
+    "description": "Poi vedi una sua foto in cui è fuori con altri amici importanti.",
+    "dialogue": "Pensiero: Ecco perché non rispondeva! Si diverte senza di me!"
+  },
+  {
+    "id": "scen-friends-scherzo-1",
+    "title": "Lo Scherzo di Troppo",
+    "description": "Vieni preso in giro davanti a tutti e inizi a sentirti escluso.",
+    "dialogue": "Marco: Ahahah ma guarda come ti sei vestito oggi, sembri un clown!"
+  },
+  {
+    "id": "scen-friends-scherzo-2",
+    "title": "Sentirsi Esclusi",
+    "description": "Dopo lo scherzo, il gruppo decide di andare a mangiare ma non ti invitano chiaramente.",
+    "dialogue": "Marco: Noi andiamo in pizzeria. Ciao!"
+  },
+  {
+    "id": "scen-friends-segreti-1",
+    "title": "Segreti Svelati",
+    "description": "Qualcuno tradisce la tua fiducia rompendo una promessa importante.",
+    "dialogue": "Amica: Ops, mi è scappato il tuo segreto davanti a tutti, scusa..."
+  },
+  {
+    "id": "scen-friends-segreti-2",
+    "title": "Scuse Non Accettate",
+    "description": "Prova a giustificarsi dicendo che 'non era una cosa importante'.",
+    "dialogue": "Amica: Dai, non fare il permaloso, non è mica grave!"
+  },
+  {
+    "id": "scen-family-scontri-1",
+    "title": "Scontri in Salotto",
+    "description": "Una discussione accesa in cui un genitore, stressato, ti urla contro.",
+    "dialogue": "Papà: Non fai mai niente in questa casa! Sono stufo!"
+  },
+  {
+    "id": "scen-family-scontri-2",
+    "title": "Calmare le Acque",
+    "description": "Il genitore si ferma un attimo e sospira.",
+    "dialogue": "Papà: Sì, ma tu devi dare una mano... scusa se ho urlato."
+  },
+  {
+    "id": "scen-family-regole-1",
+    "title": "Regole e Ribellione",
+    "description": "Ti viene imposta una regola che non accetti, seguita da una punizione ingiusta.",
+    "dialogue": "Mamma: Da oggi non puoi più usare il computer dopo le 20. Punto."
+  },
+  {
+    "id": "scen-family-regole-2",
+    "title": "Punizione Ingiusta",
+    "description": "A causa di un malinteso, ti dà comunque la punizione.",
+    "dialogue": "Mamma: Non mi interessa. Per stasera sei in punizione."
+  },
+  {
+    "id": "scen-family-aspettative-1",
+    "title": "Il Peso delle Aspettative",
+    "description": "Vieni confrontato ingiustamente con i tuoi fratelli.",
+    "dialogue": "Papà: Tua sorella prende tutti 10 e tu fai fatica. Perché non sei come lei?"
+  },
+  {
+    "id": "scen-family-aspettative-2",
+    "title": "Giudicati dagli altri",
+    "description": "Anche gli altri parenti sembrano darti sguardi di disapprovazione.",
+    "dialogue": "Zio: Eh sì, lui è sempre stato quello problematico della famiglia."
+  },
+  {
+    "id": "scen-family-spazio-1",
+    "title": "Spazio Violato",
+    "description": "I genitori controllano il tuo telefono violando i tuoi confini.",
+    "dialogue": "Mamma: Chi è questo con cui messaggi? Dammi il telefono, voglio leggere!"
+  },
+  {
+    "id": "scen-family-spazio-2",
+    "title": "Interrompere l'ira",
+    "description": "Inizi ad arrabbiarti e lei ti interrompe mentre cerchi di spiegare.",
+    "dialogue": "Mamma: Taci! Finché vivi sotto questo tetto decido io!"
+  },
+  {
+    "id": "scen-family-emozioni-1",
+    "title": "Emozioni Invalidate",
+    "description": "Stai malissimo per un brutto voto, ma un genitore minimizza tutto.",
+    "dialogue": "Papà: Ma non è niente, cosa vuoi che sia un 4! Sei sempre il solito drammatico."
+  },
+  {
+    "id": "scen-family-emozioni-2",
+    "title": "Sempre il Solito",
+    "description": "Aggiunge il carico da novanta con un etichetta pesante.",
+    "dialogue": "Papà: Sei proprio pesante certe volte... sempre il solito tu."
+  },
+  {
+    "id": "scen-anger-attesa-1",
+    "title": "L'Attesa Infinita",
+    "description": "Devi aspettare il tuo turno alle poste, la fila è lunghissima e perdi la pazienza.",
+    "dialogue": "Pensiero: Non ce la faccio più, sto esplodendo! Devo muovermi!"
+  },
+  {
+    "id": "scen-anger-attesa-2",
+    "title": "Disturbo Esterno",
+    "description": "Qualcuno ti chiede una cosa sciocca proprio mentre sei al limite.",
+    "dialogue": "Signora: Scusa, sai a che ora chiudono?"
+  },
+  {
+    "id": "scen-anger-partita-1",
+    "title": "La Partita Decisiva",
+    "description": "Perdi malamente una partita a cui tenevi tanto.",
+    "dialogue": "Pensiero: Ho sbagliato il tiro finale... è tutta colpa mia!"
+  },
+  {
+    "id": "scen-anger-partita-2",
+    "title": "Provocazioni",
+    "description": "Un avversario ti provoca intenzionalmente per farti esplodere.",
+    "dialogue": "Avversario: Eri davvero imbarazzante oggi, quasi facevi tenerezza."
+  },
+  {
+    "id": "scen-anger-limite-1",
+    "title": "Oltre il Limite",
+    "description": "Durante un aspro litigio hai fortissima voglia di colpire qualcosa o qualcuno.",
+    "dialogue": "Amico: Non sai fare niente di buono, sei un disastro!"
+  },
+  {
+    "id": "scen-anger-limite-2",
+    "title": "La Rottura",
+    "description": "Una volta solo, la rabbia è ancora alta. C'è un oggetto di vetro vicino a te.",
+    "dialogue": "Pensiero: Se rompo qualcosa magari questa rabbia uscirà..."
+  },
+  {
+    "id": "scen-social-parola-1",
+    "title": "La Parola Sbagliata",
+    "description": "In classe fai una figuraccia pronunciando una parola molto imbarazzante per sbaglio.",
+    "dialogue": "Classe: Ahahahahah! Cos'ha appena detto?!"
+  },
+  {
+    "id": "scen-social-parola-2",
+    "title": "La Battuta di Ritorno",
+    "description": "Subito dopo qualcuno rincara la dose con una battuta che ti ferisce.",
+    "dialogue": "Compagno: Beh non mi sorprende, sei un po' speciale tu, eh?"
+  },
+  {
+    "id": "scen-frust-no-1",
+    "title": "Il No Insopportabile",
+    "description": "Ricevi un secco 'NO' per qualcosa a cui tenevi moltissimo (una gita).",
+    "dialogue": "Mamma: No, non ci vai, costa troppo e tu non lo meriti in questo periodo."
+  },
+  {
+    "id": "scen-frust-no-2",
+    "title": "Stanchi Morti",
+    "description": "La sera stessa sei stanco morto ma ti chiedono ancora attenzione o lavori da fare.",
+    "dialogue": "Papà: Vai a buttare la spazzatura e sistema il garage, muoviti."
+  }
+]

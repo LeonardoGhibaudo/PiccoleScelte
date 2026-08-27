@@ -46,10 +46,30 @@ export const Simulator: React.FC<SimulatorProps> = ({
     setDialogueIndex(0);
     setSelectedChoice(null);
     
-    // Estrai 3 scelte casuali
+    // Estrai 3 scelte: 1 impulsive, 1 passive, 1 assertive
     const sc = scenarios[currentScenarioId];
     if (sc && sc.choices) {
-      const shuffled = [...sc.choices].sort(() => Math.random() - 0.5);
+      const impulsives = sc.choices.filter(c => c.type === 'impulsive');
+      const passives = sc.choices.filter(c => c.type === 'passive');
+      const assertives = sc.choices.filter(c => c.type === 'assertive');
+
+      const pickRandom = (arr: typeof sc.choices) => arr.length > 0 ? arr[Math.floor(Math.random() * arr.length)] : null;
+
+      let selected = [
+        pickRandom(impulsives),
+        pickRandom(passives),
+        pickRandom(assertives)
+      ].filter(Boolean);
+
+      // Se mancano categorie (es. ci sono solo 2 opzioni in tutto o tipi mancanti),
+      // rimpiazza con scelte a caso fino ad averne 3 o il massimo disponibile.
+      while (selected.length < 3 && selected.length < sc.choices.length) {
+        const remaining = sc.choices.filter(c => !selected.includes(c));
+        if (remaining.length === 0) break;
+        selected.push(pickRandom(remaining));
+      }
+
+      const shuffled = [...selected].sort(() => Math.random() - 0.5);
       setDisplayChoices(shuffled.slice(0, 3));
     } else {
       setDisplayChoices([]);

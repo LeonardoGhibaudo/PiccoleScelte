@@ -175,16 +175,16 @@ export const FlowchartEnd: React.FC<FlowchartEndProps> = ({ patient, session, sc
               <button 
                 className="btn btn-primary" 
                 onClick={() => {
-                  if (!patient.isPremium && authRole !== 'therapist') {
+                  if (!patient.isPremium && authRole !== 'therapist' && !patient.therapistEmail) {
                     setShowPaywall(true);
                     AudioManager.playError();
                   } else {
                     onProceedToTest();
                   }
                 }} 
-                style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: (patient.isPremium || authRole === 'therapist') ? 'var(--color-sky-dark)' : 'linear-gradient(135deg, #F59E0B, #EA580C)' }}
+                style={{ fontSize: '1.2rem', padding: '1rem 2rem', background: (patient.isPremium || authRole === 'therapist' || !!patient.therapistEmail) ? 'var(--color-sky-dark)' : 'linear-gradient(135deg, #F59E0B, #EA580C)' }}
               >
-                {(patient.isPremium || authRole === 'therapist') ? 'Continua al prossimo capitolo' : 'Sblocca il Gioco Completo 🔒'}
+                {(patient.isPremium || authRole === 'therapist' || !!patient.therapistEmail) ? 'Continua al prossimo capitolo' : 'Sblocca il Gioco Completo 🔒'}
               </button>
               <button className="btn btn-secondary" onClick={onMainMenu}>
                 Torna al Menu

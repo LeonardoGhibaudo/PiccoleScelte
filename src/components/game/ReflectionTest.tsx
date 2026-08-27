@@ -14,6 +14,7 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
   const [reflectionText, setReflectionText] = useState('');
   const [fileUploaded, setFileUploaded] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [submittedValidation, setSubmittedValidation] = useState(false);
 
   // Find the chapter we just played (the first node in the path)
   const playedChapterId = session.pathTaken[0]?.scenarioId;
@@ -32,11 +33,61 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
     AudioManager.playSuccess();
     
     if (nextScenarioToUnlock) {
-      await onUnlockAndContinue(nextScenarioToUnlock.id);
+      if (patient.therapistEmail && patient.therapistEmail.trim() !== '') {
+        // Invia in convalida invece di sbloccare
+        try {
+          await fetch('/api/validations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              patientId: patient.id,
+              patientName: `${patient.firstName} ${patient.lastName}`.trim(),
+              therapistEmail: patient.therapistEmail,
+              scenarioId: nextScenarioToUnlock.id,
+              scenarioTitle: startingScenarios[playedIndex]?.title || nextScenarioToUnlock.title,
+              reflectionText: reflectionText
+            })
+          });
+          setSubmittedValidation(true);
+        } catch (e) {
+          console.error('Validation submission failed', e);
+          // Fallback a sblocco normale in caso di errore di rete severo se preferiamo, 
+          // ma per sicurezza lasciamo in pending visivo o gestiamo l'errore.
+          alert("Errore nell'invio alla psicologa. Riprova.");
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        await onUnlockAndContinue(nextScenarioToUnlock.id);
+      }
     } else {
       onSkip(); // Everything is unlocked
     }
   };
+
+    if (submittedValidation) {
+    return (
+      <div className="container fade-in slide-up" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-dark)', textAlign: 'center' }}>In attesa di convalida</h1>
+        <p style={{ color: 'var(--color-text)', textAlign: 'center', maxWidth: '600px' }}>La tua riflessione è stata inviata alla tua Psicologa. Riceverai un avviso non appena l'avrà esaminata, e il prossimo capitolo si sbloccherà automaticamente!</p>
+        <button className="btn btn-primary mt-4" onClick={() => { AudioManager.playClick(); onSkip(); }}>
+          Torna al Menu Capitoli
+        </button>
+      </div>
+    );
+  }
+
+  if (!nextScenarioToUnlock) {
+    return (
+      <div className="container fade-in slide-up" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <h1 style={{ fontFamily: 'var(--font-display)', color: 'var(--color-text-dark)' }}>Hai completato l'avventura!</h1>
+        <p style={{ color: 'var(--color-text)' }}>Hai completato tutti i capitoli disponibili.</p>
+        <button className="btn btn-primary mt-4" onClick={() => { AudioManager.playClick(); onSkip(); }}>
+          Torna al Menu Capitoli
+        </button>
+      </div>
+    );
+  }
 
   if (!nextScenarioToUnlock) {
     return (
