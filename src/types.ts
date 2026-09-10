@@ -32,6 +32,7 @@ export interface Patient {
   avatar?: AvatarConfig;
   unlockedScenarios?: string[];
   isPremium?: boolean;
+  therapistEmail?: string;
 }
 
 /** I tre tipi di reazione possibili */
@@ -78,7 +79,7 @@ export interface TelemetryData {
   responseTimeMs: number;
   choiceText: string;
   consequenceText: string;
-  betterText: string;
+  betterText?: string;
 }
 
 /** Risultato completo di una sessione di gioco */

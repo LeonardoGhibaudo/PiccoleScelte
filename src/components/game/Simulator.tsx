@@ -59,14 +59,14 @@ export const Simulator: React.FC<SimulatorProps> = ({
         pickRandom(impulsives),
         pickRandom(passives),
         pickRandom(assertives)
-      ].filter(Boolean);
+      ].filter(Boolean) as Choice[];
 
       // Se mancano categorie (es. ci sono solo 2 opzioni in tutto o tipi mancanti),
       // rimpiazza con scelte a caso fino ad averne 3 o il massimo disponibile.
       while (selected.length < 3 && selected.length < sc.choices.length) {
         const remaining = sc.choices.filter(c => !selected.includes(c));
         if (remaining.length === 0) break;
-        selected.push(pickRandom(remaining));
+        selected.push(pickRandom(remaining) as Choice);
       }
 
       const shuffled = [...selected].sort(() => Math.random() - 0.5);

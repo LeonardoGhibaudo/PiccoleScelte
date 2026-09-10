@@ -238,7 +238,7 @@ export default function App() {
 
         {view === 'login' && (
           <LoginScreen
-            onSuccess={async (role, token) => {
+            onSuccess={async (role) => {
               setAuthRole(role);
               if (role === 'therapist') {
                 changeView('dashboard');

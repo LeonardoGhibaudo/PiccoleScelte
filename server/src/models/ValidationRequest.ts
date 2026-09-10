@@ -6,7 +6,8 @@ const validationSchema = new mongoose.Schema({
   therapistEmail: { type: String, required: true },
   scenarioId: { type: String, required: true },
   scenarioTitle: { type: String, required: true },
-  reflectionText: { type: String, required: true },
+  reflectionText: { type: String, required: false },
+  imageUrl: {type: String, required: false},
   status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
   createdAt: { type: Date, default: Date.now }
 });

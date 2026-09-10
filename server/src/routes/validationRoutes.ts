@@ -8,7 +8,7 @@ const router = Router();
 // Create a validation request
 router.post('/', async (req, res) => {
   try {
-    const { patientId, patientName, therapistEmail, scenarioId, scenarioTitle, reflectionText } = req.body;
+    const { patientId, patientName, therapistEmail, scenarioId, scenarioTitle, reflectionText, imageUrl } = req.body;
     
     // Controlla se la psicologa esiste nel db (opzionale ma utile)
     const therapist = await User.findOne({ email: therapistEmail, role: 'therapist' });
@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     }
 
     const val = new ValidationRequest({
-      patientId, patientName, therapistEmail, scenarioId, scenarioTitle, reflectionText
+      patientId, patientName, therapistEmail, scenarioId, scenarioTitle, reflectionText, imageUrl
     });
     await val.save();
 

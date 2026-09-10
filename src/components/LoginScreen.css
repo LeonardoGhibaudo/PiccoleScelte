@@ -37,6 +37,7 @@
 .login-input:focus {
   outline: none;
   border-color: var(--color-primary);
+}
 .login-input.error {
   border-color: var(--color-impulsive);
   background: rgba(252, 129, 129, 0.05);

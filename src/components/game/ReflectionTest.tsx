@@ -15,6 +15,7 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
   const [fileUploaded, setFileUploaded] = useState(false);
   const [loading, setLoading] = useState(false);
   const [submittedValidation, setSubmittedValidation] = useState(false);
+  const [imageBase64, setImageBase64] = useState<string | null>(null);
 
   // Find the chapter we just played (the first node in the path)
   const playedChapterId = session.pathTaken[0]?.scenarioId;
@@ -39,13 +40,17 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
           await fetch('/api/validations', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            
+
+
             body: JSON.stringify({
               patientId: patient.id,
               patientName: `${patient.firstName} ${patient.lastName}`.trim(),
               therapistEmail: patient.therapistEmail,
               scenarioId: nextScenarioToUnlock.id,
               scenarioTitle: startingScenarios[playedIndex]?.title || nextScenarioToUnlock.title,
-              reflectionText: reflectionText
+              reflectionText: reflectionText,
+              imageUrl: imageBase64 
             })
           });
           setSubmittedValidation(true);
@@ -141,7 +146,13 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
               accept="image/*"
               onChange={(e) => {
                 if (e.target.files && e.target.files.length > 0) {
-                  setFileUploaded(true);
+                  const file = e.target.files[0];
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setImageBase64(reader.result as string);
+                    setFileUploaded(true);
+                  };
+                  reader.readAsDataURL(file);
                 }
               }}
             />

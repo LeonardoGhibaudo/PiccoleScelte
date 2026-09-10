@@ -221,9 +221,14 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
                     <h3>Capitolo:</h3>
                     <h5 style={{marginTop: '1rem'}}>{val.scenarioTitle}</h5>
                   </div>
-                  <div style={{ background: 'rgba(0,0,0,0.05)', padding: '1rem', borderRadius: '4px', fontStyle: 'italic', marginBottom: '1rem' }}>
-                    "{val.reflectionText}"
+                 <div style={{ background: 'rgba(0,0,0,0.05)', padding: '1rem', borderRadius: '4px', fontStyle: 'italic', marginBottom: '1rem' }}>
+                    {val.reflectionText ? `"${val.reflectionText}"` : "Nessun testo inviato."}
                   </div>
+                  {val.imageUrl && (
+                    <div style={{ marginBottom: '1rem', textAlign: 'center' }}>
+                      <img src={val.imageUrl} alt="Caricata dal paziente" style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '8px', border: '2px solid var(--color-border)' }} />
+                    </div>
+                  )}
                   <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
                     <button className="btn btn-secondary" onClick={() => handleReject(val._id)}>Rifiuta (Fai Rigiocare)</button>
                     <button className="btn btn-primary" onClick={() => handleApprove(val._id)}>Approva e Sblocca ✅</button>

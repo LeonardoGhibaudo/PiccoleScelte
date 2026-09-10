@@ -9,7 +9,6 @@
 import React, { useState } from 'react';
 import type { Patient, AvatarConfig } from '../types';
 import { AvatarBuilder } from './AvatarBuilder';
-import { PatientAvatar } from './PatientAvatar';
 import './PatientSelect.css';
 
 interface PatientSelectProps {
@@ -20,7 +19,7 @@ interface PatientSelectProps {
 }
 
 export const PatientSelect: React.FC<PatientSelectProps> = ({
-  patients, onAddPatient, onSelect, onBack
+  onAddPatient, onSelect, onBack
 }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');

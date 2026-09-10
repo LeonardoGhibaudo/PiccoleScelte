@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AudioManager from '../utils/AudioManager';
 import './LoginScreen.css';
-import type { AuthRole, AvatarConfig, Patient } from '../types';
+import type { AuthRole, AvatarConfig } from '../types';
 import { AvatarBuilder } from './AvatarBuilder';
 
 interface LoginScreenProps {
