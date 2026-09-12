@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { sendEmail } from '../utils/mailer';
 import { ValidationRequest } from '../models/ValidationRequest';
 import { Patient } from '../models/Patient';
 import { User } from '../models/User';
@@ -23,12 +24,11 @@ router.post('/', async (req, res) => {
     });
     await val.save();
 
-    // SIMULAZIONE EMAIL A PSICOLOGA
-    console.log(`\n========================================`);
-    console.log(`[EMAIL SIMULATION] A: ${therapistEmail}`);
-    console.log(`OGGETTO: Nuova richiesta di convalida da ${patientName}`);
-    console.log(`MESSAGGIO: Il tuo paziente ${patientName} ha appena completato il capitolo "${scenarioTitle}".\nEsperienza riportata:\n"${reflectionText}"\nAccedi alla Dashboard per convalidare.`);
-    console.log(`========================================\n`);
+    await sendEmail(
+      therapistEmail,
+      `Nuova richiesta di convalida da ${patientName}`,
+      `Il tuo paziente ${patientName} ha appena completato il capitolo "${scenarioTitle}".\nEsperienza riportata:\n"${reflectionText || 'Nessun testo, ha inviato una foto.'}"\nAccedi alla Dashboard per convalidare.`
+    );
 
     res.json(val);
   } catch (err: any) {
@@ -71,11 +71,11 @@ router.put('/:id/approve', async (req, res) => {
       { $addToSet: { unlockedScenarios: val.scenarioId } }
     );
 
-    console.log(`\n========================================`);
-    console.log(`[EMAIL SIMULATION] A: ${val.patientName} (Paziente)`);
-    console.log(`OGGETTO: Capitolo Convalidato!`);
-    console.log(`MESSAGGIO: La tua psicologa ha approvato la tua riflessione sul capitolo "${val.scenarioTitle}". Puoi procedere col gioco!`);
-    console.log(`========================================\n`);
+    await sendEmail(
+      val.patientId,
+      `Capitolo Convalidato!`,
+      `La tua psicologa ha approvato la tua riflessione sul capitolo "${val.scenarioTitle}". Puoi procedere col gioco!`
+    );
 
     res.json(val);
   } catch (err: any) {
@@ -89,11 +89,11 @@ router.put('/:id/reject', async (req, res) => {
     const val = await ValidationRequest.findByIdAndUpdate(req.params.id, { status: 'rejected' }, { new: true });
     if (!val) return res.status(404).json({ error: 'Not found' });
 
-    console.log(`\n========================================`);
-    console.log(`[EMAIL SIMULATION] A: ${val.patientName} (Paziente)`);
-    console.log(`OGGETTO: Capitolo da Rigiocare`);
-    console.log(`MESSAGGIO: La tua psicologa ti chiede di rigiocare e riflettere meglio sul capitolo "${val.scenarioTitle}".`);
-    console.log(`========================================\n`);
+    await sendEmail(
+      val.patientId,
+      `Capitolo da Rigiocare`,
+      `La tua psicologa ti chiede di rigiocare e riflettere meglio sul capitolo "${val.scenarioTitle}".`
+    );
 
     res.json(val);
   } catch (err: any) {

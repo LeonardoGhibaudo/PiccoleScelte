@@ -1,6 +1,7 @@
 
 import { Router } from 'express';
 import { Patient } from '../models/Patient';
+import { sendEmail } from '../utils/mailer';
 
 const router = Router();
 import { requireAuth, requireTherapist } from '../middleware/auth';
@@ -58,11 +59,12 @@ router.post('/invite', async (req, res) => {
       );
     }
 
-    console.log(`\n========================================`);
-    console.log(`[EMAIL SIMULATION] A: ${patientEmail}`);
-    console.log(`OGGETTO: Invito da Piccole Scelte`);
-    console.log(`MESSAGGIO: La tua psicologa (${therapistEmail}) ti ha invitato a giocare a Piccole Scelte.\nRegistrati con questa email per collegare il tuo account!`);
-    console.log(`========================================\n`);
+    
+      
+    const subject = "Invito da Piccole Scelte";
+    const text = `La tua psicologa ti ha invitato a giocare a Piccole Scelte.\nRegistrati con questa email per collegare automaticamente il tuo account!`;
+    
+    await sendEmail(patientEmail, subject, text);
 
     res.json({ success: true, message: 'Invito inviato con successo!' });
   } catch (err: any) {
