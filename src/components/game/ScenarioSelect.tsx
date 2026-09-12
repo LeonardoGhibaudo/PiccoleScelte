@@ -39,7 +39,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
   ];
 
   return (
-    <div className="container fade-in slide-up" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '6rem', paddingBottom: '4rem', position: 'relative' }}>
+    <div className="container fade-in slide-up" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: '6rem', paddingBottom: '4rem', position: 'relative' }}>
       {/* ===== TUTORIAL MODAL ===== */}
       {showTutorial && (
         <div className="tutorial-overlay">
@@ -54,7 +54,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
               ))}
             </div>
 
-            <div className="tutorial-actions">
+            <div className="tutorial-actions" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
               {tutorialStep < tutorialContent.length - 1 ? (
                 <button className="btn btn-primary tutorial-btn" onClick={() => { AudioManager.playClick(); setTutorialStep(prev => prev + 1); }}>
                   Avanti
@@ -76,21 +76,21 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
       <button 
         className="btn btn-secondary" 
         onClick={() => { AudioManager.playClick(); onBack(); }}
-        style={{ position: 'absolute', top: '2rem', left: '2rem' }}
+        style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 100 }}
       >
         ◀ Indietro
       </button>
 
-      <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-        <h1 style={{ fontSize: '3rem', fontFamily: 'var(--font-display)', color: 'var(--color-sky-dark)', marginBottom: '1rem', textShadow: '4px 4px 0px var(--color-text-dark)' }}>
+      <div style={{ textAlign: 'center', marginBottom: '3rem', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <h1 style={{ fontSize: '3rem', fontFamily: 'var(--font-display)', color: 'var(--color-sky-dark)', marginBottom: '1rem', textShadow: '4px 4px 0px var(--color-text-dark)', textAlign: 'center' }}>
           Scegli un Capitolo
         </h1>
-        <p style={{ fontSize: '1.2rem', color: 'var(--color-text)' }}>
+        <p style={{ fontSize: '1.2rem', color: 'var(--color-text)', textAlign: 'center' }}>
           Quale situazione vuoi affrontare oggi?
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
         {startingScenarios.map((scenario, index) => {
           const unlockedScenarios = patient.unlockedScenarios && patient.unlockedScenarios.length > 0 ? patient.unlockedScenarios : [];
           
@@ -113,7 +113,9 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
                 display: 'flex',
                 flexDirection: 'column',
                 opacity: isUnlocked ? 1 : 0.6,
-                filter: isUnlocked ? 'none' : 'grayscale(100%)'
+                filter: isUnlocked ? 'none' : 'grayscale(100%)',
+                width: '100%',
+                maxWidth: '300px'
               }}
               onClick={() => {
                 if (isUnlocked) {
@@ -142,7 +144,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
                 </div>
               </div>
               <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <p style={{ color: 'var(--color-text)', marginBottom: '1.5rem', lineHeight: 1.5 }}>
+                <p style={{ color: 'var(--color-text)', marginBottom: '1.5rem', lineHeight: 1.5, textAlign: 'center' }}>
                   {scenario.description}
                 </p>
                 <button className={`btn ${isUnlocked ? 'btn-primary' : 'btn-secondary'}`} style={{ width: '100%' }} disabled={!isUnlocked}>

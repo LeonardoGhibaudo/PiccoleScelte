@@ -182,6 +182,32 @@ export default function App() {
     document.documentElement.setAttribute('data-theme', savedTheme);
   }, []);
 
+  // Polling per aggiornare l'activePatient (utile per vedere i capitoli sbloccati senza ricaricare)
+  React.useEffect(() => {
+    if (!activePatient || authRole === 'guest') return;
+    
+    const pollPatient = async () => {
+      try {
+        const res = await apiFetch(`/api/patients`);
+        if (res.ok) {
+          const allPatients = await res.json();
+          const updated = allPatients.find((p: Patient) => p.id === activePatient.id);
+          if (updated && JSON.stringify(updated.unlockedScenarios) !== JSON.stringify(activePatient.unlockedScenarios)) {
+            handleSetActivePatient(updated);
+            
+            // Aggiorna anche la lista globale patients
+            setPatients((prev: Patient[]) => prev.map(p => p.id === updated.id ? updated : p));
+          }
+        }
+      } catch (e) {
+        // console.warn('Polling fallito', e);
+      }
+    };
+    
+    const interval = setInterval(pollPatient, 5000);
+    return () => clearInterval(interval);
+  }, [activePatient, authRole]);
+
   if (loading) {
     return <div className="app-wrapper"><div className="loading-screen" style={{ color: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh', fontSize: '1.5rem' }}>Caricamento in corso...</div></div>;
   }
@@ -290,37 +316,9 @@ export default function App() {
                       console.error('Failed to check validations', e);
                     }
                   }
-                  
-                  
-  // Polling per aggiornare l'activePatient (utile per vedere i capitoli sbloccati senza ricaricare)
-  React.useEffect(() => {
-    if (!activePatient || authRole === 'guest') return;
-    
-    const pollPatient = async () => {
-      try {
-        const res = await apiFetch(`/api/patients`);
-        if (res.ok) {
-          const allPatients = await res.json();
-          const updated = allPatients.find((p: Patient) => p.id === activePatient.id);
-          if (updated && JSON.stringify(updated.unlockedScenarios) !== JSON.stringify(activePatient.unlockedScenarios)) {
-            handleSetActivePatient(updated);
-            
-            // Aggiorna anche la lista globale patients
-            setPatients((prev: Patient[]) => prev.map(p => p.id === updated.id ? updated : p));
-          }
-        }
-      } catch (e) {
-        // console.warn('Polling fallito', e);
-      }
-    };
-    
-    const interval = setInterval(pollPatient, 5000);
-    return () => clearInterval(interval);
-  }, [activePatient, authRole]);
-
-                  changeView('select-scenario');
+                  changeView('menu');
                 } else {
-                  changeView('select-patient');
+                  changeView('menu');
                 }
               }
             }}

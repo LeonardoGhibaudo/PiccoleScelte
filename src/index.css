@@ -19,19 +19,19 @@
   --modal-bg: #FFFFFF;
   
   /* Primary & Accents */
-  --color-sky-dark: #FF4757;      /* Vibrant Red/Pink */
-  --color-secondary: #2ED573;     /* Vibrant Green */
-  --color-sun: #FFA502;           /* Bright Orange/Yellow */
+  --color-sky-dark: #8B5CF6;      /* Calming Purple */
+  --color-secondary: #10B981;     /* Calming Green */
+  --color-sun: #F59E0B;           /* Warm Amber */
   
   /* Reaction Colors */
   --color-assertive: #1DD1A1;     
   --color-assertive-bg: rgba(29, 209, 161, 0.15);
   
-  --color-impulsive: #FF6B81;     
-  --color-impulsive-bg: rgba(255, 107, 129, 0.15);
+  --color-impulsive: #FF7675;     
+  --color-impulsive-bg: rgba(255, 118, 117, 0.15);
   
-  --color-passive: #70A1FF;       
-  --color-passive-bg: rgba(112, 161, 255, 0.15);
+  --color-passive: #74B9FF;       
+  --color-passive-bg: rgba(116, 185, 255, 0.15);
 
   /* Typography */
   --font-display: 'Outfit', sans-serif;
@@ -47,7 +47,7 @@
   /* Shadows - Bold and Playful */
   --shadow-sm: 4px 4px 0px 0px var(--color-text-dark);
   --shadow-md: 8px 8px 0px 0px var(--color-text-dark);
-  --shadow-glow: 0 0 25px rgba(255, 71, 87, 0.4);
+  --shadow-glow: 0 0 25px rgba(139, 92, 246, 0.4);
 }
 
 [data-theme='dark'] {
@@ -64,12 +64,12 @@
   
   --panel-bg: rgba(26, 26, 36, 0.95);
   --panel-border: #495057;
-  --panel-shadow: 6px 6px 0px 0px #FF4757; /* Neon red drop shadow */
+  --panel-shadow: 6px 6px 0px 0px #8B5CF6; /* Calming purple drop shadow */
   --overlay-bg: rgba(0, 0, 0, 0.8);
   --modal-bg: #1A1A24;
 
-  --shadow-sm: 4px 4px 0px 0px #FF4757;
-  --shadow-md: 8px 8px 0px 0px #2ED573;
+  --shadow-sm: 4px 4px 0px 0px #8B5CF6;
+  --shadow-md: 8px 8px 0px 0px #10B981;
 }
 
 * {

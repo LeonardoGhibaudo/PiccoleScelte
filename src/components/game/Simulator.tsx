@@ -246,13 +246,17 @@ export const Simulator: React.FC<SimulatorProps> = ({
       <div className="character-stage">
         {/* Patient Avatar on the left */}
         {patient.avatar && (
-          <div className={`character-left bounce-in ${speakerName !== 'Pensiero' && speakerName !== patient.firstName ? 'character-dimmed' : ''} ${speakerName === patient.firstName || speakerName === 'Pensiero' ? 'speaking-bounce' : ''}`}>
+          <div className={`character-left bounce-in ${
+            (phase === 'choosing' || speakerName === patient.firstName || speakerName === 'Pensiero') ? 'active-character speaking-bounce' : 'character-dimmed'
+          }`}>
             <PatientAvatar config={patient.avatar} size={200} />
           </div>
         )}
         
         {/* Scenario Character on the right */}
-        <div className={`character-right bounce-in ${speakerName === 'Pensiero' || speakerName === 'Narratore' || speakerName === patient.firstName ? 'character-dimmed' : ''} ${(speakerName !== 'Pensiero' && speakerName !== 'Narratore' && speakerName !== patient.firstName) ? 'speaking-bounce' : ''}`}>
+        <div className={`character-right bounce-in ${
+          (phase === 'reading' && speakerName !== 'Pensiero' && speakerName !== 'Narratore' && speakerName !== patient.firstName) ? 'active-character speaking-bounce' : 'character-dimmed'
+        }`}>
           <img
             src={scenario.character}
             alt={scenario.characterName}
