@@ -160,7 +160,7 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
             {fileUploaded && <div className="mt-2 text-success">✓ File selezionato pronto per l'invio!</div>}
           </div>
 
-          <div className="d-flex justify-content-between align-items-center mt-5">
+          <div className="flex-responsive" style={{ justifyContent: "space-between", alignItems: "center", marginTop: "2rem" }}>
             <button type="button" className="btn btn-secondary" onClick={() => { AudioManager.playClick(); onSkip(); }}>
               Salta per ora (Non sblocca)
             </button>

@@ -52,11 +52,11 @@ export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onC
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.5rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1.5rem' }}>
         {/* Skin Tone */}
         <div className="col-12 col-md-6">
           <label className="form-label fw-bold">Colore Pelle</label>
-          <div className="d-flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {SKIN_TONES.map(color => (
               <button
                 key={color}
@@ -75,7 +75,7 @@ export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onC
         {/* Hair Color */}
         <div className="col-12 col-md-6">
           <label className="form-label fw-bold">Colore Capelli</label>
-          <div className="d-flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {HAIR_COLORS.map(color => (
               <button
                 key={color}
@@ -109,7 +109,7 @@ export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onC
         {/* Shirt Color */}
         <div className="col-12 col-md-6">
           <label className="form-label fw-bold">Colore Maglietta</label>
-          <div className="d-flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {SHIRT_COLORS.map(color => (
               <button
                 key={color}
@@ -128,7 +128,7 @@ export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onC
         {/* Pants Color */}
         <div className="col-12 col-md-6">
           <label className="form-label fw-bold">Colore Pantaloni</label>
-          <div className="d-flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {PANTS_COLORS.map(color => (
               <button
                 key={color}
@@ -147,7 +147,7 @@ export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onC
         {/* Shoes Color */}
         <div className="col-12 col-md-6">
           <label className="form-label fw-bold">Colore Scarpe</label>
-          <div className="d-flex flex-wrap gap-2">
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
             {SHOES_COLORS.map(color => (
               <button
                 key={color}

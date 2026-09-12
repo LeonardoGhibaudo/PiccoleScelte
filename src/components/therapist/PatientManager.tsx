@@ -72,7 +72,7 @@ export const PatientManager: React.FC<PatientManagerProps> = ({ patients, onAddP
           </div>
         </div>
         
-        <div className="d-flex justify-content-end">
+        <div className="flex-responsive-reverse" style={{ justifyContent: "flex-end" }}>
           <button type="submit" className="btn btn-primary">+ Aggiungi Paziente</button>
         </div>
       </form>
@@ -99,7 +99,7 @@ export const PatientManager: React.FC<PatientManagerProps> = ({ patients, onAddP
                   <div style={{ fontSize: '0.8rem' }}>{p.fiscalCode}</div>
                 </td>
                 <td style={{ padding: '1rem 0.5rem', fontWeight: 600 }}>
-                  <div className="d-flex align-items-center gap-2">
+                  <div className="flex-responsive" style={{ alignItems: "center", gap: "0.5rem" }}>
                     {p.avatar ? <PatientAvatar config={p.avatar} size={40} /> : <div style={{width: 40, height: 40, borderRadius: '50%', background: 'var(--color-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white'}}>{p.firstName[0]}</div>}
                     {p.firstName} {p.lastName}
                   </div>

@@ -1,41 +1,24 @@
 import re
-
-with open('/Users/leonardo/adhd-laura/PiccoleScelte/src/App.tsx', 'r') as f:
+with open('src/App.tsx', 'r') as f:
     content = f.read()
 
-old_code = """        {/* Patient Selection — before starting a game */}
-        {view === 'select-patient' && (
-          <PatientSelect
-            patients={patients}
-            onAddPatient={async (p) => {
-              try {
-                const res = await fetch('/api/patients', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify(p)
-                });
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                const savedPatient = await res.json();
-                setPatients(prev => [...prev, savedPatient]);
-              } catch (err) {
-                console.error('Failed to save patient', err);
-                // Fallback locale
-                setPatients(prev => [...prev, p]);
-              }
-            }}"""
+wrapper = """  const handleSetActivePatient = (p: Patient | null) => {
+    if (p) sessionStorage.setItem('activePatient', JSON.stringify(p));
+    else sessionStorage.removeItem('activePatient');
+    setActivePatient(p);
+  };
+"""
+# Insert after setActivePatient
+content = re.sub(
+    r"const \[activePatient, setActivePatient\].*?\}\);",
+    lambda m: m.group(0) + "\n\n" + wrapper,
+    content,
+    flags=re.DOTALL
+)
 
-new_code = """        {/* Patient Selection — before starting a game (Only used by Guests now) */}
-        {view === 'select-patient' && (
-          <PatientSelect
-            patients={patients}
-            onAddPatient={(p) => {
-              // Guests are not saved to the DB, only local state
-              setPatients(prev => [...prev, p]);
-            }}"""
+# Fix React import
+if "import React" not in content:
+    content = "import React, { useState, useEffect } from 'react';\n" + content.replace("import { useState } from 'react';", "")
 
-new_content = content.replace(old_code, new_code)
-
-with open('/Users/leonardo/adhd-laura/PiccoleScelte/src/App.tsx', 'w') as f:
-    f.write(new_content)
-
-print("Fixed App.tsx")
+with open('src/App.tsx', 'w') as f:
+    f.write(content)

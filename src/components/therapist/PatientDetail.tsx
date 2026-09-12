@@ -41,7 +41,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
         <h2 style={{ margin: 0 }}>Cartella Clinica: {patient.firstName} {patient.lastName}</h2>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem' }}>
+      <div className="grid-responsive">
         {/* Patient Info Card */}
         <div className="card">
           <div style={{ textAlign: 'center', marginBottom: '2rem', position: 'relative' }}>

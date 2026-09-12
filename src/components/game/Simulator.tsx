@@ -243,7 +243,7 @@ export const Simulator: React.FC<SimulatorProps> = ({
       </div>
 
       {/* ===== Personaggio ===== */}
-      <div className="d-flex justify-content-between px-5 w-100" style={{ position: 'absolute', bottom: '150px', zIndex: 10, pointerEvents: 'none' }}>
+      <div className="flex-responsive" style={{ justifyContent: "space-between", padding: "0 2rem", width: "100%", position: 'absolute', bottom: '150px', zIndex: 10, pointerEvents: 'none' }}>
         {/* Patient Avatar on the left */}
         {patient.avatar && (
           <div className={`bounce-in ${speakerName !== 'Pensiero' && speakerName !== patient.firstName ? 'opacity-50' : ''} ${speakerName === patient.firstName || speakerName === 'Pensiero' ? 'speaking-bounce' : ''}`} style={{ transition: 'opacity 0.3s' }}>
