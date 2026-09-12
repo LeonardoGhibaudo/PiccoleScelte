@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '../config';
 import AudioManager from '../utils/AudioManager';
 import './LoginScreen.css';
 import type { AuthRole, AvatarConfig } from '../types';
@@ -46,7 +47,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
           throw new Error('Il nome del personaggio è obbligatorio per i giocatori.');
         }
 
-        const loginRes = await fetch('/api/auth/login', {
+        const loginRes = await fetch(API_BASE + '/api/auth/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({email,password})
@@ -67,7 +68,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
             consentGiven: true,
             createdAt: new Date().toISOString().split('T')[0]
           };
-          await fetch('/api/patients', {
+          await fetch(API_BASE + '/api/patients', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newPatient)

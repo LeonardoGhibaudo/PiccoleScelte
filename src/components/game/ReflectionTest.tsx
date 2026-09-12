@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '../../config';
 import type { Patient, Scenario, SessionResult } from '../../types';
 import AudioManager from '../../utils/AudioManager';
 
@@ -37,7 +38,7 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
       if (patient.therapistEmail && patient.therapistEmail.trim() !== '') {
         // Invia in convalida invece di sbloccare
         try {
-          await fetch('/api/validations', {
+          await fetch(API_BASE + '/api/validations', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             

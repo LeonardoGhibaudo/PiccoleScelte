@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE } from '../../config';
 import type { Patient } from '../../types';
 import { PatientManager } from './PatientManager';
 import AudioManager from '../../utils/AudioManager';
@@ -27,7 +28,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
       const email = localStorage.getItem('userEmail');
       if (email) {
         try {
-          const res = await fetch(`/api/validations?therapistEmail=${email}`);
+          const res = await fetch(API_BASE + `/api/validations?therapistEmail=${email}`);
           if (res.ok) {
             const data = await res.json();
             setValidations(data);
@@ -42,7 +43,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
 
   const handleApprove = async (id: string) => {
     try {
-      await fetch(`/api/validations/${id}/approve`, { method: 'PUT' });
+      await fetch(API_BASE + `/api/validations/${id}/approve`, { method: 'PUT' });
       setValidations(prev => prev.filter(v => v._id !== id));
       AudioManager.playSuccess();
     } catch (e) {
@@ -53,7 +54,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
 
   const handleReject = async (id: string) => {
     try {
-      await fetch(`/api/validations/${id}/reject`, { method: 'PUT' });
+      await fetch(API_BASE + `/api/validations/${id}/reject`, { method: 'PUT' });
       setValidations(prev => prev.filter(v => v._id !== id));
       AudioManager.playClick();
     } catch (e) {
@@ -69,7 +70,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
     setInviteStatus(null);
     try {
       const email = localStorage.getItem('userEmail');
-      const res = await fetch('/api/patients/invite', {
+      const res = await fetch(API_BASE + '/api/patients/invite', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ patientEmail: inviteEmail, therapistEmail: email })
@@ -94,7 +95,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
     setLoading(true);
     setPromoteStatus(null);
     try {
-      const res = await fetch('/api/auth/promote', {
+      const res = await fetch(API_BASE + '/api/auth/promote', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: promoteEmail })
