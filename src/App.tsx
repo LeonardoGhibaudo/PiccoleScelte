@@ -5,7 +5,7 @@
  * Gestisce la navigazione tra le viste (Menu, Dashboard,
  * ScenarioBuilder, Selezione Paziente, Simulatore, Flowchart).
  */
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { apiFetch } from './utils/apiFetch';
 import type { Patient, Scenario, SessionResult, AuthRole } from './types';
 import { MainMenu } from './components/MainMenu';
@@ -49,6 +49,13 @@ export default function App() {
     const saved = sessionStorage.getItem('activePatient');
     return saved ? JSON.parse(saved) : null;
   });
+
+  const handleSetActivePatient = (p: Patient | null) => {
+    if (p) sessionStorage.setItem('activePatient', JSON.stringify(p));
+    else sessionStorage.removeItem('activePatient');
+    setActivePatient(p);
+  };
+
   const [activeScenarioId, setActiveScenarioId] = useState<string>('scen-school-pressione-1');
   const [sessionResult, setSessionResult] = useState<SessionResult | null>(null);
 
