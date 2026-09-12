@@ -305,3 +305,65 @@
   .choice-button { font-size: 1.05rem; padding: 1rem 1.25rem; gap: 0.75rem; }
   .choice-emoji { font-size: 1.5rem; }
 }
+
+/* ===== Character Stage (Layout Fixes) ===== */
+.character-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 5%;
+  padding-bottom: 250px; /* Space for dialogue box */
+  z-index: 5;
+}
+
+.character-left, .character-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 45%;
+}
+
+.character-left {
+  align-items: flex-start;
+}
+
+.character-right {
+  align-items: flex-end;
+}
+
+.vn-character-img {
+  height: 400px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 6px solid #FFF;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  background: #FFF;
+  transform: rotate(-2deg); /* Polaroid effect */
+  transition: transform 0.3s ease;
+}
+.character-right:hover .vn-character-img {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Fix mobile constraints */
+@media (max-width: 768px) {
+  .character-stage {
+    padding-bottom: 200px;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  .vn-character-img {
+    height: 250px;
+  }
+  .character-left .avatar-container {
+    transform: scale(0.65);
+    transform-origin: bottom left;
+  }
+}
