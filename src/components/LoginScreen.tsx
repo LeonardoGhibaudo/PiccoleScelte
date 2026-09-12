@@ -87,7 +87,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
   return (
     <div className="login-wrapper fade-in">
       <div className="login-container card slide-up">
-        <button className="btn btn-secondary" onClick={() => { AudioManager.playClick(); onBack(); }} style={{ position: 'absolute', top: '1rem', left: '1rem', padding: '0.5rem 1rem' }}>
+        <button className="btn btn-secondary" onClick={() => { AudioManager.playClick(); onBack(); }} style={{ position: 'absolute', top: '1rem', left: '1rem', width: 'auto', padding: '0.5rem 1rem' }}>
           ← Indietro
         </button>
         

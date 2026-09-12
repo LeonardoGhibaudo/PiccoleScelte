@@ -77,45 +77,25 @@ export const PatientManager: React.FC<PatientManagerProps> = ({ patients, onAddP
         </div>
       </form>
 
-      <div className="table-responsive">
-        <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-          <thead>
-            <tr style={{ borderBottom: '2px solid var(--color-border)' }}>
-              <th style={{ padding: '1rem 0.5rem' }}>ID / C.F.</th>
-              <th style={{ padding: '1rem 0.5rem' }}>Paziente</th>
-              <th style={{ padding: '1rem 0.5rem' }}>Diagnosi</th>
-              <th style={{ padding: '1rem 0.5rem' }}>Creazione</th>
-              <th style={{ padding: '1rem 0.5rem' }}>Azioni</th>
-            </tr>
-          </thead>
-          <tbody>
-            {patients.length === 0 && (
-              <tr><td colSpan={5} style={{ padding: '2rem', textAlign: 'center', color: 'var(--color-text-light)' }}>Nessun paziente. Aggiungine uno.</td></tr>
-            )}
-            {patients.map(p => (
-              <tr key={p.id} style={{ borderBottom: '1px solid var(--color-border)' }}>
-                <td style={{ padding: '1rem 0.5rem', fontFamily: 'monospace', color: 'var(--color-text-light)' }}>
-                  <div>{p.id}</div>
-                  <div style={{ fontSize: '0.8rem' }}>{p.fiscalCode}</div>
-                </td>
-                <td style={{ padding: '1rem 0.5rem', fontWeight: 600 }}>
-                  <div className="flex-responsive" style={{ alignItems: "center", gap: "0.5rem" }}>
-                    {p.avatar ? <PatientAvatar config={p.avatar} size={40} /> : <div style={{width: 40, height: 40, borderRadius: '50%', background: 'var(--color-sky-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white'}}>{p.firstName[0]}</div>}
-                    {p.firstName} {p.lastName}
-                  </div>
-                </td>
-                <td style={{ padding: '1rem 0.5rem', color: 'var(--color-text-light)', maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {p.diagnosisDetails || '-'}
-                </td>
-                <td style={{ padding: '1rem 0.5rem' }}>{p.createdAt}</td>
-                <td style={{ padding: '1rem 0.5rem', display: 'flex', gap: '0.5rem' }}>
-                  <button className="btn btn-secondary" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }} onClick={() => onSelectPatient(p)}>Apri Cartella</button>
-                  <button className="btn btn-danger" style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem' }} onClick={() => onDeletePatient(p.id)}>Elimina</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="patient-list" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1.5rem' }}>
+        {patients.length === 0 && <p className="text-muted">Nessun paziente inserito.</p>}
+        {patients.map(p => (
+          <div key={p.id} style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'space-between', padding: '1rem', background: 'var(--panel-bg)', borderRadius: 'var(--radius-md)', border: '2px solid var(--panel-border)', boxShadow: '4px 4px 0px 0px var(--panel-border)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: '1 1 250px' }}>
+              {p.avatar ? <PatientAvatar config={p.avatar} size={48} /> : <div style={{width: 48, height: 48, borderRadius: '50%', background: 'var(--color-sky-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', fontWeight: 'bold'}}>{p.firstName[0]}</div>}
+              <div>
+                <strong style={{ display: 'block', fontSize: '1.1rem' }}>{p.firstName} {p.lastName}</strong>
+                <span className="text-muted" style={{ fontSize: '0.85rem', display: 'block' }}>ID: {p.id.substring(0, 8)}</span>
+                <span className="text-muted" style={{ fontSize: '0.85rem' }}>{p.diagnosisDetails || '-'}</span>
+              </div>
+            </div>
+            
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <button className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }} onClick={() => onSelectPatient(p)}>Apri Cartella</button>
+              <button className="btn btn-danger" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }} onClick={() => onDeletePatient(p.id)}>Elimina</button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

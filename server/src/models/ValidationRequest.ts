@@ -9,7 +9,7 @@ const validationSchema = new mongoose.Schema({
   reflectionText: { type: String, required: false },
   imageUrl: {type: String, required: false},
   status: { type: String, enum: ['pending', 'approved', 'rejected'], default: 'pending' },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, expires: '3d', default: Date.now }
 });
 
 export const ValidationRequest = mongoose.model('ValidationRequest', validationSchema);

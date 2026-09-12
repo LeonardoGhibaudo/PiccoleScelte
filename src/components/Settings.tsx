@@ -35,12 +35,6 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
     if (val > 0) AudioManager.playBlip(); // feedback immediato
   };
 
-  const handleClearData = () => {
-    if (window.confirm("Sei sicuro di voler cancellare tutti i dati locali (Pazienti, Scenari, Sessioni)? L'operazione è irreversibile.")) {
-      localStorage.clear();
-      window.location.reload();
-    }
-  };
 
   return (
     <div className="container fade-in slide-up" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: '6rem', paddingBottom: '4rem' }}>
@@ -100,15 +94,6 @@ export const Settings: React.FC<SettingsProps> = ({ onBack }) => {
           </p>
         </div>
 
-        <div style={{ borderTop: '2px solid var(--color-border)', paddingTop: '2rem' }}>
-          <h3 style={{ marginBottom: '1rem', color: 'var(--color-impulsive)' }}>Area Pericolosa</h3>
-          <p style={{ marginBottom: '1rem', color: 'var(--color-text-light)' }}>
-            Questa opzione cancellerà permanentemente tutti i dati salvati su questo dispositivo.
-          </p>
-          <button className="btn btn-danger" style={{ width: '100%' }} onClick={handleClearData}>
-            🗑️ Cancella tutti i dati locali
-          </button>
-        </div>
       </div>
     </div>
   );

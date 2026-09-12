@@ -235,6 +235,6 @@
     font-size: 1.1rem;
   }
   .menu-title-area.moved-up {
-    transform: translateY(-15vh);
+    transform: translateY(-5vh); margin-top: env(safe-area-inset-top, 20px);
   }
 }

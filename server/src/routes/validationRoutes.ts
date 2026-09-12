@@ -18,6 +18,10 @@ router.post('/', async (req, res) => {
       return res.status(404).json({ error: 'La psicologa indicata non è registrata come Terapista.' });
     }
 
+    
+    // Delete any existing pending or rejected requests for this patient for this scenario
+    await ValidationRequest.deleteMany({ patientId: req.body.patientId, scenarioId: req.body.scenarioId });
+
     const val = new ValidationRequest({
       patientId, patientName, therapistEmail, scenarioId, scenarioTitle, reflectionText, imageUrl
     });

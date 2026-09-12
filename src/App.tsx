@@ -157,11 +157,13 @@ export default function App() {
 
   const handleFinishSession = async (result: SessionResult) => {
     try {
-      await apiFetch('/api/sessions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result)
-      });
+      if (authRole !== 'therapist') {
+        await apiFetch('/api/sessions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(result)
+        });
+      }
       setSessions(prev => [...prev, result]);
       setSessionResult(result);
       transitionToView('flowchart');

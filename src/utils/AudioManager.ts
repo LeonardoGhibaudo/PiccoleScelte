@@ -15,7 +15,30 @@ class AudioManager {
   public static bgmVolume: number = 0.5; // Default music volume (0.0 to 1.0)
   public static sfxVolume: number = 0.5; // Default effects volume (0.0 to 1.0)
 
+
+  private static isInitialized = false;
+
+  private static setupVisibilityListener() {
+    if (!this.isInitialized && typeof document !== 'undefined') {
+      this.isInitialized = true;
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          if (this.bgmAudio && !this.bgmAudio.paused) {
+            this.bgmAudio.pause();
+            (this.bgmAudio as any)._wasPlaying = true;
+          }
+        } else {
+          if (this.bgmAudio && (this.bgmAudio as any)._wasPlaying && !this.isMuted) {
+            this.bgmAudio.play().catch(e => console.warn(e));
+            (this.bgmAudio as any)._wasPlaying = false;
+          }
+        }
+      });
+    }
+  }
+
   /** Inizializza il contesto audio (richiede iterazione dell'utente prima) */
+
   public static initCtx() {
     if (!this.ctx) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -40,7 +63,10 @@ class AudioManager {
       return;
     }
     
+
+    this.setupVisibilityListener();
     if (!this.bgmAudio) {
+
       this.bgmAudio = new Audio(url);
       this.bgmAudio.loop = true;
       this.bgmAudio.volume = 0.3 * this.bgmVolume;
