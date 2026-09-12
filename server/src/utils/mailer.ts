@@ -10,19 +10,17 @@ oAuth2Client.setCredentials({ refresh_token: process.env.GMAIL_REFRESH_TOKEN });
 
 const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
 
-export const sendEmail = async (to: string, subject: string, text: string) => {
+export const sendEmail = async (to: string, subject: string, htmlContent: string) => {
   try {
-    // Creiamo la mail con l'intestazione standard
     const rawMessage = [
       `From: Piccole Scelte <${process.env.GMAIL_USER}>`,
       `To: ${to}`,
-      'Content-Type: text/plain; charset=utf-8',
+      'Content-Type: text/html; charset=utf-8',
       `Subject: ${subject}`,
       '',
-      text,
+      htmlContent,
     ].join('\n');
 
-    // Le API di Google vogliono il messaggio codificato in Base64 (formato URL-safe)
     const encodedMessage = Buffer.from(rawMessage)
       .toString('base64')
       .replace(/\+/g, '-')

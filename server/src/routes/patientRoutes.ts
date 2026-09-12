@@ -2,6 +2,8 @@
 import { Router } from 'express';
 import { Patient } from '../models/Patient';
 import { sendEmail } from '../utils/mailer';
+import { getEmailTemplate } from "../utils/emailTemplate";
+
 
 const router = Router();
 import { requireAuth, requireTherapist } from '../middleware/auth';
@@ -61,10 +63,19 @@ router.post('/invite', async (req, res) => {
 
     
       
-    const subject = "Invito da Piccole Scelte";
-    const text = `La tua psicologa ti ha invitato a giocare a Piccole Scelte.\nRegistrati con questa email per collegare automaticamente il tuo account!`;
+
+
+
+    const subject = "Il tuo psicologo ti ha invitato su Piccole Scelte 🎮";
+    const text = `La tua psicologa ti ha invitato a giocare a Piccole Scelte, il videogioco terapeutico per l'esplorazione emotiva.\n\nRegistrati usando la tua email per collegare automaticamente il tuo account a quello della tua psicologa e iniziare subito a giocare!`;
+    const htmlContent = getEmailTemplate(
+      "Sei stato invitato!", 
+      text, 
+      "Registrati ora e gioca", 
+      "https://piccolescelte.com/"
+    );
     
-    await sendEmail(patientEmail, subject, text);
+    await sendEmail(patientEmail, subject, htmlContent);
 
     res.json({ success: true, message: 'Invito inviato con successo!' });
   } catch (err: any) {
