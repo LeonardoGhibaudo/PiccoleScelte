@@ -56,7 +56,7 @@ router.get('/verify/:token', async (req, res) => {
         user.verificationToken = undefined;
         await user.save();
         
-        res.send('<h1>Account verificato con successo! Ora puoi accedere all\'app.</h1><a href="https://piccolescelte.onrender.com">Torna al gioco</a>');
+        res.send('<h1>Account verificato con successo! Ora puoi accedere all\'app.</h1><a href="https://piccolescelte.com">Torna al gioco</a>');
     } catch (err: any) {
         res.status(500).send('<h1>Errore di sistema</h1>');
     }

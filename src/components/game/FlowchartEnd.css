@@ -4,7 +4,7 @@
 
 .flowchart-wrapper {
   min-height: 100vh;
-  background: transparent;
+  background: var(--color-background, #FFFAF5);
   padding: 2rem;
   overflow-y: auto;
 }
