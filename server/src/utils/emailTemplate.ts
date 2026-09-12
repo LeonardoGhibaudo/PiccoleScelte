@@ -24,19 +24,19 @@ export const getEmailTemplate = (title: string, message: string, buttonText?: st
       <div class="wrapper">
         <div class="container">
           <div class="header">
-            <img src="\${logoUrl}" alt="Piccole Scelte Logo" class="logo" />
+            <img src="${logoUrl}" alt="Piccole Scelte Logo" class="logo" />
           </div>
           <div class="content">
-            <div class="title">\${title}</div>
-            <div style="font-size: 16px;">\${message.replace(/\\n/g, '<br/>')}</div>
-            \${buttonText && buttonUrl ? \`
+            <div class="title">${title}</div>
+            <div style="font-size: 16px;">${message.replace(/\n/g, '<br/>')}</div>
+            ${buttonText && buttonUrl ? `
               <div class="button-container">
-                <a href="\${buttonUrl}" class="button" style="color: white;">\${buttonText}</a>
+                <a href="${buttonUrl}" class="button" style="color: white;">${buttonText}</a>
               </div>
-            \` : ''}
+            ` : ''}
           </div>
           <div class="footer">
-            &copy; \${new Date().getFullYear()} Piccole Scelte.<br>Un videogioco terapeutico per esplorare le emozioni.<br><br>
+            &copy; ${new Date().getFullYear()} Piccole Scelte.<br>Un videogioco terapeutico per esplorare le emozioni.<br><br>
             <a href="https://piccolescelte.com" style="color: #4FD1C5; text-decoration: none; font-weight: bold;">Visita il sito web</a>
           </div>
         </div>
