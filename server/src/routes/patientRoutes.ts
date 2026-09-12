@@ -72,7 +72,7 @@ router.post('/invite', async (req, res) => {
       "Sei stato invitato!", 
       text, 
       "Registrati ora e gioca", 
-      "https://piccolescelte.com/"
+      "https://piccolescelte.com/?view=login"
     );
     
     await sendEmail(patientEmail, subject, htmlContent);

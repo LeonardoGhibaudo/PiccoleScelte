@@ -10,10 +10,12 @@
 export type AuthRole = 'guest' | 'user' | 'therapist' | null;
 
 export interface AvatarConfig {
-  skinTone: string;
-  hairStyle: string;
-  hairColor: string;
-  shirtColor: string;
+  gender?: 'boy' | 'girl';
+  seed?: string;
+  skinTone?: string;
+  hairStyle?: string;
+  hairColor?: string;
+  shirtColor?: string;
   pantsColor?: string;
   shoesColor?: string;
 }

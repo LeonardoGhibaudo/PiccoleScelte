@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
       `Nuova Convalida da ${patientName}`,
       text,
       "Apri Dashboard Terapista",
-      "https://piccolescelte.com/"
+      "https://piccolescelte.com/?view=select-scenario"
     );
 
     await sendEmail(
@@ -83,7 +83,7 @@ router.put('/:id/approve', async (req, res) => {
       "Capitolo Convalidato! 🌟",
       text,
       "Gioca Ora",
-      "https://piccolescelte.com/"
+      "https://piccolescelte.com/?view=select-scenario"
     );
 
     await sendEmail(
@@ -108,7 +108,7 @@ router.put('/:id/reject', async (req, res) => {
       "Riprova il Capitolo 🔄",
       text,
       "Apri Piccole Scelte",
-      "https://piccolescelte.com/"
+      "https://piccolescelte.com/?view=select-scenario"
     );
 
     await sendEmail(

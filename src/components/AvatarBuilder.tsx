@@ -1,168 +1,69 @@
 import React, { useState, useEffect } from 'react';
 import type { AvatarConfig } from '../types';
 import { PatientAvatar } from './PatientAvatar';
+import AudioManager from '../utils/AudioManager';
 
 interface AvatarBuilderProps {
   initialConfig?: AvatarConfig;
   onChange: (config: AvatarConfig) => void;
 }
 
-const SKIN_TONES = ['#fcd2bc', '#e0ac69', '#c68642', '#8d5524', '#3d2218'];
-const HAIR_COLORS = ['#000000', '#4a3022', '#8c593b', '#cc8c47', '#ffdb58', '#b55239', '#e0e0e0'];
-const SHIRT_COLORS = ['#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93', '#808080', '#ffffff'];
-const PANTS_COLORS = ['#3a5a40', '#3f37c9', '#560bad', '#000000', '#b5c99a'];
-const SHOES_COLORS = ['#2b2d42', '#8d99ae', '#ef233c', '#ffffff', '#000000'];
-const HAIR_STYLES = ['short', 'long', 'curly', 'bald'];
-
 export const AvatarBuilder: React.FC<AvatarBuilderProps> = ({ initialConfig, onChange }) => {
-  const [config, setConfig] = useState<AvatarConfig>(initialConfig || {
-    skinTone: SKIN_TONES[0],
-    hairColor: HAIR_COLORS[1],
-    shirtColor: SHIRT_COLORS[3],
-    pantsColor: PANTS_COLORS[1],
-    shoesColor: SHOES_COLORS[0],
-    hairStyle: HAIR_STYLES[0]
-  });
+  const [gender, setGender] = useState<'boy' | 'girl'>(initialConfig?.gender || 'boy');
+  const [seedNum, setSeedNum] = useState<number>(1);
 
-  // Notifica i cambiamenti al parent
   useEffect(() => {
-    onChange(config);
-  }, [config, onChange]);
+    onChange({ gender, seed: `${gender}-${seedNum}` });
+  }, [gender, seedNum, onChange]);
 
-  const updateConfig = (key: keyof AvatarConfig, value: string) => {
-    setConfig(prev => ({ ...prev, [key]: value }));
+  const randomize = () => {
+    AudioManager.playClick();
+    setSeedNum(prev => prev + 1);
+  };
+
+  const handleGenderSelect = (g: 'boy' | 'girl') => {
+    AudioManager.playClick();
+    setGender(g);
+    setSeedNum(1); // Reset to first variant
   };
 
   return (
-    <div className="avatar-builder" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <div style={{ 
-          background: 'rgba(255, 255, 255, 0.1)', 
-          backdropFilter: 'blur(10px)',
-          border: '1px solid rgba(244, 114, 182, 0.4)',
-          borderRadius: '50%', 
-          padding: '1.5rem', 
-          display: 'inline-block',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
-        }}>
-          <PatientAvatar config={config} size={180} />
-        </div>
-        <p style={{ marginTop: '1rem', color: 'rgba(255, 255, 255, 0.6)', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-          Anteprima Profilo
-        </p>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
+      
+      <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+        <button 
+          type="button"
+          className={`btn ${gender === 'boy' ? 'btn-primary' : 'btn-secondary'}`} 
+          style={{ flex: 1, padding: '1rem', fontSize: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
+          onClick={() => handleGenderSelect('boy')}
+        >
+          <span style={{ fontSize: '2rem' }}>👦</span>
+          Maschio
+        </button>
+        <button 
+          type="button"
+          className={`btn ${gender === 'girl' ? 'btn-primary' : 'btn-secondary'}`} 
+          style={{ flex: 1, padding: '1rem', fontSize: '1.2rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}
+          onClick={() => handleGenderSelect('girl')}
+        >
+          <span style={{ fontSize: '2rem' }}>👧</span>
+          Femmina
+        </button>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '1.5rem' }}>
-        {/* Skin Tone */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Colore Pelle</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {SKIN_TONES.map(color => (
-              <button
-                key={color}
-                type="button"
-                className="btn p-0"
-                style={{
-                  width: '30px', height: '30px', borderRadius: '50%', backgroundColor: color,
-                  border: config.skinTone === color ? '3px solid var(--color-sky-dark)' : '1px solid rgba(255,255,255,0.2)'
-                }}
-                onClick={() => updateConfig('skinTone', color)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Hair Color */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Colore Capelli</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {HAIR_COLORS.map(color => (
-              <button
-                key={color}
-                type="button"
-                className="btn p-0"
-                style={{
-                  width: '30px', height: '30px', borderRadius: '50%', backgroundColor: color,
-                  border: config.hairColor === color ? '3px solid var(--color-sky-dark)' : '1px solid rgba(255,255,255,0.2)'
-                }}
-                onClick={() => updateConfig('hairColor', color)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Hair Style */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Stile Capelli</label>
-          <select 
-            className="form-select" 
-            value={config.hairStyle}
-            onChange={(e) => updateConfig('hairStyle', e.target.value)}
-          >
-            <option value="short">Corti</option>
-            <option value="long">Lunghi</option>
-            <option value="curly">Ricci</option>
-            <option value="bald">Rasati</option>
-          </select>
-        </div>
-
-        {/* Shirt Color */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Colore Maglietta</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {SHIRT_COLORS.map(color => (
-              <button
-                key={color}
-                type="button"
-                className="btn p-0"
-                style={{
-                  width: '30px', height: '30px', borderRadius: '50%', backgroundColor: color,
-                  border: config.shirtColor === color ? '3px solid var(--color-sky-dark)' : '1px solid rgba(255,255,255,0.2)'
-                }}
-                onClick={() => updateConfig('shirtColor', color)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Pants Color */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Colore Pantaloni</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {PANTS_COLORS.map(color => (
-              <button
-                key={color}
-                type="button"
-                className="btn p-0"
-                style={{
-                  width: '30px', height: '30px', borderRadius: '50%', backgroundColor: color,
-                  border: config.pantsColor === color ? '3px solid var(--color-sky-dark)' : '1px solid rgba(255,255,255,0.2)'
-                }}
-                onClick={() => updateConfig('pantsColor', color)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Shoes Color */}
-        <div className="col-12 col-md-6">
-          <label className="form-label fw-bold">Colore Scarpe</label>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-            {SHOES_COLORS.map(color => (
-              <button
-                key={color}
-                type="button"
-                className="btn p-0"
-                style={{
-                  width: '30px', height: '30px', borderRadius: '50%', backgroundColor: color,
-                  border: config.shoesColor === color ? '3px solid var(--color-sky-dark)' : '1px solid rgba(255,255,255,0.2)'
-                }}
-                onClick={() => updateConfig('shoesColor', color)}
-              />
-            ))}
-          </div>
-        </div>
+      <div style={{ position: 'relative', width: 180, height: 180, borderRadius: '50%', background: 'linear-gradient(135deg, var(--color-sky-dark), var(--color-passive))', border: '4px solid var(--color-text-dark)', boxShadow: '6px 6px 0px 0px var(--color-text-dark)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+        <PatientAvatar config={{ gender, seed: `${gender}-${seedNum}` }} size={160} />
       </div>
+
+      <button 
+        type="button"
+        className="btn btn-game" 
+        onClick={randomize}
+        style={{ width: '100%', fontSize: '1.1rem', background: 'var(--color-sun)', color: 'var(--color-text-dark)' }}
+      >
+        🎲 Cambia Aspetto
+      </button>
+
     </div>
   );
 };

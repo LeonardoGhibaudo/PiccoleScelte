@@ -114,7 +114,7 @@ router.get('/verify/:token', async (req, res) => {
                     <div style="font-size: 60px; margin-bottom: 10px;">✨</div>
                     <h1>Evviva!</h1>
                     <p>Il tuo account è stato verificato con successo. Ora sei pronto per iniziare la tua avventura in <strong>Piccole Scelte</strong>.</p>
-                    <a href="https://piccolescelte.com" class="btn">Gioca Ora</a>
+                    <a href="https://piccolescelte.com/?view=login" class="btn">Gioca Ora</a>
                 </div>
             </body>
             </html>

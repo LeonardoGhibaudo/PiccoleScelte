@@ -32,7 +32,16 @@ import { INITIAL_SCENARIOS } from './data/scenarios';
 type AppView = 'menu' | 'login' | 'select-patient' | 'select-scenario' | 'dashboard' | 'patient-detail' | 'builder' | 'simulator' | 'flowchart' | 'settings' | 'reflection';
 
 export default function App() {
-  const [view, setView] = useState<AppView>('menu');
+  const [view, setView] = useState<AppView>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const v = params.get('view') as AppView;
+      if (['menu', 'login', 'select-patient', 'select-scenario', 'dashboard', 'settings'].includes(v)) {
+        return v;
+      }
+    }
+    return 'menu';
+  });
   const [authRole, setAuthRole] = useState<AuthRole>(
     (localStorage.getItem('authRole') as AuthRole) || null
   );
@@ -58,6 +67,14 @@ export default function App() {
 
   const [activeScenarioId, setActiveScenarioId] = useState<string>('scen-school-pressione-1');
   const [sessionResult, setSessionResult] = useState<SessionResult | null>(null);
+
+  useEffect(() => {
+    // Redirect if accessing a restricted view without required state
+    if (view === 'select-scenario' && !activePatient && authRole !== 'user') {
+      if (authRole === 'therapist') setView('select-patient');
+      else setView('login');
+    }
+  }, [view, activePatient, authRole]);
 
   // Fetch initial data - with localStorage fallback if API unavailable
   useEffect(() => {
