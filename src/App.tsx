@@ -242,7 +242,7 @@ export default function App() {
             <span>Piccole Scelte</span>
           </div>
           <div className="header-actions">
-            <button className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem' }} onClick={() => changeView('menu')}>
+            <button className="btn btn-secondary" style={{ padding: '0.5rem 1rem', fontSize: '0.85rem', width: 'auto' }} onClick={() => changeView('menu')}>
               Torna al menu principale
             </button>
           </div>

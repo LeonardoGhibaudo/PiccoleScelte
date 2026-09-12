@@ -76,7 +76,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
       <button 
         className="btn btn-secondary" 
         onClick={() => { AudioManager.playClick(); onBack(); }}
-        style={{ position: 'absolute', top: '1rem', right: '1rem', zIndex: 100 }}
+        style={{ position: 'absolute', top: '1rem', left: '1rem', width: 'auto', zIndex: 100 }}
       >
         ◀ Indietro
       </button>

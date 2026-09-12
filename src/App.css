@@ -75,3 +75,19 @@ main {
   background-size: 40px 40px;
   opacity: 0.4;
 }
+
+@media (max-width: 768px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+    padding-right: 4.5rem; /* Space for theme toggle */
+  }
+  .app-header .logo span:last-child {
+    display: none; /* Hide "Piccole Scelte" text on very small screens if needed, or leave it */
+  }
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    position: relative; /* Disable sticky on mobile so it doesn't cover content with its giant shadow */
+  }
+}
