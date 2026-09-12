@@ -18,7 +18,7 @@ const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/progetto-a
 const allowedOrigins = ['http://localhost:5174', 'http://localhost:5173', 'https://piccolescelte.netlify.app', 'https://piccolescelte.com', 'https://www.piccolescelte.com'];
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin) || (origin and origin.endswith('.vercel.app'))) {
+    if (!origin || allowedOrigins.includes(origin) || (origin && origin.endsWith('.vercel.app'))) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
