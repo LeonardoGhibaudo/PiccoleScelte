@@ -6,6 +6,7 @@
  * ScenarioBuilder, Selezione Paziente, Simulatore, Flowchart).
  */
 import { useState, useEffect } from 'react';
+import { apiFetch } from './utils/apiFetch';
 import { API_BASE } from './config';
 import type { Patient, Scenario, SessionResult, AuthRole } from './types';
 import { MainMenu } from './components/MainMenu';
@@ -54,7 +55,7 @@ export default function App() {
     const fetchData = async () => {
       try {
         // Try seeding scenarios
-        const seedRes = await fetch(API_BASE + '/api/scenarios/bulk', {
+        const seedRes = await apiFetch('/api/scenarios/bulk', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(INITIAL_SCENARIOS)
@@ -62,7 +63,7 @@ export default function App() {
 
         if (!seedRes.ok) throw new Error(`Seed failed: ${seedRes.status}`);
 
-        const resP = await fetch(API_BASE + '/api/patients');
+        const resP = await apiFetch('/api/patients');
         if (!resP.ok) throw new Error(`Patients failed: ${resP.status}`);
         const dataP = await resP.json();
         const loadedPatients = Array.isArray(dataP) ? dataP : [];
@@ -76,14 +77,14 @@ export default function App() {
           if (myPat) setActivePatient(myPat);
         }
 
-        const resScen = await fetch(API_BASE + '/api/scenarios');
+        const resScen = await apiFetch('/api/scenarios');
         if (!resScen.ok) throw new Error(`Scenarios failed: ${resScen.status}`);
         const dataScen = await resScen.json();
         if (dataScen && Object.keys(dataScen).length > 0) {
           setScenarios(prev=> ({...prev,...dataScen}));
         }
 
-        const resSess = await fetch(API_BASE + '/api/sessions');
+        const resSess = await apiFetch('/api/sessions');
         if (!resSess.ok) throw new Error(`Sessions failed: ${resSess.status}`);
         const dataSess = await resSess.json();
         setSessions(Array.isArray(dataSess) ? dataSess : []);
@@ -147,7 +148,7 @@ export default function App() {
 
   const handleFinishSession = async (result: SessionResult) => {
     try {
-      await fetch(API_BASE + '/api/sessions', {
+      await apiFetch('/api/sessions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(result)
@@ -250,7 +251,7 @@ export default function App() {
                 // Always try to fetch fresh from DB so we get latest unlockedScenarios
                 if (email) {
                   try {
-                    const res = await fetch(API_BASE + '/api/patients');
+                    const res = await apiFetch('/api/patients');
                     if (res.ok) {
                       const allPatients = await res.json();
                       setPatients(allPatients);
@@ -267,13 +268,13 @@ export default function App() {
                   // Check if patient has any rejected validation requests
                   if (mioPersonaggio.therapistEmail) {
                     try {
-                      const valRes = await fetch(API_BASE + `/api/validations/patient/${mioPersonaggio.id}`);
+                      const valRes = await apiFetch(`/api/validations/patient/${mioPersonaggio.id}`);
                       if (valRes.ok) {
                         const rejections = await valRes.json();
                         if (rejections.length > 0) {
                           alert(`La tua psicologa ti ha chiesto di rigiocare e riflettere meglio sul capitolo: "${rejections[0].scenarioTitle}"`);
                           // Acknowledge it so it doesn't show again
-                          await fetch(API_BASE + `/api/validations/${rejections[0]._id}`, { method: 'DELETE' });
+                          await apiFetch(`/api/validations/${rejections[0]._id}`, { method: 'DELETE' });
                         }
                       }
                     } catch (e) {
@@ -301,7 +302,7 @@ export default function App() {
             patients={patients}
             onAddPatient={async (p) => {
               try {
-                const res = await fetch(API_BASE + '/api/patients', {
+                const res = await apiFetch('/api/patients', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(p)
@@ -342,7 +343,7 @@ export default function App() {
             patients={patients}
             onAddPatient={async (p) => {
               try {
-                const res = await fetch(API_BASE + '/api/patients', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
+                const res = await apiFetch('/api/patients', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 const saved = await res.json();
                 const updated = [...patients, saved];
@@ -357,7 +358,7 @@ export default function App() {
             }}
             onDeletePatient={async (id) => {
               try {
-                await fetch(API_BASE + `/api/patients/${id}`, { method: 'DELETE' });
+                await apiFetch(`/api/patients/${id}`, { method: 'DELETE' });
               } catch (e) { console.warn('Delete failed:', e); }
               setPatients(patients.filter(p => p.id !== id));
             }}
@@ -373,7 +374,7 @@ export default function App() {
             onBack={() => changeView('dashboard')}
             onUpdatePatient={async (updatedPatient) => {
               try {
-                const res = await fetch(API_BASE + `/api/patients/${updatedPatient.id}`, {
+                const res = await apiFetch(`/api/patients/${updatedPatient.id}`, {
                   method: 'PUT',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(updatedPatient)
@@ -425,7 +426,7 @@ export default function App() {
             scenarios={scenarios}
             onUnlockAndContinue={async (nextScenarioId) => {
               try {
-                const res = await fetch(API_BASE + `/api/patients/${activePatient.id}/unlock`, {
+                const res = await apiFetch(`/api/patients/${activePatient.id}/unlock`, {
                   method: 'PUT',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ scenarioId: nextScenarioId })

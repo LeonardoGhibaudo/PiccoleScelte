@@ -62,7 +62,7 @@ router.post('/login', async (req, res) =>{
 });
 
 //Promote user to therapist
-router.post('/promote', async (req, res) => {
+router.post('/disabled_promote', async (req, res) => {
     try {
         const { email } = req.body;
         if (!email) return res.status(400).json({ error: 'Email mancante' });

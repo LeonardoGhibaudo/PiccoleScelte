@@ -15,7 +15,16 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/progetto-adhd';
 
-app.use(cors());
+const allowedOrigins = ['http://localhost:5174', 'http://localhost:5173', 'https://piccolescelte.netlify.app'];
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}));
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 

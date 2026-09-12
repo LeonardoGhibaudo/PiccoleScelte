@@ -3,6 +3,8 @@ import { Router } from 'express';
 import { Session } from '../models/Session';
 
 const router = Router();
+import { requireAuth, requireTherapist } from '../middleware/auth';
+router.use(requireAuth);
 
 router.get('/', async (req, res) => {
   try {

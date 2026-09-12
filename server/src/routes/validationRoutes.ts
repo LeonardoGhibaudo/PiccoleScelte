@@ -4,6 +4,8 @@ import { Patient } from '../models/Patient';
 import { User } from '../models/User';
 
 const router = Router();
+import { requireAuth, requireTherapist } from '../middleware/auth';
+router.use(requireAuth);
 
 // Create a validation request
 router.post('/', async (req, res) => {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { apiFetch } from '../utils/apiFetch';
 import { API_BASE } from '../config';
 import AudioManager from '../utils/AudioManager';
 import './LoginScreen.css';
@@ -30,7 +31,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
       const endpoint = isRegistering ? `${API_BASE}/api/auth/register` : `${API_BASE}/api/auth/login`;
       const payload = isRegistering ? { email, password, role } : { email, password };
       
-      const res = await fetch(endpoint, {
+      const res = await apiFetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -47,7 +48,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
           throw new Error('Il nome del personaggio è obbligatorio per i giocatori.');
         }
 
-        const loginRes = await fetch(API_BASE + '/api/auth/login', {
+        const loginRes = await apiFetch('/api/auth/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({email,password})
@@ -68,7 +69,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
             consentGiven: true,
             createdAt: new Date().toISOString().split('T')[0]
           };
-          await fetch(API_BASE + '/api/patients', {
+          await apiFetch('/api/patients', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(newPatient)
