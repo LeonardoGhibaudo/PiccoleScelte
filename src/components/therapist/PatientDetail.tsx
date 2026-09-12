@@ -34,7 +34,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
 
   return (
     <div className="container fade-in slide-up">
-      <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
+      <div className="flex-responsive" style={{ alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
         <button className="btn btn-secondary" onClick={() => { AudioManager.playClick(); onBack(); }}>
           ◀ Torna alla Dashboard
         </button>
@@ -97,7 +97,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
           )}
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
+            <div className="flex-responsive" style={{ justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
               <span className="text-muted">Codice Fiscale</span>
               {isEditing ? (
                 <input 
@@ -112,17 +112,17 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
                 <strong style={{ fontFamily: 'monospace', color: 'var(--color-text-dark)' }}>{patient.fiscalCode}</strong>
               )}
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
+            <div className="flex-responsive" style={{ justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
               <span className="text-muted">Creazione</span>
               <strong style={{ color: 'var(--color-text-dark)' }}>{new Date(patient.createdAt).toLocaleDateString()}</strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
+            <div className="flex-responsive" style={{ justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
               <span className="text-muted">Consenso GDPR</span>
               <strong style={{ color: patient.consentGiven ? 'var(--color-assertive)' : 'var(--color-impulsive)' }}>
                 {patient.consentGiven ? 'Acquisito ✅' : 'Mancante ❌'}
               </strong>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
+            <div className="flex-responsive" style={{ justifyContent: 'space-between', paddingBottom: '1rem', borderBottom: '1px solid var(--color-border)' }}>
               <span className="text-muted">Sessioni Totali</span>
               <strong style={{ color: 'var(--color-text-dark)' }}>{totalSessions}</strong>
             </div>
@@ -177,7 +177,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '2rem' }}>
+                <div className="flex-responsive" style={{ gap: '2rem' }}>
                   <div style={{ flex: 1, background: 'var(--color-surface)', padding: '1.25rem', borderRadius: 'var(--radius-lg)' }}>
                     <div style={{ fontSize: '0.9rem', color: 'var(--color-text-light)' }}>Tempo di Risposta Medio</div>
                     <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--color-text-dark)' }}>
@@ -206,7 +206,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {sortedSessions.map(session => (
-                  <div key={session.sessionId} style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <div key={session.sessionId} className="flex-responsive" style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', justifyContent: 'space-between', alignItems: 'center' }}>
                     <div>
                       <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>Sessione del {new Date(session.date).toLocaleDateString()}</div>
                       <div style={{ fontSize: '0.85rem', color: 'var(--color-text-light)' }}>

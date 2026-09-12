@@ -321,3 +321,22 @@ input::placeholder, textarea::placeholder { color: var(--color-text-light); }
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Responsive Flex Container Class */
+.flex-responsive {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .flex-responsive {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+  .flex-responsive-reverse {
+    flex-direction: column-reverse !important;
+    gap: 1rem !important;
+  }
+  .hide-mobile {
+    display: none !important;
+  }
+}

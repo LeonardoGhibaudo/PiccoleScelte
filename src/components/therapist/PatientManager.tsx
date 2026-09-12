@@ -41,7 +41,7 @@ export const PatientManager: React.FC<PatientManagerProps> = ({ patients, onAddP
 
   return (
     <div className="card">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <h3>Gestione Pazienti</h3>
       </div>
       

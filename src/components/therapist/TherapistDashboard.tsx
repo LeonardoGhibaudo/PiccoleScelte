@@ -22,7 +22,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
   const [loading, setLoading] = useState(false);
   const [validations, setValidations] = useState<any[]>([]);
 
-  // Carica le richieste di convalida all'avvio
+    // Carica le richieste di convalida all'avvio e usa il polling
   React.useEffect(() => {
     const fetchValidations = async () => {
       const email = localStorage.getItem('userEmail');
@@ -31,7 +31,13 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
           const res = await apiFetch(`/api/validations?therapistEmail=${email}`);
           if (res.ok) {
             const data = await res.json();
-            setValidations(data);
+            // Check if there are NEW pending validations to play sound
+            setValidations(prev => {
+              if (data.length > prev.length) {
+                AudioManager.playSuccess();
+              }
+              return data;
+            });
           }
         } catch (e) {
           console.error("Failed to load validations", e);
@@ -39,6 +45,8 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
       }
     };
     fetchValidations();
+    const interval = setInterval(fetchValidations, 5000); // Polling ogni 5 secondi
+    return () => clearInterval(interval);
   }, []);
 
   const handleApprove = async (id: string) => {
@@ -116,7 +124,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
 
   return (
     <div className="container fade-in slide-up">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>
           <h2 style={{ fontFamily: 'var(--font-display)' }}>Pannello di Controllo Clinico</h2>
           <p className="text-muted">Gestione pazienti e scenari terapeutici</p>
@@ -133,7 +141,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
           <h3 style={{ fontFamily: 'var(--font-display)', marginBottom: '1rem' }}>Associa Paziente</h3>
           <p className="text-muted" style={{ marginBottom: '1.5rem' }}>Invita un paziente tramite email per associarlo al tuo profilo. Riceverà una notifica per registrarsi.</p>
           
-          <form onSubmit={handleInvite} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <form onSubmit={handleInvite} className="flex-responsive" style={{ gap: '1rem', alignItems: 'center' }}>
             <input 
               type="email" 
               placeholder="Email del paziente" 
@@ -168,7 +176,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
           <h3 style={{ fontFamily: 'var(--font-display)', marginBottom: '1rem' }}>Amministrazione Sicurezza</h3>
           <p className="text-muted" style={{ marginBottom: '1.5rem' }}>Promuovi un collega (che ha già registrato un account base) al ruolo di Terapista.</p>
           
-          <form onSubmit={handlePromote} style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <form onSubmit={handlePromote} className="flex-responsive" style={{ gap: '1rem', alignItems: 'center' }}>
             <input 
               type="email" 
               placeholder="Email del collega" 
@@ -230,7 +238,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
                       <img src={val.imageUrl} alt="Caricata dal paziente" style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '8px', border: '2px solid var(--color-border)' }} />
                     </div>
                   )}
-                  <div style={{ display: 'flex', gap: '1rem', justifyContent: 'flex-end' }}>
+                  <div className="flex-responsive-reverse" style={{ gap: '1rem', justifyContent: 'flex-end' }}>
                     <button className="btn btn-secondary" onClick={() => handleReject(val._id)}>Rifiuta (Fai Rigiocare)</button>
                     <button className="btn btn-primary" onClick={() => handleApprove(val._id)}>Approva e Sblocca ✅</button>
                   </div>

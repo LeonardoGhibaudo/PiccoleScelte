@@ -45,7 +45,10 @@ export default function App() {
   const [sessions, setSessions] = useState<SessionResult[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [activePatient, setActivePatient] = useState<Patient | null>(null);
+    const [activePatient, setActivePatient] = useState<Patient | null>(() => {
+    const saved = sessionStorage.getItem('activePatient');
+    return saved ? JSON.parse(saved) : null;
+  });
   const [activeScenarioId, setActiveScenarioId] = useState<string>('scen-school-pressione-1');
   const [sessionResult, setSessionResult] = useState<SessionResult | null>(null);
 
@@ -281,6 +284,33 @@ export default function App() {
                     }
                   }
                   
+                  
+  // Polling per aggiornare l'activePatient (utile per vedere i capitoli sbloccati senza ricaricare)
+  React.useEffect(() => {
+    if (!activePatient || authRole === 'guest') return;
+    
+    const pollPatient = async () => {
+      try {
+        const res = await apiFetch(`/api/patients`);
+        if (res.ok) {
+          const allPatients = await res.json();
+          const updated = allPatients.find((p: Patient) => p.id === activePatient.id);
+          if (updated && JSON.stringify(updated.unlockedScenarios) !== JSON.stringify(activePatient.unlockedScenarios)) {
+            handleSetActivePatient(updated);
+            
+            // Aggiorna anche la lista globale patients
+            setPatients((prev: Patient[]) => prev.map(p => p.id === updated.id ? updated : p));
+          }
+        }
+      } catch (e) {
+        // console.warn('Polling fallito', e);
+      }
+    };
+    
+    const interval = setInterval(pollPatient, 5000);
+    return () => clearInterval(interval);
+  }, [activePatient, authRole]);
+
                   changeView('select-scenario');
                 } else {
                   changeView('select-patient');
@@ -361,7 +391,7 @@ export default function App() {
               } catch (e) { console.warn('Delete failed:', e); }
               setPatients(patients.filter(p => p.id !== id));
             }}
-            onSelectPatient={(p) => { setActivePatient(p); changeView('patient-detail'); }}
+            onSelectPatient={(p) => { handleSetActivePatient(p); changeView('patient-detail'); }}
             onLogout={() => changeView('menu')}
           />
         )}
@@ -382,13 +412,13 @@ export default function App() {
                 const saved = await res.json();
                 const updated = patients.map(p => p.id === saved.id ? saved : p);
                 setPatients(updated);
-                setActivePatient(saved);
+                handleSetActivePatient(saved);
                 localStorage.setItem('adhd-patients', JSON.stringify(updated));
               } catch (e) {
                 console.warn('Update failed, saving locally:', e);
                 const updated = patients.map(p => p.id === updatedPatient.id ? updatedPatient : p);
                 setPatients(updated);
-                setActivePatient(updatedPatient);
+                handleSetActivePatient(updatedPatient);
                 localStorage.setItem('adhd-patients', JSON.stringify(updated));
               }
             }}
@@ -435,7 +465,7 @@ export default function App() {
                 // Update local state
                 const updatedPatients = patients.map(p => p.id === updatedPatient.id ? updatedPatient : p);
                 setPatients(updatedPatients);
-                setActivePatient(updatedPatient);
+                handleSetActivePatient(updatedPatient);
                 
               } catch (e) {
                 console.error('Unlock API failed, falling back to local state', e);
@@ -445,7 +475,7 @@ export default function App() {
                   const updatedPatient = { ...activePatient, unlockedScenarios: [...unlocked, nextScenarioId] };
                   const updatedPatients = patients.map(p => p.id === updatedPatient.id ? updatedPatient : p);
                   setPatients(updatedPatients);
-                  setActivePatient(updatedPatient);
+                  handleSetActivePatient(updatedPatient);
                   localStorage.setItem('adhd-patients', JSON.stringify(updatedPatients));
                 }
                 changeView('select-scenario');

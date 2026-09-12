@@ -90,7 +90,7 @@ export const ScenarioSelect: React.FC<ScenarioSelectProps> = ({ scenarios, patie
         </p>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto', width: '100%' }}>
         {startingScenarios.map((scenario, index) => {
           const unlockedScenarios = patient.unlockedScenarios && patient.unlockedScenarios.length > 0 ? patient.unlockedScenarios : [];
           
