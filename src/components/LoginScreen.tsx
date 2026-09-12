@@ -7,7 +7,7 @@ import type { AuthRole, AvatarConfig } from '../types';
 import { AvatarBuilder } from './AvatarBuilder';
 
 interface LoginScreenProps {
-  onSuccess: (role: AuthRole, token: string) => void;
+  onSuccess: (role: AuthRole, token: string) => Promise<void> | void;
   onBack: () => void;
 }
 
@@ -66,14 +66,15 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
           });
         }
 
-        // Show success message and stop (do not auto-login because of email verification)
-        setError("Registrazione completata! Controlla la tua email per verificare l'account.");
+        // Show success message and go back to menu (do not auto-login because of email verification)
+        alert("Registrazione completata! Controlla la tua email per verificare l'account.");
+        onBack();
         return; // Don't call onSuccess
       } else {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', email)
         localStorage.setItem('authRole', data.role)
-        onSuccess(data.role, data.token);
+        await onSuccess(data.role, data.token);
       }
     } catch (err: any) {
       AudioManager.playError();
