@@ -129,7 +129,6 @@
 }
 
 .active-character {
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.6));
   transform: scale(1.05);
   transition: all 0.3s ease;
   z-index: 10;
@@ -314,14 +313,14 @@
 /* ===== Character Stage (Layout Fixes) ===== */
 .character-stage {
   position: relative;
-  flex: 1;
+  flex: 1 1 auto;
   pointer-events: none;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   padding: 0 5%;
   z-index: 5;
-  min-height: 0; /* allows shrinking if needed */
+  min-height: 150px; /* Ensure it has some space */
 }
 
 .character-left, .character-right {
@@ -341,11 +340,13 @@
 
 .vn-character-img {
   height: 400px;
+  max-height: 45vh; /* Prevent overflow on small screens */
   width: auto;
   object-fit: contain;
   mix-blend-mode: multiply;
   transition: transform 0.3s ease;
 }
+
 .character-right:hover .vn-character-img {
   transform: scale(1.02);
 }
@@ -355,12 +356,35 @@
   .character-stage {
     padding-left: 2%;
     padding-right: 2%;
+    min-height: 120px;
   }
   .vn-character-img {
-    height: 250px;
+    height: 220px;
+    max-height: 35vh;
   }
   .character-left .avatar-container {
     transform: scale(0.65);
     transform-origin: bottom left;
+  }
+  
+  .vn-bottom-area {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .vn-dialogue-box {
+    margin: 0;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+  }
+  
+  .choices-prompt {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .choice-button {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
 }

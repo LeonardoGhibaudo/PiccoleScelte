@@ -48,19 +48,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
           throw new Error('Il nome del personaggio è obbligatorio per i giocatori.');
         }
 
-        const loginRes = await apiFetch('/api/auth/login', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify({email,password})
-        })
-
-        const loginData = await loginRes.json();
-        localStorage.setItem('token', loginData.token);
-        localStorage.setItem('userEmail', loginData.email);
-        localStorage.setItem('authRole', loginData.role);
-        
         if (role === 'user') {
           // Create the character linked to this email!
+          // We can create the patient before they are verified, that's fine.
           const newPatient = {
             id: email,
             firstName,
@@ -76,7 +66,9 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess, onBack }) =
           });
         }
 
-        onSuccess(loginData.role, loginData.token)
+        // Show success message and stop (do not auto-login because of email verification)
+        setError("Registrazione completata! Controlla la tua email per verificare l'account.");
+        return; // Don't call onSuccess
       } else {
         localStorage.setItem('token', data.token);
         localStorage.setItem('userEmail', email)
