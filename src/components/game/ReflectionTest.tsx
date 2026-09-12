@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { apiFetch } from '../../utils/apiFetch';
-import { API_BASE } from '../../config';
 import type { Patient, Scenario, SessionResult } from '../../types';
 import AudioManager from '../../utils/AudioManager';
 

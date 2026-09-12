@@ -7,7 +7,6 @@
  */
 import { useState, useEffect } from 'react';
 import { apiFetch } from './utils/apiFetch';
-import { API_BASE } from './config';
 import type { Patient, Scenario, SessionResult, AuthRole } from './types';
 import { MainMenu } from './components/MainMenu';
 import { TherapistDashboard } from './components/therapist/TherapistDashboard';
