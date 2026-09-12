@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/progetto-adhd';
 
-const allowedOrigins = ['http://localhost:5174', 'http://localhost:5173', 'https://piccolescelte.netlify.app'];
+const allowedOrigins = ['http://localhost:5174', 'http://localhost:5173', 'https://piccolescelte.netlify.app', 'https://piccolescelte.com', 'https://www.piccolescelte.com'];
 app.use(cors({
   origin: function(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
