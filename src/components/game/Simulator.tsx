@@ -324,7 +324,7 @@ export const Simulator: React.FC<SimulatorProps> = ({
                   </strong>
                 </div>
               </div>
-              <p className="consequence-text" style={{ color: '#2D3748', fontSize: '1.2rem', fontWeight: 600 }}>{selectedChoice.consequence}</p>
+              <p className="consequence-text" style={{ color: 'var(--color-text-dark)', fontSize: '1.2rem', fontWeight: 600 }}>{selectedChoice.consequence}</p>
 
               {/* Suggerimento "cosa sarebbe stato meglio" */}
               {selectedChoice.type !== 'assertive' && assertiveChoice && (

@@ -54,7 +54,7 @@ export const Login: React.FC<LoginProps> = ({ onLogin }) => {
             />
           </div>
           
-          <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-start', gap: '0.75rem', marginTop: '1rem', backgroundColor: 'var(--color-primary-light)', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
+          <div className="form-group" style={{ flexDirection: 'row', alignItems: 'flex-start', gap: '0.75rem', marginTop: '1rem', backgroundColor: 'var(--color-surface-warm)', padding: '1rem', borderRadius: 'var(--radius-md)' }}>
             <input 
               type="checkbox" 
               id="gdpr" 

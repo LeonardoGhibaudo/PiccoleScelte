@@ -71,10 +71,10 @@
 }
 
 .tutorial-dot.active {
-  background: var(--color-primary);
+  background: var(--color-sky-dark);
   width: 24px;
   border-radius: 12px;
-  box-shadow: 0 0 10px var(--color-primary);
+  box-shadow: 0 0 10px var(--color-sky-dark);
 }
 
 .tutorial-actions {
@@ -87,9 +87,9 @@
   max-width: 250px;
   padding: 1rem 2rem;
   font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: linear-gradient(135deg, var(--color-sky-dark), var(--color-sun));
   border: none;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
 }
 
 .start-btn {

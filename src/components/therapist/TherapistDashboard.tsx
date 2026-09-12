@@ -161,7 +161,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
               marginTop: '1rem', 
               padding: '1rem', 
               borderRadius: '8px', 
-              backgroundColor: inviteStatus.type === 'success' ? 'var(--color-primary)' : 'var(--color-impulsive)',
+              backgroundColor: inviteStatus.type === 'success' ? 'var(--color-sky-dark)' : 'var(--color-impulsive)',
               color: 'white',
               fontWeight: 'bold',
               textAlign: 'center'
@@ -196,7 +196,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
               marginTop: '1rem', 
               padding: '1rem', 
               borderRadius: '8px', 
-              backgroundColor: promoteStatus.type === 'success' ? 'var(--color-primary)' : 'var(--color-impulsive)',
+              backgroundColor: promoteStatus.type === 'success' ? 'var(--color-sky-dark)' : 'var(--color-impulsive)',
               color: 'white',
               fontWeight: 'bold',
               textAlign: 'center'
@@ -224,7 +224,7 @@ export const TherapistDashboard: React.FC<TherapistDashboardProps> = (props) => 
                     <span style={{ fontSize: '0.9rem', color: 'var(--color-text-light)' }}>{new Date(val.createdAt).toLocaleDateString()}</span>
                   </div>
                   <div style={{ marginBottom: '0.5rem' }}>
-                    <span style={{ background: 'var(--color-primary)', color: 'white', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem' }}>Capitolo: {val.scenarioTitle}</span>
+                    <span style={{ background: 'var(--color-sky-dark)', color: 'white', padding: '0.2rem 0.5rem', borderRadius: '4px', fontSize: '0.8rem' }}>Capitolo: {val.scenarioTitle}</span>
                   </div>
                   <div style={{ padding: '1rem', borderRadius: '4px', fontStyle: 'italic', marginBottom: '1rem' }}>
                     <h3>Capitolo:</h3>

@@ -12,7 +12,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_classroom.jpg",
-    "character": "/assets/characters/teacher.jpg",
+    "character": "/assets/characters/teacher.png",
     "characterName": "Professoressa",
     "choices": [
       {
@@ -85,7 +85,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_classroom.jpg",
-    "character": "/assets/characters/student.jpg",
+    "character": "/assets/characters/student.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -158,7 +158,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_classroom.jpg",
-    "character": "/assets/characters/student.jpg",
+    "character": "/assets/characters/student.png",
     "characterName": "Compagno",
     "choices": [
       {
@@ -231,7 +231,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_hallway.jpg",
-    "character": "/assets/characters/bully.jpg",
+    "character": "/assets/characters/bully.png",
     "characterName": "Compagno",
     "choices": [
       {
@@ -304,7 +304,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -377,7 +377,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
-    "character": "/assets/characters/stranger.jpg",
+    "character": "/assets/characters/stranger.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -450,7 +450,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_street.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Marco",
     "choices": [
       {
@@ -523,7 +523,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_street.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Marco",
     "choices": [
       {
@@ -596,7 +596,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Amica",
     "choices": [
       {
@@ -669,7 +669,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Amica",
     "choices": [
       {
@@ -742,7 +742,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
@@ -815,7 +815,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
@@ -888,7 +888,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Mamma",
     "choices": [
       {
@@ -961,7 +961,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Mamma",
     "choices": [
       {
@@ -1034,7 +1034,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
@@ -1107,7 +1107,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/stranger.jpg",
+    "character": "/assets/characters/stranger.png",
     "characterName": "Zio",
     "choices": [
       {
@@ -1180,7 +1180,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Mamma",
     "choices": [
       {
@@ -1253,7 +1253,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Mamma",
     "choices": [
       {
@@ -1326,7 +1326,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
@@ -1399,7 +1399,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_home.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
@@ -1472,7 +1472,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_street.jpg",
-    "character": "/assets/characters/stranger.jpg",
+    "character": "/assets/characters/stranger.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -1545,7 +1545,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_street.jpg",
-    "character": "/assets/characters/stranger.jpg",
+    "character": "/assets/characters/stranger.png",
     "characterName": "Signora",
     "choices": [
       {
@@ -1618,7 +1618,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
-    "character": "/assets/characters/friend.jpg",
+    "character": "/assets/characters/friend.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -1691,7 +1691,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_park.jpg",
-    "character": "/assets/characters/bully.jpg",
+    "character": "/assets/characters/bully.png",
     "characterName": "Avversario",
     "choices": [
       {
@@ -1764,7 +1764,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_bus.jpg",
-    "character": "/assets/characters/bully.jpg",
+    "character": "/assets/characters/bully.png",
     "characterName": "Amico",
     "choices": [
       {
@@ -1837,7 +1837,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_bedroom.jpg",
-    "character": "/assets/characters/student.jpg",
+    "character": "/assets/characters/student.png",
     "characterName": "Pensiero",
     "choices": [
       {
@@ -1910,7 +1910,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_classroom.jpg",
-    "character": "/assets/characters/teacher.jpg",
+    "character": "/assets/characters/teacher.png",
     "characterName": "Classe",
     "choices": [
       {
@@ -1983,7 +1983,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_classroom.jpg",
-    "character": "/assets/characters/bully.jpg",
+    "character": "/assets/characters/bully.png",
     "characterName": "Compagno",
     "choices": [
       {
@@ -2056,7 +2056,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Mamma",
     "choices": [
       {
@@ -2129,7 +2129,7 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
       }
     ],
     "background": "/assets/backgrounds/bg_kitchen.jpg",
-    "character": "/assets/characters/char_parent.jpg",
+    "character": "/assets/characters/char_parent.png",
     "characterName": "Papà",
     "choices": [
       {
