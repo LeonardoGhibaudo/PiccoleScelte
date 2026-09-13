@@ -422,6 +422,7 @@ export default function App() {
 
         {view === 'patient-detail' && activePatient && (
           <PatientDetail
+            scenarios={scenarios}
             patient={activePatient}
             sessions={sessions.filter(s => s.patientId === activePatient.id)}
             onBack={() => changeView('dashboard')}

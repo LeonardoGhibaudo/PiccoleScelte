@@ -1,15 +1,79 @@
 import React from 'react';
-import type { Patient, SessionResult } from '../../types';
+import type { Patient, SessionResult, Scenario } from '../../types';
 import AudioManager from '../../utils/AudioManager';
 
+
+
 interface PatientDetailProps {
+  scenarios: Record<string, Scenario>;
   patient: Patient;
   sessions: SessionResult[];
   onBack: () => void;
   onUpdatePatient?: (patient: Patient) => void;
 }
 
-export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions, onBack, onUpdatePatient }) => {
+
+const SessionGroupCard: React.FC<{ group: { dateStr: string, sessions: SessionResult[] }, scenarios: Record<string, Scenario> }> = ({ group, scenarios }) => {
+  const [expanded, setExpanded] = React.useState(false);
+  
+  // Aggregated metrics for the day
+  const totalChoices = group.sessions.reduce((acc, s) => acc + s.metrics.totalChoices, 0);
+  const avgConsistency = Math.round(group.sessions.reduce((acc, s) => acc + s.metrics.consistencyScore, 0) / group.sessions.length);
+  const avgAss = Math.round(group.sessions.reduce((acc, s) => acc + s.metrics.assertivityRatio, 0) / group.sessions.length * 100);
+  const avgImp = Math.round(group.sessions.reduce((acc, s) => acc + s.metrics.impulsivityRatio, 0) / group.sessions.length * 100);
+  
+  return (
+    <div style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', background: 'var(--color-bg)' }}>
+      <div className="flex-responsive" style={{ justifyContent: 'space-between', alignItems: 'center' }}>
+        <div>
+          <div style={{ fontWeight: 700, marginBottom: '0.25rem', fontSize: '1.1rem' }}>Accesso del {group.dateStr}</div>
+          <div style={{ fontSize: '0.85rem', color: 'var(--color-text-light)' }}>
+            Capitoli completati: {group.sessions.length} | Scelte: {totalChoices} | Consistenza Media: {avgConsistency}%
+          </div>
+        </div>
+        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+          <span className="badge" style={{ background: 'var(--color-assertive-bg)', color: 'var(--color-assertive)' }}>{avgAss}% Ass</span>
+          <span className="badge" style={{ background: 'var(--color-impulsive-bg)', color: 'var(--color-impulsive)' }}>{avgImp}% Imp</span>
+          <button 
+            className="btn btn-secondary" 
+            style={{ padding: '0.4rem 0.8rem', fontSize: '0.85rem', marginLeft: '0.5rem', width: 'auto' }}
+            onClick={() => { AudioManager.playClick(); setExpanded(!expanded); }}
+          >
+            {expanded ? '▲ Nascondi Dettagli' : '▼ Dettagli Capitoli'}
+          </button>
+        </div>
+      </div>
+      
+      {expanded && (
+        <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '1rem' }}>
+          {group.sessions.map((s, idx) => (
+            <div key={s.sessionId} style={{ background: 'var(--color-surface)', padding: '1rem', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--color-sky-dark)' }}>
+              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-text-dark)' }}>Capitolo: {s.pathTaken[0]?.scenarioId ? (scenarios[s.pathTaken[0].scenarioId]?.title || s.pathTaken[0].scenarioId) : `Sconosciuto ${idx+1}`}</h4>
+              <p style={{ fontSize: '0.8rem', color: 'var(--color-text-light)', marginBottom: '1rem' }}>Data completamento: {new Date(s.date).toLocaleTimeString()}</p>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+                {s.pathTaken.map((choice, cIdx) => (
+                  <div key={cIdx} style={{ fontSize: '0.9rem', padding: '0.75rem', background: 'var(--color-bg)', borderRadius: 'var(--radius-sm)' }}>
+                    <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Scelta {cIdx + 1}: <span style={{ color: choice.reactionType === 'assertive' ? 'var(--color-assertive)' : choice.reactionType === 'impulsive' ? 'var(--color-impulsive)' : 'var(--color-passive)' }}>{choice.reactionType === 'assertive' ? 'ASSERTIVA' : choice.reactionType === 'impulsive' ? 'IMPULSIVA' : 'PASSIVA'}</span></div>
+                    <div style={{ color: 'var(--color-text-dark)', marginBottom: '0.5rem' }}>"{choice.choiceText}"</div>
+                    {choice.reactionType !== 'assertive' && choice.betterText && (
+                      <div style={{ color: 'var(--color-text-light)', fontSize: '0.85rem', fontStyle: 'italic', borderTop: '1px dashed var(--color-border)', paddingTop: '0.25rem' }}>
+                        Alternativa corretta ignorata: "{choice.betterText}"
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, scenarios, sessions, onBack, onUpdatePatient }) => {
+
   const [isEditing, setIsEditing] = React.useState(false);
   const [editFiscalCode, setEditFiscalCode] = React.useState(patient.fiscalCode || '');
   const [editNotes, setEditNotes] = React.useState(patient.diagnosisDetails || '');
@@ -18,6 +82,18 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
   const sortedSessions = [...sessions].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   // Aggregate metrics
+  
+  // Group sessions by Date string (e.g. "12/09/2026") to redefine "Session" as a Site Access
+  const groupedSessions = React.useMemo(() => {
+    const groups: Record<string, SessionResult[]> = {};
+    sortedSessions.forEach(s => {
+      const dateStr = new Date(s.date).toLocaleDateString();
+      if (!groups[dateStr]) groups[dateStr] = [];
+      groups[dateStr].push(s);
+    });
+    return Object.entries(groups).map(([dateStr, sessions]) => ({ dateStr, sessions }));
+  }, [sortedSessions]);
+
   const totalSessions = sessions.length;
   
   let overallImpulsivity = 0;
@@ -205,19 +281,8 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
               <p className="text-muted">Nessuno storico disponibile.</p>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {sortedSessions.map(session => (
-                  <div key={session.sessionId} className="flex-responsive" style={{ padding: '1rem', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <div>
-                      <div style={{ fontWeight: 700, marginBottom: '0.25rem' }}>Sessione del {new Date(session.date).toLocaleDateString()}</div>
-                      <div style={{ fontSize: '0.85rem', color: 'var(--color-text-light)' }}>
-                        Scelte: {session.metrics.totalChoices} | Consistenza: {session.metrics.consistencyScore}%
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
-                      <span className="badge" style={{ background: 'var(--color-assertive-bg)', color: 'var(--color-assertive)' }}>{Math.round(session.metrics.assertivityRatio * 100)}% Ass</span>
-                      <span className="badge" style={{ background: 'var(--color-impulsive-bg)', color: 'var(--color-impulsive)' }}>{Math.round(session.metrics.impulsivityRatio * 100)}% Imp</span>
-                    </div>
-                  </div>
+                {groupedSessions.map(group => (
+                  <SessionGroupCard key={group.dateStr} group={group} scenarios={scenarios} />
                 ))}
               </div>
             )}
