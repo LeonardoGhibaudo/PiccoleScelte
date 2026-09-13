@@ -1,8 +1,11 @@
 import React from 'react';
-import type { Patient, SessionResult } from '../../types';
+import type { Patient, SessionResult, Scenario } from '../../types';
 import AudioManager from '../../utils/AudioManager';
 
+
+
 interface PatientDetailProps {
+  scenarios: Record<string, Scenario>;
   patient: Patient;
   sessions: SessionResult[];
   onBack: () => void;
@@ -10,7 +13,7 @@ interface PatientDetailProps {
 }
 
 
-const SessionGroupCard: React.FC<{ group: { dateStr: string, sessions: SessionResult[] } }> = ({ group }) => {
+const SessionGroupCard: React.FC<{ group: { dateStr: string, sessions: SessionResult[] }, scenarios: Record<string, Scenario> }> = ({ group, scenarios }) => {
   const [expanded, setExpanded] = React.useState(false);
   
   // Aggregated metrics for the day
@@ -45,13 +48,13 @@ const SessionGroupCard: React.FC<{ group: { dateStr: string, sessions: SessionRe
         <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem', borderTop: '1px solid var(--color-border)', paddingTop: '1rem' }}>
           {group.sessions.map((s, idx) => (
             <div key={s.sessionId} style={{ background: 'var(--color-surface)', padding: '1rem', borderRadius: 'var(--radius-md)', borderLeft: '4px solid var(--color-sky-dark)' }}>
-              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-text-dark)' }}>Capitolo: {s.pathTaken[0]?.scenarioId ? s.pathTaken[0].scenarioId.replace('scen-', '').replace(/-/g, ' ').toUpperCase() : `Sconosciuto ${idx+1}`}</h4>
+              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--color-text-dark)' }}>Capitolo: {s.pathTaken[0]?.scenarioId ? (scenarios[s.pathTaken[0].scenarioId]?.title || s.pathTaken[0].scenarioId) : `Sconosciuto ${idx+1}`}</h4>
               <p style={{ fontSize: '0.8rem', color: 'var(--color-text-light)', marginBottom: '1rem' }}>Data completamento: {new Date(s.date).toLocaleTimeString()}</p>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {s.pathTaken.map((choice, cIdx) => (
                   <div key={cIdx} style={{ fontSize: '0.9rem', padding: '0.75rem', background: 'var(--color-bg)', borderRadius: 'var(--radius-sm)' }}>
-                    <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Scelta {cIdx + 1}: <span style={{ color: choice.reactionType === 'assertive' ? 'var(--color-assertive)' : choice.reactionType === 'impulsive' ? 'var(--color-impulsive)' : 'var(--color-passive)' }}>{choice.reactionType.toUpperCase()}</span></div>
+                    <div style={{ fontWeight: 600, marginBottom: '0.25rem' }}>Scelta {cIdx + 1}: <span style={{ color: choice.reactionType === 'assertive' ? 'var(--color-assertive)' : choice.reactionType === 'impulsive' ? 'var(--color-impulsive)' : 'var(--color-passive)' }}>{choice.reactionType === 'assertive' ? 'ASSERTIVA' : choice.reactionType === 'impulsive' ? 'IMPULSIVA' : 'PASSIVA'}</span></div>
                     <div style={{ color: 'var(--color-text-dark)', marginBottom: '0.5rem' }}>"{choice.choiceText}"</div>
                     {choice.reactionType !== 'assertive' && choice.betterText && (
                       <div style={{ color: 'var(--color-text-light)', fontSize: '0.85rem', fontStyle: 'italic', borderTop: '1px dashed var(--color-border)', paddingTop: '0.25rem' }}>
@@ -69,7 +72,7 @@ const SessionGroupCard: React.FC<{ group: { dateStr: string, sessions: SessionRe
   );
 };
 
-export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions, onBack, onUpdatePatient }) => {
+export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, scenarios, sessions, onBack, onUpdatePatient }) => {
 
   const [isEditing, setIsEditing] = React.useState(false);
   const [editFiscalCode, setEditFiscalCode] = React.useState(patient.fiscalCode || '');
@@ -279,7 +282,7 @@ export const PatientDetail: React.FC<PatientDetailProps> = ({ patient, sessions,
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {groupedSessions.map(group => (
-                  <SessionGroupCard key={group.dateStr} group={group} />
+                  <SessionGroupCard key={group.dateStr} group={group} scenarios={scenarios} />
                 ))}
               </div>
             )}
