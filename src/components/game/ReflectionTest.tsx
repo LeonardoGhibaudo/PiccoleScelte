@@ -38,11 +38,9 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
       if (patient.therapistEmail && patient.therapistEmail.trim() !== '') {
         // Invia in convalida invece di sbloccare
         try {
-          await apiFetch('/api/validations', {
+          const valResponse = await apiFetch('/api/validations', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            
-
 
             body: JSON.stringify({
               patientId: patient.id,
@@ -54,12 +52,19 @@ export const ReflectionTest: React.FC<ReflectionTestProps> = ({ patient, session
               imageUrl: imageBase64 
             })
           });
+          if (!valResponse.ok) {
+            // Patient is no longer associated with therapist — fall back to direct unlock
+            if (valResponse.status === 403) {
+              await onUnlockAndContinue(nextScenarioToUnlock.id);
+              return;
+            }
+            throw new Error(`HTTP ${valResponse.status}`);
+          }
           setSubmittedValidation(true);
         } catch (e) {
           console.error('Validation submission failed', e);
-          // Fallback a sblocco normale in caso di errore di rete severo se preferiamo, 
-          // ma per sicurezza lasciamo in pending visivo o gestiamo l'errore.
-          alert("Errore nell'invio alla psicologa. Riprova.");
+          // Fallback: unlock directly if validation service is unreachable
+          await onUnlockAndContinue(nextScenarioToUnlock.id);
         } finally {
           setLoading(false);
         }

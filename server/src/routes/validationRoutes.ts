@@ -18,7 +18,12 @@ router.post('/', async (req, res) => {
       return res.status(404).json({ error: 'La psicologa indicata non è registrata come Terapista.' });
     }
 
-    
+    // Verify the patient still exists and is associated with this therapist
+    const patient = await Patient.findOne({ id: patientId });
+    if (!patient || patient.therapistEmail !== therapistEmail) {
+      return res.status(403).json({ error: 'Non sei più associato a questa psicologa. Le richieste di convalida non possono essere inviate.' });
+    }
+
     // Delete any existing pending or rejected requests for this patient for this scenario
     await ValidationRequest.deleteMany({ patientId: req.body.patientId, scenarioId: req.body.scenarioId });
 
@@ -53,7 +58,25 @@ router.get('/', async (req, res) => {
     if (!therapistEmail) return res.status(400).json({ error: 'therapistEmail is required' });
 
     const requests = await ValidationRequest.find({ therapistEmail, status: 'pending' });
-    res.json(requests);
+    
+    // Filter out requests from patients who no longer exist
+    const validRequests = [];
+    const staleIds: string[] = [];
+    for (const r of requests) {
+      const patient = await Patient.findOne({ id: r.patientId });
+      if (patient && patient.therapistEmail === therapistEmail) {
+        validRequests.push(r);
+      } else {
+        staleIds.push(r._id.toString());
+      }
+    }
+    
+    // Auto-cleanup stale validation requests
+    if (staleIds.length > 0) {
+      await ValidationRequest.deleteMany({ _id: { $in: staleIds } });
+    }
+    
+    res.json(validRequests);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
