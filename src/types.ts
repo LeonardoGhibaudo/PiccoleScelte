@@ -18,6 +18,10 @@ export interface AvatarConfig {
   shirtColor?: string;
   pantsColor?: string;
   shoesColor?: string;
+  topStyle?: string;
+  topColor?: string;
+  bottomStyle?: string;
+  bottomColor?: string;
 }
 
 
