@@ -37,89 +37,89 @@ export const PatientAvatar: React.FC<PatientAvatarProps> = ({ config, size = 150
       style={{ filter: 'drop-shadow(0px 8px 12px rgba(0,0,0,0.15))', ...style }}
     >
       <g id="avatar">
-        {/* BACK HAIR (for long hair / ponytail) */}
+        {/* BACK HAIR */}
         {hairStyle === 'long' && (
-          <path d="M 60 70 C 40 100 40 180 50 200 C 60 170 70 120 70 120 C 70 120 130 120 130 120 C 130 120 140 170 150 200 C 160 180 160 100 140 70 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 50 90 C 35 150 40 240 50 250 C 65 220 70 150 70 150 L 130 150 C 130 150 135 220 150 250 C 160 240 165 150 150 90 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
         )}
         {hairStyle === 'ponytail' && (
-          <path d="M 120 70 C 160 60 180 90 170 140 C 160 180 140 160 140 140 C 140 110 130 90 120 90 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 130 80 C 190 60 190 140 170 190 C 150 210 140 170 140 150 C 140 120 130 100 130 80 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
         )}
 
         {/* LEGS */}
         <g id="legs">
           {/* Left Leg */}
-          <path d="M 82 190 L 82 270 L 92 270 L 92 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 82 220 L 80 285 C 80 295 98 295 98 285 L 98 220 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
           {/* Right Leg */}
-          <path d="M 108 190 L 108 270 L 118 270 L 118 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 102 220 L 102 285 C 102 295 120 295 120 285 L 118 220 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
         </g>
 
         {/* BOTTOMS */}
         <g id="bottoms">
           {bottomStyle === 'pants' && (
-             <path d="M 75 180 Q 100 190 125 180 L 125 265 L 105 265 L 100 205 L 95 265 L 75 265 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 78 222 Q 100 230 122 222 L 125 285 L 102 285 L 100 240 L 98 285 L 75 285 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
           {bottomStyle === 'shorts' && (
-             <path d="M 75 180 Q 100 190 125 180 L 128 220 L 105 220 L 100 205 L 95 220 L 72 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 78 222 Q 100 230 122 222 L 124 255 L 102 255 L 100 240 L 98 255 L 76 255 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
           {bottomStyle === 'skirt' && (
-             <path d="M 75 180 Q 100 190 125 180 L 135 220 Q 100 230 65 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 76 220 Q 100 230 124 220 L 138 255 Q 100 265 62 255 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
         </g>
 
         {/* SHOES */}
         <g id="shoes">
           {/* Left Shoe */}
-          <path d="M 75 265 C 75 265 65 275 65 285 L 95 285 L 95 265 Z" fill={shoesColor} stroke={shoesOutline} strokeWidth="2" strokeLinejoin="round"/>
-          <path d="M 65 285 Q 80 290 95 285" fill="none" stroke={shoesOutline} strokeWidth="2"/>
+          <path d="M 76 280 L 100 280 C 100 295 76 295 76 280 Z" fill={shoesColor} stroke={shoesOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 76 285 Q 88 290 100 285" fill="none" stroke={shoesOutline} strokeWidth="2"/>
           {/* Right Shoe */}
-          <path d="M 125 265 C 125 265 135 275 135 285 L 105 285 L 105 265 Z" fill={shoesColor} stroke={shoesOutline} strokeWidth="2" strokeLinejoin="round"/>
-          <path d="M 135 285 Q 120 290 105 285" fill="none" stroke={shoesOutline} strokeWidth="2"/>
+          <path d="M 100 280 L 124 280 C 124 295 100 295 100 280 Z" fill={shoesColor} stroke={shoesOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 100 285 Q 112 290 124 285" fill="none" stroke={shoesOutline} strokeWidth="2"/>
         </g>
 
-        {/* ARMS (Back layer, behind torso if we want, or side) */}
+        {/* ARMS (Back layer) */}
         <g id="arms-back">
           {/* Left Arm */}
-          <path d="M 60 140 Q 45 175 55 210 A 6 6 0 0 0 67 210 Q 60 180 75 155 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 70 160 L 50 230 C 45 240 60 245 62 232 L 78 175 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
           {/* Right Arm */}
-          <path d="M 140 140 Q 155 175 145 210 A 6 6 0 0 1 133 210 Q 140 180 125 155 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 130 160 L 150 230 C 155 240 140 245 138 232 L 122 175 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
         </g>
 
         {/* TORSO & TOPS */}
         <g id="torso">
           {/* Neck */}
-          <path d="M 90 110 L 110 110 L 110 135 L 90 135 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
+          <path d="M 92 140 L 108 140 L 108 165 L 92 165 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
           
           {topStyle === 'tshirt' && (
              <g>
                {/* Tshirt Body */}
-               <path d="M 80 125 Q 100 135 120 125 L 140 140 L 125 155 L 125 185 Q 100 195 75 185 L 75 155 L 60 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 68 160 Q 100 165 132 160 L 122 225 Q 100 230 78 225 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Sleeves */}
-               <path d="M 60 140 L 50 160 L 65 165 L 75 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 140 140 L 150 160 L 135 165 L 125 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 68 158 L 52 195 L 70 200 L 78 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 132 158 L 148 195 L 130 200 L 122 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
              </g>
           )}
           {topStyle === 'hoodie' && (
              <g>
                {/* Hoodie Body */}
-               <path d="M 75 120 Q 100 130 125 120 L 145 142 L 128 160 L 130 195 Q 100 205 70 195 L 72 160 L 55 142 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 66 160 Q 100 168 134 160 L 124 228 Q 100 232 76 228 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Hoodie Pocket */}
-               <path d="M 80 165 L 120 165 L 125 185 Q 100 195 75 185 Z" fill={topColor} stroke={topOutline} strokeWidth="2" strokeLinejoin="round"/>
+               <path d="M 82 200 L 118 200 L 122 222 Q 100 228 78 222 Z" fill={topColor} stroke={topOutline} strokeWidth="2" strokeLinejoin="round"/>
                {/* Long Sleeves */}
-               <path d="M 55 142 Q 40 175 50 205 L 64 205 Q 57 180 72 160 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 145 142 Q 160 175 150 205 L 136 205 Q 143 180 128 160 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 66 160 L 48 235 C 44 245 60 245 62 232 L 78 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 134 160 L 152 235 C 156 245 140 245 138 232 L 122 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Drawstrings */}
-               <path d="M 90 130 L 90 160 M 110 130 L 110 160" fill="none" stroke={topOutline} strokeWidth="2" strokeLinecap="round"/>
+               <path d="M 90 165 L 90 190 M 110 165 L 110 190" fill="none" stroke={topOutline} strokeWidth="2" strokeLinecap="round"/>
              </g>
           )}
           {topStyle === 'sweater' && (
              <g>
                {/* Sweater Body */}
-               <path d="M 75 125 Q 100 135 125 125 L 140 140 L 125 155 L 125 185 Q 100 195 75 185 L 75 155 L 60 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 68 160 Q 100 165 132 160 L 122 225 Q 100 230 78 225 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Sweater texture lines */}
-               <path d="M 85 135 L 85 185 M 100 135 L 100 190 M 115 135 L 115 185" fill="none" stroke={topOutline} strokeWidth="1" opacity="0.3"/>
+               <path d="M 85 165 L 85 225 M 100 165 L 100 228 M 115 165 L 115 225" fill="none" stroke={topOutline} strokeWidth="1" opacity="0.3"/>
                {/* Long Sleeves */}
-               <path d="M 60 140 Q 45 175 52 205 L 65 205 Q 60 180 75 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 140 140 Q 155 175 148 205 L 135 205 Q 140 180 125 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 68 160 L 48 235 C 44 245 60 245 62 232 L 78 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 132 160 L 152 235 C 156 245 140 245 138 232 L 122 175 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
              </g>
           )}
         </g>
@@ -127,57 +127,66 @@ export const PatientAvatar: React.FC<PatientAvatarProps> = ({ config, size = 150
         {/* HEAD & FACE */}
         <g id="head">
           {/* Ears */}
-          <ellipse cx="65" cy="95" rx="8" ry="12" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
-          <ellipse cx="135" cy="95" rx="8" ry="12" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
+          <path d="M 60 115 C 55 115 52 125 58 135" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
+          <path d="M 140 115 C 145 115 148 125 142 135" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
           
           {/* Face Base */}
-          <path d="M 70 60 C 70 30 130 30 130 60 L 135 90 C 135 120 115 130 100 130 C 85 130 65 120 65 90 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
+          <path d="M 60 90 C 60 40 140 40 140 90 C 140 115 120 140 100 145 C 80 140 60 115 60 90 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
           
-          {/* Eyes */}
-          <ellipse cx="85" cy="90" rx="6" ry="8" fill="#FFFFFF" stroke={skinOutline} strokeWidth="1"/>
-          <circle cx="85" cy="90" r="3" fill="#222222"/>
+          {/* Left Eye */}
+          <path d="M 68 105 Q 80 95 88 105" fill="none" stroke={hairColor} strokeWidth="3" strokeLinecap="round"/>
+          <ellipse cx="78" cy="106" rx="7" ry="8" fill="#FFFFFF" stroke={skinOutline} strokeWidth="1"/>
+          <ellipse cx="78" cy="106" rx="5" ry="7" fill={bottomColor} />
+          <ellipse cx="78" cy="106" rx="3" ry="5" fill="#111" />
+          <circle cx="76" cy="102" r="2.5" fill="#FFFFFF" />
+          <circle cx="81" cy="110" r="1.5" fill="#FFFFFF" />
           
-          <ellipse cx="115" cy="90" rx="6" ry="8" fill="#FFFFFF" stroke={skinOutline} strokeWidth="1"/>
-          <circle cx="115" cy="90" r="3" fill="#222222"/>
+          {/* Right Eye */}
+          <path d="M 112 105 Q 120 95 132 105" fill="none" stroke={hairColor} strokeWidth="3" strokeLinecap="round"/>
+          <ellipse cx="122" cy="106" rx="7" ry="8" fill="#FFFFFF" stroke={skinOutline} strokeWidth="1"/>
+          <ellipse cx="122" cy="106" rx="5" ry="7" fill={bottomColor} />
+          <ellipse cx="122" cy="106" rx="3" ry="5" fill="#111" />
+          <circle cx="120" cy="102" r="2.5" fill="#FFFFFF" />
+          <circle cx="125" cy="110" r="1.5" fill="#FFFFFF" />
 
           {gender === 'girl' && (
             <g>
-              {/* Eyelashes */}
-              <path d="M 78 85 Q 75 80 72 82 M 122 85 Q 125 80 128 82" fill="none" stroke="#222222" strokeWidth="1.5" strokeLinecap="round"/>
-              {/* Cheeks */}
-              <ellipse cx="75" cy="100" rx="6" ry="3" fill="#FF8A8A" opacity="0.5"/>
-              <ellipse cx="125" cy="100" rx="6" ry="3" fill="#FF8A8A" opacity="0.5"/>
+               {/* Eyelashes */}
+               <path d="M 65 102 Q 62 98 65 95 M 135 102 Q 138 98 135 95" fill="none" stroke={hairColor} strokeWidth="1.5" strokeLinecap="round"/>
+               {/* Cheeks */}
+               <ellipse cx="68" cy="118" rx="6" ry="3" fill="#FF8A8A" opacity="0.5"/>
+               <ellipse cx="132" cy="118" rx="6" ry="3" fill="#FF8A8A" opacity="0.5"/>
             </g>
           )}
 
           {/* Eyebrows */}
-          <path d="M 78 78 Q 85 75 92 78 M 108 78 Q 115 75 122 78" fill="none" stroke={hairColor} strokeWidth="3" strokeLinecap="round"/>
+          <path d="M 70 90 Q 78 85 86 90" fill="none" stroke={hairColor} strokeWidth="2" strokeLinecap="round"/>
+          <path d="M 114 90 Q 122 85 130 90" fill="none" stroke={hairColor} strokeWidth="2" strokeLinecap="round"/>
           
           {/* Nose */}
-          <path d="M 100 95 Q 102 100 98 102" fill="none" stroke={skinOutline} strokeWidth="2" strokeLinecap="round"/>
+          <path d="M 100 118 L 98 122" fill="none" stroke={skinOutline} strokeWidth="2" strokeLinecap="round"/>
           
           {/* Mouth */}
-          <path d="M 92 112 Q 100 118 108 112" fill="none" stroke={skinOutline} strokeWidth="2" strokeLinecap="round"/>
+          <path d="M 94 130 Q 100 135 106 130" fill="none" stroke={skinOutline} strokeWidth="2" strokeLinecap="round"/>
         </g>
 
         {/* FRONT HAIR */}
         <g id="hair-front">
           {hairStyle === 'short' && (
-            <path d="M 65 75 C 65 35 135 35 135 75 C 135 75 125 55 100 55 C 75 55 65 75 65 75 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M 50 100 C 50 25 150 25 150 100 C 150 100 135 60 115 70 C 100 55 90 70 80 60 C 65 70 50 100 50 100 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
           )}
           {hairStyle === 'spiky' && (
-            <path d="M 65 75 L 75 30 L 85 50 L 100 20 L 115 50 L 125 30 L 135 75 C 135 75 125 60 100 60 C 75 60 65 75 65 75 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M 50 100 L 60 50 L 80 75 L 100 30 L 120 75 L 140 50 L 150 100 C 150 100 135 65 115 75 C 100 60 90 75 80 65 C 65 75 50 100 50 100 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
           )}
           {hairStyle === 'curly' && (
-            <path d="M 60 70 C 60 40 80 20 100 20 C 120 20 140 40 140 70 C 140 80 135 90 125 95 C 115 100 85 100 75 95 C 65 90 60 80 60 70 Z M 70 70 C 75 55 100 50 130 70" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M 50 100 C 40 50 70 20 100 25 C 130 20 160 50 150 100 C 150 100 135 65 115 75 C 100 60 90 75 80 65 C 65 75 50 100 50 100 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
           )}
           {hairStyle === 'long' && (
-            <path d="M 65 75 C 65 40 135 40 135 75 C 135 75 125 60 100 60 C 75 60 65 75 65 75 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M 50 100 C 50 25 150 25 150 100 C 150 100 135 60 115 70 C 100 55 90 70 80 60 C 65 70 50 100 50 100 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
           )}
           {hairStyle === 'ponytail' && (
-            <path d="M 65 75 C 65 35 135 35 135 75 C 135 75 125 55 100 55 C 75 55 65 75 65 75 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
+            <path d="M 50 100 C 50 25 150 25 150 100 C 150 100 135 60 115 70 C 100 55 90 70 80 60 C 65 70 50 100 50 100 Z" fill={hairColor} stroke={hairOutline} strokeWidth="2" strokeLinejoin="round"/>
           )}
-          {/* Bald has no front hair */}
         </g>
       </g>
     </svg>
