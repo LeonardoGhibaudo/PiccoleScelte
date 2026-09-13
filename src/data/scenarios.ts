@@ -1,6 +1,9 @@
 import type { Scenario } from '../types';
+import { CHAPTERS_16_20 } from './chapters_16_20';
+import { CHAPTERS_21_25 } from './chapters_21_25';
+import { CHAPTERS_26_30 } from './chapters_26_30';
 
-export const INITIAL_SCENARIOS: Record<string, Scenario> = {
+const BASE_SCENARIOS: Record<string, Scenario> = {
   "scen-school-pressione-1": {
     "id": "scen-school-pressione-1",
     "title": "Pressione alla Lavagna",
@@ -2191,4 +2194,11 @@ export const INITIAL_SCENARIOS: Record<string, Scenario> = {
     ],
     "isStartingNode": false
   }
+};
+
+export const INITIAL_SCENARIOS: Record<string, Scenario> = {
+  ...BASE_SCENARIOS,
+  ...CHAPTERS_16_20,
+  ...CHAPTERS_21_25,
+  ...CHAPTERS_26_30,
 };
