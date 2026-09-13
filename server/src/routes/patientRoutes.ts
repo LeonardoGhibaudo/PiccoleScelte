@@ -29,6 +29,8 @@ router.post('/', async (req, res) => {
     const invite = await Invite.findOne({ patientEmail: data.id });
     if (invite) {
       data.therapistEmail = invite.therapistEmail;
+      // Consume the invite — delete it so it won't re-associate after therapist removes the patient
+      await Invite.deleteOne({ _id: invite._id });
     }
 
     const result = await Patient.findOneAndUpdate(
@@ -111,9 +113,21 @@ router.put('/:id/unlock', async (req, res) => {
   }
 });
 
+import { ValidationRequest } from '../models/ValidationRequest';
+
 router.delete('/:id', async (req, res) => {
   try {
-    await Patient.deleteOne({ id: req.params.id });
+    const patientId = req.params.id;
+    
+    // 1. Delete the patient record
+    await Patient.deleteOne({ id: patientId });
+    
+    // 2. Delete any pending validation requests from this patient
+    await ValidationRequest.deleteMany({ patientId });
+    
+    // 3. Delete any invites for this patient (prevents re-association on next login)
+    await Invite.deleteMany({ patientEmail: patientId });
+    
     res.json({ success: true });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
