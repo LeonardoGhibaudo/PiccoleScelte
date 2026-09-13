@@ -48,21 +48,21 @@ export const PatientAvatar: React.FC<PatientAvatarProps> = ({ config, size = 150
         {/* LEGS */}
         <g id="legs">
           {/* Left Leg */}
-          <path d="M 85 190 L 80 270 L 95 270 L 100 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 82 190 L 82 270 L 92 270 L 92 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
           {/* Right Leg */}
-          <path d="M 115 190 L 120 270 L 105 270 L 100 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 108 190 L 108 270 L 118 270 L 118 190 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
         </g>
 
         {/* BOTTOMS */}
         <g id="bottoms">
           {bottomStyle === 'pants' && (
-             <path d="M 75 180 Q 100 190 125 180 L 125 265 L 102 265 L 100 200 L 98 265 L 75 265 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 75 180 Q 100 190 125 180 L 125 265 L 105 265 L 100 205 L 95 265 L 75 265 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
           {bottomStyle === 'shorts' && (
-             <path d="M 75 180 Q 100 190 125 180 L 128 220 L 102 220 L 100 190 L 98 220 L 72 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 75 180 Q 100 190 125 180 L 128 220 L 105 220 L 100 205 L 95 220 L 72 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
           {bottomStyle === 'skirt' && (
-             <path d="M 75 180 Q 100 190 125 180 L 135 220 Q 100 225 65 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
+             <path d="M 75 180 Q 100 190 125 180 L 135 220 Q 100 230 65 220 Z" fill={bottomColor} stroke={bottomOutline} strokeWidth="3" strokeLinejoin="round"/>
           )}
         </g>
 
@@ -79,45 +79,47 @@ export const PatientAvatar: React.FC<PatientAvatarProps> = ({ config, size = 150
         {/* ARMS (Back layer, behind torso if we want, or side) */}
         <g id="arms-back">
           {/* Left Arm */}
-          <path d="M 65 140 Q 55 180 60 210 Q 65 220 70 215 L 75 200 Q 70 170 75 140 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 60 140 Q 45 175 55 210 A 6 6 0 0 0 67 210 Q 60 180 75 155 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
           {/* Right Arm */}
-          <path d="M 135 140 Q 145 180 140 210 Q 135 220 130 215 L 125 200 Q 130 170 125 140 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
+          <path d="M 140 140 Q 155 175 145 210 A 6 6 0 0 1 133 210 Q 140 180 125 155 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2" strokeLinejoin="round"/>
         </g>
 
         {/* TORSO & TOPS */}
         <g id="torso">
           {/* Neck */}
-          <path d="M 90 110 L 110 110 L 110 130 L 90 130 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
+          <path d="M 90 110 L 110 110 L 110 135 L 90 135 Z" fill={skinTone} stroke={skinOutline} strokeWidth="2"/>
           
           {topStyle === 'tshirt' && (
              <g>
-               <path d="M 80 125 Q 100 135 120 125 L 135 140 Q 130 190 125 185 Q 100 190 75 185 Q 70 190 65 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               {/* Tshirt Body */}
+               <path d="M 80 125 Q 100 135 120 125 L 140 140 L 125 155 L 125 185 Q 100 195 75 185 L 75 155 L 60 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Sleeves */}
-               <path d="M 65 140 Q 55 150 50 160 L 60 165 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 135 140 Q 145 150 150 160 L 140 165 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 60 140 L 50 160 L 65 165 L 75 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 140 140 L 150 160 L 135 165 L 125 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
              </g>
           )}
           {topStyle === 'hoodie' && (
              <g>
                {/* Hoodie Body */}
-               <path d="M 75 120 Q 100 130 125 120 L 140 145 Q 135 190 130 195 Q 100 200 70 195 Q 65 190 60 145 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 75 120 Q 100 130 125 120 L 145 142 L 128 160 L 130 195 Q 100 205 70 195 L 72 160 L 55 142 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Hoodie Pocket */}
-               <path d="M 80 170 L 120 170 L 130 190 Q 100 195 70 190 Z" fill={topColor} stroke={topOutline} strokeWidth="2" strokeLinejoin="round"/>
+               <path d="M 80 165 L 120 165 L 125 185 Q 100 195 75 185 Z" fill={topColor} stroke={topOutline} strokeWidth="2" strokeLinejoin="round"/>
                {/* Long Sleeves */}
-               <path d="M 60 145 Q 45 180 50 205 L 65 200 Q 60 170 70 150 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 140 145 Q 155 180 150 205 L 135 200 Q 140 170 130 150 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 55 142 Q 40 175 50 205 L 64 205 Q 57 180 72 160 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 145 142 Q 160 175 150 205 L 136 205 Q 143 180 128 160 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Drawstrings */}
                <path d="M 90 130 L 90 160 M 110 130 L 110 160" fill="none" stroke={topOutline} strokeWidth="2" strokeLinecap="round"/>
              </g>
           )}
           {topStyle === 'sweater' && (
              <g>
-               <path d="M 75 125 Q 100 135 125 125 L 135 140 Q 130 190 125 185 Q 100 190 75 185 Q 70 190 65 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               {/* Sweater Body */}
+               <path d="M 75 125 Q 100 135 125 125 L 140 140 L 125 155 L 125 185 Q 100 195 75 185 L 75 155 L 60 140 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
                {/* Sweater texture lines */}
-               <path d="M 85 135 L 85 185 M 100 135 L 100 185 M 115 135 L 115 185" fill="none" stroke={topOutline} strokeWidth="1" opacity="0.3"/>
+               <path d="M 85 135 L 85 185 M 100 135 L 100 190 M 115 135 L 115 185" fill="none" stroke={topOutline} strokeWidth="1" opacity="0.3"/>
                {/* Long Sleeves */}
-               <path d="M 65 140 Q 50 175 55 200 L 70 195 Q 65 165 75 145 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
-               <path d="M 135 140 Q 150 175 145 200 L 130 195 Q 135 165 125 145 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 60 140 Q 45 175 52 205 L 65 205 Q 60 180 75 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
+               <path d="M 140 140 Q 155 175 148 205 L 135 205 Q 140 180 125 155 Z" fill={topColor} stroke={topOutline} strokeWidth="3" strokeLinejoin="round"/>
              </g>
           )}
         </g>
