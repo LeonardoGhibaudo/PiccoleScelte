@@ -27,15 +27,23 @@ router.post('/', async (req, res) => {
     
     // Check if there is an invite for this patient's email (data.id is email currently from LoginScreen)
     const invite = await Invite.findOne({ patientEmail: data.id });
+    // We shouldn't trust therapistEmail from the client because it might be stale 
+    // (e.g. therapist deleted them, but client still has old data).
+    // So we remove it from the payload, EXCEPT if there's a fresh invite.
+    delete data.therapistEmail;
+
+    let updatePayload: any = { $set: data };
+
     if (invite) {
-      data.therapistEmail = invite.therapistEmail;
-      // Consume the invite — delete it so it won't re-associate after therapist removes the patient
+      // Apply the invite
+      updatePayload.$set.therapistEmail = invite.therapistEmail;
+      // Consume the invite
       await Invite.deleteOne({ _id: invite._id });
     }
 
     const result = await Patient.findOneAndUpdate(
       { id: data.id },
-      data,
+      updatePayload,
       { upsert: true, new: true, lean: true }
     );
     res.json(result);
@@ -88,9 +96,11 @@ router.post('/invite', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const data = req.body;
+    delete data.therapistEmail; // Protect from stale client data overwrite
+    
     const result = await Patient.findOneAndUpdate(
       { id: req.params.id },
-      data,
+      { $set: data },
       { new: true, lean: true }
     );
     res.json(result);
@@ -119,8 +129,11 @@ router.delete('/:id', async (req, res) => {
   try {
     const patientId = req.params.id;
     
-    // 1. Delete the patient record
-    await Patient.deleteOne({ id: patientId });
+    // 1. Invece di eliminare il paziente, lo "scolleghiamo" dallo psicologo
+    await Patient.findOneAndUpdate(
+      { id: patientId },
+      { $set: { therapistEmail: '' } }
+    );
     
     // 2. Delete any pending validation requests from this patient
     await ValidationRequest.deleteMany({ patientId });

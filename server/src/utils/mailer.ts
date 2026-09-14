@@ -12,6 +12,11 @@ const gmail = google.gmail({ version: 'v1', auth: oAuth2Client });
 
 export const sendEmail = async (to: string, subject: string, htmlContent: string) => {
   try {
+    if (!process.env.GMAIL_REFRESH_TOKEN) {
+      console.warn(`[MAILER WARN] Cannot send email to ${to} - GMAIL_REFRESH_TOKEN is missing in .env`);
+      return; // Skip silently or handle as needed
+    }
+
     const rawMessage = [
       `From: Piccole Scelte <${process.env.GMAIL_USER}>`,
       `To: ${to}`,
